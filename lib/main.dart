@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    _pageController = new PageController();
+    _pageController = PageController();
   }
 
   @override
@@ -42,30 +42,30 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Application Name'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Application Name'),
         elevation: 4.0,
       ),
-      body: new PageView(
+      body: PageView(
         controller: _pageController,
         onPageChanged: onPageChanged,
         children: [
-          new HomePage(),
-          new SettingsPage(),
+          HomePage(),
+          SettingsPage(),
         ],
       ),
-      bottomNavigationBar: new BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
         currentIndex: _page,
         onTap: onTapBottomNavigation,
         items: [
-          new BottomNavigationBarItem(
-              icon: new Icon(Icons.home),
-              title: new Text("Home")
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              title: Text("Home")
           ),
-          new BottomNavigationBarItem(
-              icon: new Icon(Icons.settings),
-              title: new Text("Setting")
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              title: Text("Setting")
           ),
         ],
       ),
@@ -89,41 +89,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 
-
 class HomePage extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.blue[100],
-        // Appbar
-        appBar: AppBar(
-          backgroundColor: Colors.blue[100],
-          title: Text(
-            'Home Page',
-            style: TextStyle(fontSize: 16),
-          ),
-        ),
+    return Scaffold(        
         body: Center(child: Icon(Icons.cloud)));
   }
 }
 
 
 
-class SettingsPage extends StatelessWidget {
-  // This widget is the root of your application.
+class SettingsPage extends StatelessWidget {  
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.blue[100],
-        // Appbar
-        appBar: AppBar(
-          backgroundColor: Colors.blue[100],
-          title: Text(
-            'Setting Page',
-            style: TextStyle(fontSize: 16),
-          ),
-        ),
+    return Scaffold(              
         body: Center(child: Icon(Icons.cloud)));
   }
 }
