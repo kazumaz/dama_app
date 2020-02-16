@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dama_app/view/HomePage.dart';
 import 'package:dama_app/view/SettingPage.dart';
+import 'package:dama_app/view/LaborPage.dart';
+import 'package:dama_app/view/RewordPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -54,16 +56,21 @@ class _MyHomePageState extends State<MyHomePage> {
         onPageChanged: onPageChanged,
         children: [
           HomePage(),
+          LaborPage(),
+          RewordPage(),
           SettingsPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: _page,
         onTap: onTapBottomNavigation,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Home")),
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("ホーム")),
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("お手伝い")),
+          BottomNavigationBarItem(icon: Icon(Icons.local_library), title: Text("ご褒美")),
           BottomNavigationBarItem(
-              icon: Icon(Icons.settings), title: Text("Setting")),
+              icon: Icon(Icons.settings), title: Text("設定")),
         ],
       ),
       drawer: myDrawer(),
