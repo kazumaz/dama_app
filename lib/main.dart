@@ -69,8 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("ホーム")),
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("お手伝い")),
           BottomNavigationBarItem(icon: Icon(Icons.local_library), title: Text("ご褒美")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), title: Text("設定")),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), title: Text("設定")),
         ],
       ),
       drawer: myDrawer(),
