@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:dama_app/view/HomePage.dart';
+import 'package:dama_app/view/SettingPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -77,20 +79,6 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       this._page = page;
     });
-  }
-}
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Icon(Icons.cloud)));
-  }
-}
-
-class SettingsPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Icon(Icons.cloud)));
   }
 }
 
