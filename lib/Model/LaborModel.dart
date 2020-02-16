@@ -18,6 +18,7 @@ class LaborModel extends ChangeNotifier {
 
 class Labor {
   final int key;
+  Icon icon;
   String name;
   int point;
 
