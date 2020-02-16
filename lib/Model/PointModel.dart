@@ -12,22 +12,3 @@ class PointModel extends ChangeNotifier {
     notifyListeners();
   }
 }
-
-class Member {
-  final int key;
-  String name;
-  int point;
-
-  Member({@required this.key, @required this.name, @required this.point});
-
-  Member.fromJson(Map<String, dynamic> json)
-      : key = json['key'],
-        name = json['name'],
-        point = json['point'];
-
-  Map<String, dynamic> toJson() => {
-        'key': key,
-        'name': name,
-        'point': point,
-      };
-}
