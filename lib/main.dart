@@ -59,25 +59,18 @@ class _MyHomePageState extends State<MyHomePage> {
         currentIndex: _page,
         onTap: onTapBottomNavigation,
         items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Home")),
           BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              title: Text("Home")
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              title: Text("Setting")
-          ),
+              icon: Icon(Icons.settings), title: Text("Setting")),
         ],
       ),
+      drawer: myDrawer(),
     );
   }
 
   void onTapBottomNavigation(int page) {
-    _pageController.animateToPage(
-        page,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.ease
-    );
+    _pageController.animateToPage(page,
+        duration: const Duration(milliseconds: 300), curve: Curves.ease);
   }
 
   void onPageChanged(int page) {
@@ -87,22 +80,48 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-
-
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(        
-        body: Center(child: Icon(Icons.cloud)));
+    return Scaffold(body: Center(child: Icon(Icons.cloud)));
   }
 }
 
-
-
-class SettingsPage extends StatelessWidget {  
+class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(              
-        body: Center(child: Icon(Icons.cloud)));
+    return Scaffold(body: Center(child: Icon(Icons.cloud)));
   }
+}
+
+Widget myDrawer() {
+  return Drawer(
+    // Add a ListView to the drawer. This ensures the user can scroll
+    // through the options in the drawer if there isn't enough vertical
+    // space to fit everything.
+    child: ListView(
+      // Important: Remove any padding from the ListView.
+      padding: EdgeInsets.zero,
+      children: <Widget>[
+        DrawerHeader(
+          child: Text('Drawer Header'),
+          decoration: BoxDecoration(
+            color: Colors.blue,
+          ),
+        ),
+        ListTile(
+          title: Text('Item 1'),
+          onTap: () {
+            // Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          title: Text('Item 2'),
+          onTap: () {
+            // Navigator.pop(context);
+          },
+        ),
+      ],
+    ),
+  );
 }
