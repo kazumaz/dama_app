@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class PointModel extends ChangeNotifier {
+class RewordModel extends ChangeNotifier {
   List<Reward> rewardList = []; //Todo 永続化先から読み込めるようにする。
   int nextRewardKey = 0; //Todo 永続化先から読み込めるようにする。
 
