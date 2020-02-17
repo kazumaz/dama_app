@@ -3,6 +3,8 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:dama_app/model/RewardModel.dart';
 
 class HomePage extends StatelessWidget {
+  int totalPoints = 22;
+
   List<Reward> list = [
     Reward(key: 1, name: "お菓子", point: 3),
     Reward(key: 2, name: "遊園地", point: 40),
@@ -12,7 +14,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: rewardAchievedList(list, 6));
+    return Scaffold(
+        body: Column(children: <Widget>[
+      Text(
+        totalPoints.toString(),
+        style: TextStyle(fontSize: 50.0),
+      ),
+      SizedBox(height: 200.0, child: rewardAchievedList(list, totalPoints))
+    ]));
   }
 }
 
@@ -33,7 +42,8 @@ Widget rewardAchievedList(List<Reward> rewardList, int totalpoint) {
                       "%"),
                   progressColor: Colors.blue,
                 ),
-                Text(rewardList[index].name)
+                Text(rewardList[index].name),
+                Text(rewardList[index].point.toString() + " point")
               ],
             ));
       },
@@ -56,6 +66,6 @@ String calculateRewardAchievesPercentageString(
   if (result >= 100) {
     return 100.toString();
   } else {
-    return result.toString();
+    return result.floorToDouble().toString();
   }
 }
