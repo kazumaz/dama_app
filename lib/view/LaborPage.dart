@@ -12,7 +12,7 @@ class LaborPage extends StatelessWidget {
             return Card(
               child: Padding(
                 child: Text(
-                  '$index ：' + laborModel.rewardList[index].name,
+                  laborModel.rewardList[index].point.toString() + " Point:　　" + laborModel.rewardList[index].name,
                   style: TextStyle(fontSize: 22.0),
                 ),
                 padding: EdgeInsets.all(20.0),
