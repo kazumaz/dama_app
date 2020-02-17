@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:dama_app/model/RewardModel.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class HomePage extends StatelessWidget {
   int totalPoints = 22;
@@ -16,9 +17,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(children: <Widget>[
+      Row(
+        children: <Widget>[    
+        Icon(FontAwesome.money),
       Text(
         totalPoints.toString(),
         style: TextStyle(fontSize: 50.0),
+      ),]
       ),
       SizedBox(height: 200.0, child: rewardAchievedList(list, totalPoints))
     ]));
