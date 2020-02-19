@@ -4,16 +4,14 @@ import 'package:provider/provider.dart';
 
 class SelectionScreen extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => Scaffold(
-        // appBar: AppBar(
-        //   title: Text('選択してください'),
-        // ),
-        body: GridView.count(
+  Widget build(BuildContext context) => Scaffold(        
+        body:             
+        GridView.count(
             crossAxisCount: 5, // 1行に表示する数
             crossAxisSpacing: 10.0, // 縦スペース
             mainAxisSpacing: 10.0, // 横スペース
             shrinkWrap: true,
-            children: <Widget>[
+            children: <Widget>[          
               IconButton(
                 icon: Icon(Icons.lens, color: Colors.blue),
                 iconSize: 70.0,

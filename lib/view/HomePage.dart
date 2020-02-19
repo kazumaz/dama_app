@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
                   padding: EdgeInsets.all(30.0),
                   child: Icon(
                     FontAwesome.money,
-                    color: Colors.blue,
+                    color: Theme.of(context).primaryColor,
                     size: 80.0,
                   )),
               Text(
@@ -59,7 +59,7 @@ Widget rewardAchievedList(List<Reward> rewardList, int totalpoint) {
                     center: Text(calculateRewardAchievesPercentageString(
                             pointmodel.totalPoint, rewardList[index].point) +
                         "%"),
-                    progressColor: Colors.blue,
+                    progressColor: Theme.of(context).primaryColor,
                   ),
                   Text(rewardList[index].name),
                   Text(rewardList[index].point.toString() + " point"),

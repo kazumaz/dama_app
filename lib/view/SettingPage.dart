@@ -15,7 +15,7 @@ class SettingsPage extends StatelessWidget {
           Text(""),
           Text("　設定"),
           _menuItem("パスワード設定", Icon(Ionicons.ios_lock)),
-          _menuItem("テーマカラーの変更", Icon(Icons.map)),
+          _ColorSetting("テーマカラーの変更", Icon(Icons.map), context),
           _menuItem("メニュー3", Icon(Icons.room)),
           _menuItem("メニュー4", Icon(Icons.local_shipping)),
           Text(""),
@@ -51,9 +51,41 @@ class SettingsPage extends StatelessWidget {
               ),
             ],
           )),
+
+      onTap: () {        
+        print("onTap called.");
+      },
+    );
+  }
+
+  Widget _ColorSetting(String title, Icon icon, BuildContext context) {
+    return GestureDetector(
+      child: Container(
+          padding: EdgeInsets.all(8.0),
+          decoration: new BoxDecoration(
+            color: Colors.white,
+              border: new Border(
+                  bottom: BorderSide(width: 1.0, color: Colors.grey))),
+          child: Row(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.all(5.0),
+                child: icon,                
+              ),
+              Text(
+                title,
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          )),
       onTap: () {
+        Navigator.of(context).pushReplacementNamed("/colorSettings");
         print("onTap called.");
       },
     );
   }
 }
+
+

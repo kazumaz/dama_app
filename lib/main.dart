@@ -1,8 +1,10 @@
+import 'package:dama_app/model/ColorModel.dart';
 import 'package:flutter/material.dart';
 import 'package:dama_app/view/HomePage.dart';
 import 'package:dama_app/view/SettingPage.dart';
 import 'package:dama_app/view/LaborPage.dart';
 import 'package:dama_app/view/RewardPage.dart';
+import 'package:dama_app/view/ColorSettingPage.dart';
 import 'package:dama_app/view/HistoryPage.dart';
 import 'package:dama_app/model/LaborModel.dart';
 import 'package:dama_app/model/RewardModel.dart';
@@ -12,30 +14,37 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:ff_navigation_bar/ff_navigation_bar.dart';
 
-// void main() => runApp(MultiProvider(providers: [
-//       ChangeNotifierProvider<RewordModel>(create: (_) => RewordModel()),
-//       ChangeNotifierProvider<LaborModel>(create: (_) => LaborModel()),
-//       ChangeNotifierProvider<PointModel>(create: (_) => PointModel()),
-//     ], child: MyApp()));
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-        providers: [
-          ChangeNotifierProvider<LaborModel>(create: (_) => LaborModel()),
-          ChangeNotifierProvider<RewordModel>(create: (_) => RewordModel()),
-          ChangeNotifierProvider<PointModel>(create: (_) => PointModel()),
-        ],
-        child: MaterialApp(
+    return MultiProvider(providers: [
+      ChangeNotifierProvider<LaborModel>(create: (_) => LaborModel()),
+      ChangeNotifierProvider<RewordModel>(create: (_) => RewordModel()),
+      ChangeNotifierProvider<PointModel>(create: (_) => PointModel()),
+      ChangeNotifierProvider<ColorModel>(create: (_) => ColorModel()),
+    ], child: Application());
+  }
+}
+
+class Application extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Consumer<ColorModel>(
+      builder: (context, color, child) {
+        return MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
-            primarySwatch: Colors.blue,
+            primarySwatch: color.themaColor,
           ),
           home: MyHomePage(title: 'Flutter Demo Home Page'),
-        ));
+          routes: <String, WidgetBuilder>{
+            '/colorSettings': (_) => ColorSettingPage(),
+            '/home': (_) => MyHomePage(title: 'Flutter Demo Home Page')            
+          },
+        );
+      },
+    );
   }
 }
 
@@ -84,8 +93,8 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: FFNavigationBar(
         theme: FFNavigationBarTheme(
           barBackgroundColor: Colors.white,
-          selectedItemBorderColor: Colors.indigo,
-          selectedItemBackgroundColor: Colors.blue,
+          selectedItemBorderColor: Colors.black,
+          selectedItemBackgroundColor: Theme.of(context).primaryColor,
           selectedItemIconColor: Colors.white,
           selectedItemLabelColor: Colors.black,
         ),
