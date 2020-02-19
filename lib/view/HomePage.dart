@@ -13,6 +13,7 @@ class HomePage extends StatelessWidget {
     Reward(key: 2, name: "遊園地", point: 40),
     Reward(key: 3, name: "ディズニー", point: 50),
     Reward(key: 4, name: "おもちゃ", point: 10),
+    Reward(key: 4, name: "うまい棒", point: 1),
   ];
 
   @override
@@ -56,9 +57,9 @@ Widget rewardAchievedList(List<Reward> rewardList, int totalpoint) {
                     radius: 60.0,
                     lineWidth: 5.0,
                     percent: calculateRewardAchievesPercentage(
-                        totalpoint, rewardList[index].point),
+                        pointmodel.totalPoint, rewardList[index].point),
                     center: Text(calculateRewardAchievesPercentageString(
-                            totalpoint, rewardList[index].point) +
+                            pointmodel.totalPoint, rewardList[index].point) +
                         "%"),
                     progressColor: Colors.blue,
                   ),
@@ -67,13 +68,18 @@ Widget rewardAchievedList(List<Reward> rewardList, int totalpoint) {
                   IconButton(
                       icon: Icon(
                         Entypo.heart,
-                        color: Colors.pink,
+                        color: isButtonDisabled(
+                                pointmodel.totalPoint, rewardList[index].point)
+                            ? Colors.pink
+                            : Colors.grey,
                       ),
-                      tooltip: 'Increase volume by 10', //TODo　文言変更
-                      onPressed: () {
-                        pointmodel.decreaseTotalPoint(
-                            point: rewardList[index].point);
-                      }),
+                      onPressed: isButtonDisabled(
+                              pointmodel.totalPoint, rewardList[index].point)
+                          ? () {
+                              pointmodel.decreaseTotalPoint(
+                                  point: rewardList[index].point);
+                            }
+                          : null),
                 ],
               ));
         },
@@ -98,5 +104,13 @@ String calculateRewardAchievesPercentageString(
     return 100.toString();
   } else {
     return result.floorToDouble().toString();
+  }
+}
+
+bool isButtonDisabled(int rewardPoint, int totalPoint) {
+  if (rewardPoint >= totalPoint) {
+    return true;
+  } else {
+    return false;
   }
 }
