@@ -7,6 +7,8 @@ import 'package:dama_app/model/LaborModel.dart';
 import 'package:dama_app/model/RewardModel.dart';
 import 'package:dama_app/model/PointModel.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 // void main() => runApp(MultiProvider(providers: [
 //       ChangeNotifierProvider<RewordModel>(create: (_) => RewordModel()),
@@ -124,6 +126,7 @@ Widget myDrawer() {
         ListTile(
           title: Text('Item 1'),
           onTap: () {
+            launchURL;
             // Navigator.pop(context);
           },
         ),
@@ -136,4 +139,16 @@ Widget myDrawer() {
       ],
     ),
   );
+}
+
+
+
+launchURL() async {
+  const url = 'https://flutter.dev';
+  print("test");
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
 }
