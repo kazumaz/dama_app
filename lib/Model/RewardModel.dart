@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class RewordModel extends ChangeNotifier {
 
-  List<Reward> rewardList = [
+  List<Reward> rewardList = [ 
     Reward(key: 1, name: "お菓子", point: 3),
     Reward(key: 2, name: "遊園地", point: 40),
     Reward(key: 3, name: "ディズニー", point: 10000),
