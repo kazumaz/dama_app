@@ -15,4 +15,3 @@ class PointModel extends ChangeNotifier {
     notifyListeners();
   }
 }
-
