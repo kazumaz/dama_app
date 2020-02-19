@@ -55,8 +55,15 @@ Widget rewardAchievedList(List<Reward> rewardList, int totalpoint) {
                       "%"),
                   progressColor: Colors.blue,
                 ),
-                Text(rewardList[index].name),                
-                Text(rewardList[index].point.toString() + " point")                
+                Text(rewardList[index].name),
+                Text(rewardList[index].point.toString() + " point"),
+                IconButton(
+                    icon: Icon(
+                      Entypo.heart,
+                      color: Colors.pink,
+                    ),
+                    tooltip: 'Increase volume by 10',
+                    onPressed: () {}),
               ],
             ));
       },
