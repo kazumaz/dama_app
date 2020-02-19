@@ -45,36 +45,41 @@ class HomePage extends StatelessWidget {
 }
 
 Widget rewardAchievedList(List<Reward> rewardList, int totalpoint) {
-  return ListView.builder(
-      itemBuilder: (BuildContext context, int index) {
-        return Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Column(
-              children: <Widget>[
-                CircularPercentIndicator(
-                  radius: 60.0,
-                  lineWidth: 5.0,
-                  percent: calculateRewardAchievesPercentage(
-                      totalpoint, rewardList[index].point),
-                  center: Text(calculateRewardAchievesPercentageString(
-                          totalpoint, rewardList[index].point) +
-                      "%"),
-                  progressColor: Colors.blue,
-                ),
-                Text(rewardList[index].name),
-                Text(rewardList[index].point.toString() + " point"),
-                IconButton(
-                    icon: Icon(
-                      Entypo.heart,
-                      color: Colors.pink,
-                    ),
-                    tooltip: 'Increase volume by 10',
-                    onPressed: () {}),
-              ],
-            ));
-      },
-      itemCount: rewardList.length,
-      scrollDirection: Axis.horizontal);
+  return Consumer<PointModel>(builder: (context, pointmodel, child) {
+    return ListView.builder(
+        itemBuilder: (BuildContext context, int index) {
+          return Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Column(
+                children: <Widget>[
+                  CircularPercentIndicator(
+                    radius: 60.0,
+                    lineWidth: 5.0,
+                    percent: calculateRewardAchievesPercentage(
+                        totalpoint, rewardList[index].point),
+                    center: Text(calculateRewardAchievesPercentageString(
+                            totalpoint, rewardList[index].point) +
+                        "%"),
+                    progressColor: Colors.blue,
+                  ),
+                  Text(rewardList[index].name),
+                  Text(rewardList[index].point.toString() + " point"),
+                  IconButton(
+                      icon: Icon(
+                        Entypo.heart,
+                        color: Colors.pink,
+                      ),
+                      tooltip: 'Increase volume by 10', //TODo　文言変更
+                      onPressed: () {
+                        pointmodel.decreaseTotalPoint(
+                            point: rewardList[index].point);
+                      }),
+                ],
+              ));
+        },
+        itemCount: rewardList.length,
+        scrollDirection: Axis.horizontal);
+  });
 }
 
 double calculateRewardAchievesPercentage(int rewardPoint, int totalPoint) {
