@@ -3,13 +3,15 @@ import 'package:dama_app/view/HomePage.dart';
 import 'package:dama_app/view/SettingPage.dart';
 import 'package:dama_app/view/LaborPage.dart';
 import 'package:dama_app/view/RewordPage.dart';
-import 'package:dama_app/Model/LaborModel.dart';
-import 'package:dama_app/Model/RewardModel.dart';
+import 'package:dama_app/model/LaborModel.dart';
+import 'package:dama_app/model/RewardModel.dart';
+import 'package:dama_app/model/PointModel.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MultiProvider(providers: [
       ChangeNotifierProvider(create: (context) => RewordModel()),
       ChangeNotifierProvider(create: (context) => LaborModel()),
+      ChangeNotifierProvider(create: (context) => PointModel()),
     ], child: MyApp()));
 
 class MyApp extends StatelessWidget {
