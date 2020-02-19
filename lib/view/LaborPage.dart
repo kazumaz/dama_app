@@ -8,6 +8,9 @@ import 'package:provider/provider.dart';
 class LaborPage extends StatelessWidget {
   final myLaborNameController = TextEditingController();
   final myLaborPointController = TextEditingController();
+  bool datePicked = false;
+  DateTime selectedDate;
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,7 @@ class LaborPage extends StatelessWidget {
                     icon: Icon(Icons.check_circle),
                     // tooltip: 'Increase volume by 10',
                     onPressed: () {
-                      pointModel.addTotalPoint(point: laborModel.laborList[index].point);
+                      _selectDate(context, laborModel, pointModel, index);                                            
                     },
                   ),
                   Padding(
@@ -115,6 +118,18 @@ class LaborPage extends StatelessWidget {
               }));
     });
   }
+
+    Future<void> _selectDate(BuildContext context, LaborModel laborModel, PointModel pointModel, int index) async {
+    selectedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2019),
+      lastDate: DateTime(2030),
+    );
+    if (selectedDate != null) {
+      pointModel.addTotalPoint(point: laborModel.laborList[index].point);      
+    }
+  }
 }
 
 bool isInputValid(String name, String point) {
@@ -124,3 +139,6 @@ bool isInputValid(String name, String point) {
     return true;
   }
 }
+
+
+
