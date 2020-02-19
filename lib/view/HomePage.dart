@@ -1,4 +1,5 @@
 import 'package:dama_app/model/PointModel.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:dama_app/model/RewardModel.dart';
@@ -25,7 +26,12 @@ class HomePage extends StatelessWidget {
                   )),
               Text(
                 pointModel.totalPoint.toString(),
-                style: TextStyle(fontSize: 50.0),
+                style: TextStyle(
+                  fontSize: 50.0,
+                  // Todoここのフォントを最後にカッコよくする
+                  // fontFamily: 'OpenSans',
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ]),
         SizedBox(
@@ -68,8 +74,37 @@ Widget rewardAchievedList(List<Reward> rewardList, int totalpoint) {
                       onPressed: isButtonDisabled(
                               pointmodel.totalPoint, rewardList[index].point)
                           ? () {
-                              pointmodel.decreaseTotalPoint(
-                                  point: rewardList[index].point);
+                              showDialog(
+                                context: context,
+                                builder: (_) {
+                                  return CupertinoAlertDialog(
+                                    title: Text("ありがとう！！"),
+                                    content: Text(
+                                        pointmodel.totalPoint.toString() +
+                                            " - " +
+                                            rewardList[index].point.toString() +
+                                            " = " +
+                                            (pointmodel.totalPoint -
+                                                    rewardList[index].point)
+                                                .toString() +
+                                            " point になります！ "),
+                                    actions: <Widget>[
+                                      // ボタン領域
+                                      FlatButton(
+                                        child: Text("Cancel"),
+                                        onPressed: () => Navigator.pop(context),
+                                      ),
+                                      FlatButton(
+                                          child: Text("OK"),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pointmodel.decreaseTotalPoint(
+                                                point: rewardList[index].point);
+                                          }),
+                                    ],
+                                  );
+                                },
+                              );
                             }
                           : null),
                 ],
