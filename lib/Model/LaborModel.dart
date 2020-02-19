@@ -1,22 +1,25 @@
 
+import 'package:dama_app/Model/LaborModel.dart';
 import 'package:flutter/material.dart';
 
 class LaborModel extends ChangeNotifier {  
-  int nextLaborKey = 7; //Todo 永続化先から読み込めるようにする。
 
   List<Labor> laborList = [
-    Labor(key: 1, name: "掃除", point: 3),
-    Labor(key: 2, name: "洗濯", point: 3),
-    Labor(key: 3, name: "お皿洗い", point: 3),
-    Labor(key: 4, name: "料理", point: 3),
-    Labor(key: 5, name: "風呂掃除", point: 3),
-    Labor(key: 6, name: "トイレ掃除", point: 3)
+    Labor(name: "掃除", point: 3),
+    Labor(name: "洗濯", point: 3),
+    Labor(name: "お皿洗い", point: 3),
+    Labor(name: "料理", point: 3),
+    Labor(name: "風呂掃除", point: 3),
+    Labor(name: "トイレ掃除", point: 3)
   ];
 
   void addLabor({@required String name, @required int point}) {
-    laborList.add(Labor(key: nextLaborKey, name: name, point: point));
-    nextLaborKey++;
-    print(nextLaborKey); //ToDo　デバッグコードなので削除
+    laborList.add(Labor(name: name, point: point));        
+    notifyListeners();
+  }
+
+  void addLaborModel({@required Labor labor}) {
+    laborList.add(labor);    
     notifyListeners();
   }
 
@@ -25,20 +28,17 @@ class LaborModel extends ChangeNotifier {
   }
 }
 
-class Labor {
-  final int key;  
+class Labor {  
   String name;
   int point;
 
-  Labor({@required this.key, @required this.name, @required this.point});
+  Labor({@required this.name, @required this.point});
 
   Labor.fromJson(Map<String, dynamic> json)
-      : key = json['key'],
-        name = json['name'],
+      : name = json['name'],
         point = json['point'];
 
   Map<String, dynamic> toJson() => {
-        'key': key,
         'name': name,
         'point': point,
       };

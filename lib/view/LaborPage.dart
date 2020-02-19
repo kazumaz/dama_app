@@ -5,26 +5,27 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 
 class LaborPage extends StatelessWidget {
-  Labor tmpLabor = null;
+  final myLaborNameController = TextEditingController();
+  final myLaborPointController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<LaborModel>(builder: (context, rewardModel, child) {
+    return Consumer<LaborModel>(builder: (context, laborModel, child) {
       return Scaffold(
           body: ListView.builder(
             itemBuilder: (BuildContext context, int index) {
               return Card(
                 child: Padding(
                   child: Text(
-                    rewardModel.laborList[index].point.toString() +
+                    laborModel.laborList[index].point.toString() +
                         " Point:　　" +
-                        rewardModel.laborList[index].name,
+                        laborModel.laborList[index].name,
                   ),
                   padding: EdgeInsets.all(20.0),
                 ),
               );
             },
-            itemCount: rewardModel.laborList.length,
+            itemCount: laborModel.laborList.length,
           ),
           floatingActionButton: FloatingActionButton(
               child: Icon(Ionicons.ios_add),
@@ -41,21 +42,23 @@ class LaborPage extends StatelessWidget {
                             children: <Widget>[
                               Expanded(
                                   child: TextField(
+                                controller: myLaborNameController,
                                 autofocus: true,
                                 decoration: InputDecoration(
                                   labelText: "名前",
                                   // hintText: "test"
                                 ),
                                 onChanged: (value) {
-                                  tmpLabor.name = value;
+                                  // nothing to do
                                 },
                               )),
                             ],
                           ),
                           Expanded(
                               child: TextField(
-                                  decoration: InputDecoration(
-                                      labelText: "ポイント"),
+                                  controller: myLaborPointController,
+                                  decoration:
+                                      InputDecoration(labelText: "ポイント"),
                                   keyboardType: TextInputType.number,
                                   inputFormatters: <TextInputFormatter>[
                                 WhitelistingTextInputFormatter.digitsOnly
@@ -65,12 +68,21 @@ class LaborPage extends StatelessWidget {
                           FlatButton(
                             child: Text('Cancel'),
                             onPressed: () {
+                              myLaborNameController.clear();
+                              myLaborPointController.clear();
                               Navigator.of(context).pop();
                             },
                           ),
                           FlatButton(
                             child: Text('Ok'),
                             onPressed: () {
+                              Labor tmpLabor = Labor(
+                                  name: myLaborNameController.text,
+                                  point:
+                                      int.parse(myLaborPointController.text));
+                              laborModel.addLaborModel(labor: tmpLabor);
+                              myLaborNameController.clear();
+                              myLaborPointController.clear();
                               Navigator.of(context).pop();
                             },
                           ),
