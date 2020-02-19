@@ -8,7 +8,8 @@ import 'package:dama_app/model/RewardModel.dart';
 import 'package:dama_app/model/PointModel.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:ff_navigation_bar/ff_navigation_bar.dart';
 
 // void main() => runApp(MultiProvider(providers: [
 //       ChangeNotifierProvider<RewordModel>(create: (_) => RewordModel()),
@@ -66,8 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Application Name'),
-        elevation: 4.0,
+        title: Text(widget.title),
       ),
       body: PageView(
         controller: _pageController,
@@ -77,24 +77,80 @@ class _MyHomePageState extends State<MyHomePage> {
           LaborPage(),
           RewardPage(),
           SettingsPage(),
+          SettingsPage(),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _page,
-        onTap: onTapBottomNavigation,
+      bottomNavigationBar: FFNavigationBar(
+        theme: FFNavigationBarTheme(
+          barBackgroundColor: Colors.white,
+          selectedItemBorderColor: Colors.indigo,
+          selectedItemBackgroundColor: Colors.blue,
+          selectedItemIconColor: Colors.white,
+          selectedItemLabelColor: Colors.black,
+        ),
+        selectedIndex: _page,
+        onSelectTab: (index) {
+          onTapBottomNavigation(index);
+        },
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("ホーム")),
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("お手伝い")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.local_library), title: Text("ご褒美")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), title: Text("設定")),
+          FFNavigationBarItem(
+            iconData: Icons.home,
+            label: 'ホーム',
+          ),
+          FFNavigationBarItem(
+            iconData: Icons.people,
+            label: 'お手伝い',
+          ),
+          FFNavigationBarItem(
+            iconData: Icons.local_library,
+            label: 'ご褒美',
+          ),
+          FFNavigationBarItem(
+            iconData: Icons.note,
+            label: '履歴',
+          ),
+          FFNavigationBarItem(
+            iconData: Icons.settings,
+            label: '設定',
+          ),
         ],
       ),
-      drawer: myDrawer(),
     );
   }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     appBar: AppBar(
+  //       title: Text('Application Name'),
+  //       elevation: 4.0,
+  //     ),
+  //     body: PageView(
+  //       controller: _pageController,
+  //       onPageChanged: onPageChanged,
+  //       children: [
+  //         HomePage(),
+  //         LaborPage(),
+  //         RewardPage(),
+  //         SettingsPage(),
+  //       ],
+  //     ),
+  //     bottomNavigationBar: BottomNavigationBar(
+  //       type: BottomNavigationBarType.fixed,
+  //       currentIndex: _page,
+  //       onTap: onTapBottomNavigation,
+  //       items: [
+  //         BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("ホーム")),
+  //         BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("お手伝い")),
+  //         BottomNavigationBarItem(
+  //             icon: Icon(Icons.local_library), title: Text("ご褒美")),
+  //         BottomNavigationBarItem(
+  //             icon: Icon(Icons.settings), title: Text("設定")),
+  //       ],
+  //     ),
+  //     drawer: myDrawer(),
+  //   );
+  // }
 
   void onTapBottomNavigation(int page) {
     _pageController.animateToPage(page,
@@ -140,8 +196,6 @@ Widget myDrawer() {
     ),
   );
 }
-
-
 
 launchURL() async {
   const url = 'https://flutter.dev';
