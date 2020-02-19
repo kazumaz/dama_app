@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dama_app/view/HomePage.dart';
 import 'package:dama_app/view/SettingPage.dart';
 import 'package:dama_app/view/LaborPage.dart';
-import 'package:dama_app/view/RewordPage.dart';
+import 'package:dama_app/view/RewardPage.dart';
 import 'package:dama_app/model/LaborModel.dart';
 import 'package:dama_app/model/RewardModel.dart';
 import 'package:dama_app/model/PointModel.dart';
@@ -21,8 +21,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider<RewordModel>(create: (_) => RewordModel()),
           ChangeNotifierProvider<LaborModel>(create: (_) => LaborModel()),
+          ChangeNotifierProvider<RewordModel>(create: (_) => RewordModel()),
           ChangeNotifierProvider<PointModel>(create: (_) => PointModel()),
         ],
         child: MaterialApp(
@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           HomePage(),
           LaborPage(),
-          RewordPage(),
+          RewardPage(),
           SettingsPage(),
         ],
       ),
