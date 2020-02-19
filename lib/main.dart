@@ -3,6 +3,7 @@ import 'package:dama_app/view/HomePage.dart';
 import 'package:dama_app/view/SettingPage.dart';
 import 'package:dama_app/view/LaborPage.dart';
 import 'package:dama_app/view/RewardPage.dart';
+import 'package:dama_app/view/HistoryPage.dart';
 import 'package:dama_app/model/LaborModel.dart';
 import 'package:dama_app/model/RewardModel.dart';
 import 'package:dama_app/model/PointModel.dart';
@@ -76,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
           HomePage(),
           LaborPage(),
           RewardPage(),
-          SettingsPage(),
+          HistoryPage(),
           SettingsPage(),
         ],
       ),
