@@ -19,7 +19,7 @@ class PassWordSettingPage extends StatelessWidget {
           ),
           backgroundColor: Theme.of(context).primaryColor,
           elevation: 0.0,
-          title: Text("TITLE"), //TODO タイトルを正しくする
+          title: Text("パスワード変更画面"), //TODO タイトルを正しくする
         ),
         body: Center(child: _passwordForm()),
       );
