@@ -10,7 +10,7 @@ class ColorSettingPage extends StatelessWidget {
       return Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
+            icon: Icon(Icons.arrow_back),
             onPressed: () => Navigator.of(context).pushReplacementNamed("/home"),
           ),
           backgroundColor: Theme.of(context).primaryColor,
