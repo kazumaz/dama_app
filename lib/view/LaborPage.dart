@@ -25,7 +25,7 @@ class LaborPage extends StatelessWidget {
                     icon: Icon(Icons.check_circle),
                     // tooltip: 'Increase volume by 10',
                     onPressed: () {
-                      _selectDate(context, laborModel, pointModel, index);                                            
+                      _selectDate(context, laborModel, pointModel, index);                      
                     },
                   ),
                   Padding(
