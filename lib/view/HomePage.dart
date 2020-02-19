@@ -18,13 +18,21 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         body: Column(children: <Widget>[
       Row(
-        children: <Widget>[    
-        Icon(FontAwesome.money),
-      Text(
-        totalPoints.toString(),
-        style: TextStyle(fontSize: 50.0),
-      ),]
-      ),
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+                padding: EdgeInsets.all(30.0),
+                child: Icon(
+                  FontAwesome.money,
+                  color: Colors.blue,
+                  size: 80.0,
+                )),
+            Text(
+              totalPoints.toString(),
+              style: TextStyle(fontSize: 50.0),
+            ),
+          ]),
       SizedBox(height: 200.0, child: rewardAchievedList(list, totalPoints))
     ]));
   }
@@ -47,8 +55,8 @@ Widget rewardAchievedList(List<Reward> rewardList, int totalpoint) {
                       "%"),
                   progressColor: Colors.blue,
                 ),
-                Text(rewardList[index].name),
-                Text(rewardList[index].point.toString() + " point")
+                Text(rewardList[index].name),                
+                Text(rewardList[index].point.toString() + " point")                
               ],
             ));
       },
