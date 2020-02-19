@@ -1,4 +1,5 @@
 import 'package:dama_app/model/LaborModel.dart';
+import 'package:dama_app/model/PointModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -10,20 +11,30 @@ class LaborPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<LaborModel>(builder: (context, laborModel, child) {
+    return Consumer2<LaborModel, PointModel>(builder: (context, laborModel,pointModel, child) {
       return Scaffold(
           body: ListView.builder(
             itemBuilder: (BuildContext context, int index) {
               return Card(
-                child: Padding(
-                  child: Text(
-                    laborModel.laborList[index].point.toString() +
-                        " Point:　　" +
-                        laborModel.laborList[index].name,
+                  child: Row(
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.check_circle),
+                    // tooltip: 'Increase volume by 10',
+                    onPressed: () {
+                      pointModel.addTotalPoint(point: laborModel.laborList[index].point);
+                    },
                   ),
-                  padding: EdgeInsets.all(20.0),
-                ),
-              );
+                  Padding(
+                    child: Text(
+                      laborModel.laborList[index].point.toString() +
+                          " Point:　　" +
+                          laborModel.laborList[index].name,
+                    ),
+                    padding: EdgeInsets.all(20.0),
+                  ),
+                ],
+              ));
             },
             itemCount: laborModel.laborList.length,
           ),
@@ -80,6 +91,18 @@ class LaborPage extends StatelessWidget {
                                   name: myLaborNameController.text,
                                   point:
                                       int.parse(myLaborPointController.text));
+
+                              if (myLaborNameController.text == null ||
+                                  myLaborPointController.text == null ||
+                                  myLaborNameController.text == "" ||
+                                  myLaborPointController.text == "null") {
+                                myLaborNameController.clear();
+                                myLaborPointController.clear();
+                                Navigator.of(context).pop();
+                              }
+                              print(myLaborNameController.text);
+                              print(myLaborPointController.text);
+
                               laborModel.addLaborModel(labor: tmpLabor);
                               myLaborNameController.clear();
                               myLaborPointController.clear();
@@ -91,5 +114,13 @@ class LaborPage extends StatelessWidget {
                     });
               }));
     });
+  }
+}
+
+bool isInputValid(String name, String point) {
+  if (name != null && point != null && name != "" && point != "") {
+    return false;
+  } else {
+    return true;
   }
 }
