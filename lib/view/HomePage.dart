@@ -6,19 +6,10 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
-  int totalPoints = 22;
-
-  List<Reward> list = [
-    Reward(key: 1, name: "お菓子", point: 3),
-    Reward(key: 2, name: "遊園地", point: 40),
-    Reward(key: 3, name: "ディズニー", point: 50),
-    Reward(key: 4, name: "おもちゃ", point: 10),
-    Reward(key: 4, name: "うまい棒", point: 1),
-  ];
-
   @override
   Widget build(BuildContext context) {
-    return Consumer<PointModel>(builder: (context, pointmodel, child) {
+    return Consumer2<PointModel, RewordModel>(
+        builder: (context, pointModel, rewordModel, child) {
       return Scaffold(
           body: Column(children: <Widget>[
         Row(
@@ -33,13 +24,14 @@ class HomePage extends StatelessWidget {
                     size: 80.0,
                   )),
               Text(
-                pointmodel.totalPoint.toString(),
+                pointModel.totalPoint.toString(),
                 style: TextStyle(fontSize: 50.0),
               ),
             ]),
         SizedBox(
             height: 200.0,
-            child: rewardAchievedList(list, pointmodel.totalPoint))
+            child: rewardAchievedList(
+                rewordModel.rewardList, pointModel.totalPoint))
       ]));
     });
   }
