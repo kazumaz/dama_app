@@ -5,7 +5,8 @@ import 'package:provider/provider.dart';
 class SelectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(        
-        body:             
+        body: 
+            
         GridView.count(
             crossAxisCount: 5, // 1行に表示する数
             crossAxisSpacing: 10.0, // 縦スペース
@@ -76,13 +77,6 @@ class SelectionScreen extends StatelessWidget {
                 },
               ),
               IconButton(
-                icon: Icon(Icons.lens, color: Colors.yellow),
-                iconSize: 70.0,
-                onPressed: () {
-                  Provider.of<ColorModel>(context, listen: false).setYellow();
-                },
-              ),
-                            IconButton(
                 icon: Icon(Icons.lens, color: Colors.yellow),
                 iconSize: 70.0,
                 onPressed: () {
