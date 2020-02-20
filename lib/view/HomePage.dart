@@ -78,7 +78,7 @@ Widget rewardAchievedList(List<Reward> rewardList, int totalpoint) {
                                 context: context,
                                 builder: (_) {
                                   return CupertinoAlertDialog(
-                                    title: Text("ありがとう！！"),
+                                    title: Text("おめでとう！！"),
                                     content: Text(
                                         pointmodel.totalPoint.toString() +
                                             " - " +
