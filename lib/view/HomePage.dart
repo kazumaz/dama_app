@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
               ),
             ]),
         SizedBox(
-            height: 200.0,
+            height: 230.0,
             child: rewardAchievedList(
                 rewordModel.rewardList, pointModel.totalPoint))
       ]));
@@ -52,7 +52,7 @@ Widget rewardAchievedList(List<Reward> rewardList, int totalpoint) {
               child: Column(
                 children: <Widget>[
                   CircularPercentIndicator(
-                    radius: 60.0,
+                    radius: 80.0,
                     lineWidth: 5.0,
                     percent: calculateRewardAchievesPercentage(
                         pointmodel.totalPoint, rewardList[index].point),
