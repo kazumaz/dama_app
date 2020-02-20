@@ -7,28 +7,28 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.grey[100],
         body: Column(
-      mainAxisSize: MainAxisSize.max,
-      // mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Flexible(
-            child: ListView(children: [
-          Text(""),
-          Text("　設定"),
-          _PasswordSetting("パスワード設定", Icon(Ionicons.ios_lock), context),
-          _ColorSetting("テーマカラーの変更", Icon(Icons.map), context),
-          _menuItem("メニュー3", Icon(Icons.room)),
-          _menuItem("メニュー4", Icon(Icons.local_shipping)),
-          Text(""),
-          Text("　アプリについて"),
-          _menuItem("ご意見・ご要望など", Icon(Entypo.pencil)),
-          _twitterPage("開発者のツート", Icon(FontAwesome.twitter)),
-          _testShare("テストshare", Icon(Icons.local_shipping)),
-          _menuItem("メニュー5", Icon(Icons.airplanemode_active)),
-        ])),
-      ],
-    ));
+          mainAxisSize: MainAxisSize.max,
+          // mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Flexible(
+                child: ListView(children: [
+              Text(""),
+              Text("　設定"),
+              _PasswordSetting("パスワード設定", Icon(Ionicons.ios_lock), context),
+              _ColorSetting("テーマカラーの変更", Icon(Icons.map), context),
+              _menuItem("メニュー3", Icon(Icons.room)),
+              _menuItem("メニュー4", Icon(Icons.local_shipping)),
+              Text(""),
+              Text("　アプリについて"),
+              _menuItem("ご意見・ご要望など", Icon(Entypo.pencil)),
+              _twitterPage("開発者のツート", Icon(FontAwesome.twitter)),
+              _testShare("テストshare", Icon(Icons.local_shipping)),
+              _menuItem("メニュー5", Icon(Icons.airplanemode_active)),
+            ])),
+          ],
+        ));
   }
 
   Widget _menuItem(String title, Icon icon) {
@@ -36,14 +36,14 @@ class SettingsPage extends StatelessWidget {
       child: Container(
           padding: EdgeInsets.all(8.0),
           decoration: new BoxDecoration(
-            color: Colors.white,
+              color: Colors.white,
               border: new Border(
                   bottom: BorderSide(width: 1.0, color: Colors.grey))),
           child: Row(
             children: <Widget>[
               Container(
                 margin: EdgeInsets.all(5.0),
-                child: icon,                
+                child: icon,
               ),
               Text(
                 title,
@@ -53,8 +53,7 @@ class SettingsPage extends StatelessWidget {
               ),
             ],
           )),
-
-      onTap: () {        
+      onTap: () {
         print("onTap called.");
       },
     );
@@ -65,14 +64,14 @@ class SettingsPage extends StatelessWidget {
       child: Container(
           padding: EdgeInsets.all(8.0),
           decoration: new BoxDecoration(
-            color: Colors.white,
+              color: Colors.white,
               border: new Border(
                   bottom: BorderSide(width: 1.0, color: Colors.grey))),
           child: Row(
             children: <Widget>[
               Container(
                 margin: EdgeInsets.all(5.0),
-                child: icon,                
+                child: icon,
               ),
               Text(
                 title,
@@ -89,20 +88,19 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-
-    Widget _PasswordSetting(String title, Icon icon, BuildContext context) {
+  Widget _PasswordSetting(String title, Icon icon, BuildContext context) {
     return GestureDetector(
       child: Container(
           padding: EdgeInsets.all(8.0),
           decoration: new BoxDecoration(
-            color: Colors.white,
+              color: Colors.white,
               border: new Border(
                   bottom: BorderSide(width: 1.0, color: Colors.grey))),
           child: Row(
             children: <Widget>[
               Container(
                 margin: EdgeInsets.all(5.0),
-                child: icon,                
+                child: icon,
               ),
               Text(
                 title,
@@ -119,19 +117,19 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-   Widget _twitterPage(String title, Icon icon) {
+  Widget _twitterPage(String title, Icon icon) {
     return GestureDetector(
       child: Container(
           padding: EdgeInsets.all(8.0),
           decoration: new BoxDecoration(
-            color: Colors.white,
+              color: Colors.white,
               border: new Border(
                   bottom: BorderSide(width: 1.0, color: Colors.grey))),
           child: Row(
             children: <Widget>[
               Container(
                 margin: EdgeInsets.all(5.0),
-                child: icon,                
+                child: icon,
               ),
               Text(
                 title,
@@ -141,8 +139,7 @@ class SettingsPage extends StatelessWidget {
               ),
             ],
           )),
-
-      onTap: () {        
+      onTap: () {
         launchURL();
       },
     );
@@ -159,33 +156,30 @@ launchURL() async {
   }
 }
 
-
- 
- Widget _testShare(String title, Icon icon) {
-    return GestureDetector(
-      child: Container(
-          padding: EdgeInsets.all(8.0),
-          decoration: new BoxDecoration(
+Widget _testShare(String title, Icon icon) {
+  return GestureDetector(
+    child: Container(
+        padding: EdgeInsets.all(8.0),
+        decoration: new BoxDecoration(
             color: Colors.white,
-              border: new Border(
-                  bottom: BorderSide(width: 1.0, color: Colors.grey))),
-          child: Row(
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.all(5.0),
-                child: icon,                
+            border:
+                new Border(bottom: BorderSide(width: 1.0, color: Colors.grey))),
+        child: Row(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.all(5.0),
+              child: icon,
+            ),
+            Text(
+              title,
+              style: TextStyle(
+                color: Colors.black,
               ),
-              Text(
-                title,
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ],
-          )),
-
-      onTap: () {        
-        Share.share('check out my website https://github.com/kazumazm');
-      },
-    );
-  }
+            ),
+          ],
+        )),
+    onTap: () {
+      Share.share('check out my website https://github.com/kazumaz');
+    },
+  );
+}
