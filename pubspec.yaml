@@ -30,6 +30,7 @@ dependencies:
   curved_navigation_bar: ^0.3.2
   ff_navigation_bar: ^0.1.4
   fl_chart: ^0.8.1
+  share: ^0.6.3+5
 
 dev_dependencies:
   flutter_test:

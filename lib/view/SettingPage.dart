@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:share/share.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
@@ -23,7 +24,7 @@ class SettingsPage extends StatelessWidget {
           Text("　アプリについて"),
           _menuItem("ご意見・ご要望など", Icon(Entypo.pencil)),
           _twitterPage("開発者のツート", Icon(FontAwesome.twitter)),
-          _menuItem("メニュー4", Icon(Icons.local_shipping)),
+          _testShare("テストshare", Icon(Icons.local_shipping)),
           _menuItem("メニュー5", Icon(Icons.airplanemode_active)),
         ])),
       ],
@@ -160,3 +161,31 @@ launchURL() async {
 
 
  
+ Widget _testShare(String title, Icon icon) {
+    return GestureDetector(
+      child: Container(
+          padding: EdgeInsets.all(8.0),
+          decoration: new BoxDecoration(
+            color: Colors.white,
+              border: new Border(
+                  bottom: BorderSide(width: 1.0, color: Colors.grey))),
+          child: Row(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.all(5.0),
+                child: icon,                
+              ),
+              Text(
+                title,
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          )),
+
+      onTap: () {        
+        Share.share('check out my website https://github.com/kazumazm');
+      },
+    );
+  }
