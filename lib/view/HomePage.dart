@@ -17,22 +17,27 @@ class HomePage extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Padding(
-                  padding: EdgeInsets.all(30.0),
-                  child: Icon(
-                    FontAwesome.money,
-                    color: Theme.of(context).primaryColor,
-                    size: 80.0,
-                  )),
-              Text(
-                pointModel.totalPoint.toString(),
-                style: TextStyle(
-                  fontSize: 50.0,
-                  // Todoここのフォントを最後にカッコよくする
-                  // fontFamily: 'OpenSans',
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              Container(
+                  width: MediaQuery.of(context).size.width,
+                  color: Theme.of(context).primaryColor.withAlpha(50),
+                  child: Column(
+                    children: <Widget>[
+                      Text(""),
+                      Text("交換可能ポイント"),
+                      Center(
+                        child: Text(
+                          pointModel.totalPoint.toString(),
+                          style: TextStyle(
+                            fontSize: 50.0,
+                            // Todoここのフォントを最後にカッコよくする
+                            // fontFamily: 'OpenSans',
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Text(""),
+                    ],
+                  ))
             ]),
         SizedBox(
             height: 230.0,
@@ -52,7 +57,7 @@ Widget rewardAchievedList(List<Reward> rewardList, int totalpoint) {
               child: Column(
                 children: <Widget>[
                   CircularPercentIndicator(
-                    radius: 80.0,
+                    radius: 50.0,
                     lineWidth: 5.0,
                     percent: calculateRewardAchievesPercentage(
                         pointmodel.totalPoint, rewardList[index].point),
@@ -61,8 +66,20 @@ Widget rewardAchievedList(List<Reward> rewardList, int totalpoint) {
                         "%"),
                     progressColor: Theme.of(context).primaryColor,
                   ),
-                  Text(rewardList[index].name),
-                  Text(rewardList[index].point.toString() + " point"),
+                  Text(rewardList[index].name,
+                      style: TextStyle(
+                        fontSize: 12.0,
+                        // Todoここのフォントを最後にカッコよくする
+                        // fontFamily: 'OpenSans',
+                        fontWeight: FontWeight.bold,
+                      )),
+                  Text(rewardList[index].point.toString() + " point",
+                      style: TextStyle(
+                        fontSize: 12.0,
+                        // Todoここのフォントを最後にカッコよくする
+                        // fontFamily: 'OpenSans',
+                        fontWeight: FontWeight.bold,
+                      )),
                   IconButton(
                       icon: Icon(
                         Entypo.heart,
