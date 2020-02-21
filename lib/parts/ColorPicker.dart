@@ -4,15 +4,13 @@ import 'package:provider/provider.dart';
 
 class SelectionScreen extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => Scaffold(        
-        body: 
-            
-        GridView.count(
+  Widget build(BuildContext context) => Scaffold(
+        body: GridView.count(
             crossAxisCount: 5, // 1行に表示する数
             crossAxisSpacing: 10.0, // 縦スペース
             mainAxisSpacing: 10.0, // 横スペース
             shrinkWrap: true,
-            children: <Widget>[          
+            children: <Widget>[
               IconButton(
                 icon: Icon(Icons.lens, color: Colors.blue),
                 iconSize: 70.0,
@@ -81,6 +79,41 @@ class SelectionScreen extends StatelessWidget {
                 iconSize: 70.0,
                 onPressed: () {
                   Provider.of<ColorModel>(context, listen: false).setYellow();
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.lens, color: Colors.lightGreen),
+                iconSize: 70.0,
+                onPressed: () {
+                  Provider.of<ColorModel>(context, listen: false).setLightGreen();
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.lens, color: Colors.grey),
+                iconSize: 70.0,
+                onPressed: () {
+                  Provider.of<ColorModel>(context, listen: false).setGrey();
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.lens, color: Colors.deepPurple),
+                iconSize: 70.0,
+                onPressed: () {
+                  Provider.of<ColorModel>(context, listen: false).setDeepPurple();
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.lens, color: Colors.deepOrange),
+                iconSize: 70.0,
+                onPressed: () {
+                  Provider.of<ColorModel>(context, listen: false).setDeepOrange();
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.lens, color: Colors.blueGrey),
+                iconSize: 70.0,
+                onPressed: () {
+                  Provider.of<ColorModel>(context, listen: false).setBlueGray();
                 },
               ),
             ]),

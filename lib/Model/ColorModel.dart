@@ -51,4 +51,29 @@ class ColorModel extends ChangeNotifier {
     themaColor = Colors.yellow;
     notifyListeners();
   }
+
+    void setBlueGray() {
+    themaColor = Colors.blueGrey;
+    notifyListeners();
+  }
+
+    void setDeepOrange() {
+    themaColor = Colors.deepOrange;
+    notifyListeners();
+  }
+
+    void setDeepPurple() {
+    themaColor = Colors.deepPurple;
+    notifyListeners();
+  }
+
+    void setGrey() {
+    themaColor = Colors.grey;
+    notifyListeners();
+  }
+
+    void setLightGreen() {
+    themaColor = Colors.lightGreen;
+    notifyListeners();
+  }
 }
