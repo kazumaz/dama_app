@@ -29,8 +29,6 @@ class HomePage extends StatelessWidget {
                           pointModel.totalPoint.toString(),
                           style: TextStyle(
                             fontSize: 50.0,
-                            // Todoここのフォントを最後にカッコよくする
-                            // fontFamily: 'OpenSans',
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -40,12 +38,57 @@ class HomePage extends StatelessWidget {
                   ))
             ]),
         SizedBox(
-            height: 230.0,
+            height: 190.0,
             child: rewardAchievedList(
-                rewordModel.rewardList, pointModel.totalPoint))
+                rewordModel.rewardList, pointModel.totalPoint)),
+        Text("これまでの歩み"),
+        Text(""),
+        ayumi()
       ]));
     });
   }
+}
+
+Widget ayumi() {
+  return Consumer<PointModel>(builder: (context, pointmodel, child) {
+    return Row(
+      children: <Widget>[
+        Expanded(
+            child: Column(
+          children: <Widget>[
+            Icon(
+              MaterialIcons.directions_run,
+              size: 50.0,
+            ),
+            Text("総ポイント"),
+            Text(pointmodel.totalPointEver.toString() + "ポイント")
+          ],
+        )),
+        Expanded(
+            child: Column(
+          children: <Widget>[
+            Icon(
+              MaterialCommunityIcons.rowing,
+              size: 50.0,
+            ),
+            Text("記録回数"),
+            Text(pointmodel.totalCountEver.toString() + "回")
+          ],
+        )),
+        Expanded(
+            child: Column(
+          children: <Widget>[
+            Icon(
+              MaterialCommunityIcons.human_handsup,
+              size: 50.0,
+            ),
+            Text("連続"),
+            Text("2" + "日")
+          ],
+        ))
+      ],
+    );
+  });
 }
 
 Widget rewardAchievedList(List<Reward> rewardList, int totalpoint) {
@@ -68,16 +111,12 @@ Widget rewardAchievedList(List<Reward> rewardList, int totalpoint) {
                   ),
                   Text(rewardList[index].name,
                       style: TextStyle(
-                        fontSize: 12.0,
-                        // Todoここのフォントを最後にカッコよくする
-                        // fontFamily: 'OpenSans',
+                        fontSize: 12.0,                        
                         fontWeight: FontWeight.bold,
                       )),
                   Text(rewardList[index].point.toString() + " point",
                       style: TextStyle(
-                        fontSize: 12.0,
-                        // Todoここのフォントを最後にカッコよくする
-                        // fontFamily: 'OpenSans',
+                        fontSize: 12.0,                        
                         fontWeight: FontWeight.bold,
                       )),
                   IconButton(
