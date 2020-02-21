@@ -22,7 +22,7 @@ class SettingsPage extends StatelessWidget {
               _menuItem("メニュー4", Icon(Icons.local_shipping)),
               Text(""),
               Text("　アプリについて"),
-              _menuItem("ご意見・ご要望など", Icon(Entypo.pencil)),
+              _opinionPage("ご意見・ご要望など", Icon(Entypo.pencil)),
               _twitterPage("開発者のツート", Icon(FontAwesome.twitter)),
               _testShare("テストshare", Icon(Icons.local_shipping)),
               _menuItem("メニュー5", Icon(Icons.airplanemode_active)),
@@ -140,15 +140,46 @@ class SettingsPage extends StatelessWidget {
             ],
           )),
       onTap: () {
-        launchURL();
+        launchURL("https://twitter.com/kzmat2");
       },
     );
   }
 }
 
-launchURL() async {
-  const url = 'https://twitter.com/kzmat2';
-  print("test");
+Widget _opinionPage(String title, Icon icon) {
+  return GestureDetector(
+    child: Container(
+        padding: EdgeInsets.all(8.0),
+        decoration: new BoxDecoration(
+            color: Colors.white,
+            border:
+                new Border(bottom: BorderSide(width: 1.0, color: Colors.grey))),
+        child: Row(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.all(5.0),
+              child: icon,
+            ),
+            Text(
+              title,
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+          ],
+        )),
+    onTap: () {
+      var email = 'kazumazuma1124@gmail.com';
+      var subject = Uri.encodeComponent('【Dama】アプリに関するご意見・ご要望');
+      var body = Uri.encodeComponent('ご意見・ご要望をこちらにご記入ください。');
+      var url = 'mailto:$email?subject=$subject&body=$body';
+      print(url);
+      launchURL(url);
+    },
+  );
+}
+
+launchURL(String url) async {
   if (await canLaunch(url)) {
     await launch(url);
   } else {
