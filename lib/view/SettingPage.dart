@@ -16,16 +16,17 @@ class SettingsPage extends StatelessWidget {
                 child: ListView(children: [
               Text(""),
               Text("　設定"),
-              _PasswordSetting("パスワード設定", Icon(Ionicons.ios_lock), context),
-              _ColorSetting("テーマカラーの変更", Icon(Icons.map), context),
-              _menuItem("メニュー3", Icon(Icons.room)),
-              _menuItem("メニュー4", Icon(Icons.local_shipping)),
+              _PasswordSetting("　パスワード設定", Icon(Ionicons.ios_lock), context),
+              _ColorSetting("　テーマカラーの変更", Icon(Icons.map), context),
+              _menuItem("　メニュー3", Icon(Icons.room)),
+              _menuItem("　メニュー4", Icon(Icons.local_shipping)),
               Text(""),
               Text("　アプリについて"),
-              _opinionPage("ご意見・ご要望など", Icon(Entypo.pencil)),
-              _twitterPage("開発者のツート", Icon(FontAwesome.twitter)),
-              _testShare("テストshare", Icon(Icons.local_shipping)),
-              _menuItem("メニュー5", Icon(Icons.airplanemode_active)),
+              _opinionPage("　ご意見・ご要望など", Icon(Entypo.pencil)),
+              _twitterPage("　開発者のツート", Icon(FontAwesome.twitter)),
+              _appShare("　このアプリを紹介", Icon(Ionicons.ios_rocket)),
+              _appReview("　このアプリを評価", Icon(Icons.star)),
+              _donate("　寄付", Icon(SimpleLineIcons.present)),
             ])),
           ],
         ));
@@ -144,7 +145,7 @@ class SettingsPage extends StatelessWidget {
       },
     );
   }
-}
+
 
 Widget _opinionPage(String title, Icon icon) {
   return GestureDetector(
@@ -187,7 +188,7 @@ launchURL(String url) async {
   }
 }
 
-Widget _testShare(String title, Icon icon) {
+Widget _appShare(String title, Icon icon) {
   return GestureDetector(
     child: Container(
         padding: EdgeInsets.all(8.0),
@@ -213,4 +214,64 @@ Widget _testShare(String title, Icon icon) {
       Share.share('check out my website https://github.com/kazumaz');
     },
   );
+}
+
+  Widget _appReview(String title, Icon icon) {
+    return GestureDetector(
+      child: Container(
+          padding: EdgeInsets.all(8.0),
+          decoration: new BoxDecoration(
+              color: Colors.white,
+              border: new Border(
+                  bottom: BorderSide(width: 1.0, color: Colors.grey))),
+          child: Row(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.all(5.0),
+                child: icon,
+              ),
+              Text(
+                title,
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          )),
+      onTap: () {
+        launchURL("https://github.com/kazumaz");
+      },
+    );
+  }
+
+    Widget _donate(String title, Icon icon) {
+    return GestureDetector(
+      child: Container(
+          padding: EdgeInsets.all(8.0),
+          decoration: new BoxDecoration(
+              color: Colors.white,
+              border: new Border(
+                  bottom: BorderSide(width: 1.0, color: Colors.grey))),
+          child: Row(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.all(5.0),
+                child: icon,
+              ),
+              Text(
+                title,
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          )),
+      onTap: () {
+        launchURL("https://github.com/kazumaz");
+      },
+    );
+  }
+
+  
+
 }
