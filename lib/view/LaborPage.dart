@@ -31,7 +31,7 @@ class LaborPage extends StatelessWidget {
                           child: Padding(
                             child: Text(
                               laborModel.laborList[index].point.toString() +
-                                  " Point:  " +
+                                  " Point:　" +
                                   laborModel.laborList[index].name,
                             ),
                             padding: EdgeInsets.all(20.0),
