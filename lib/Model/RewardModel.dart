@@ -22,8 +22,14 @@ class RewordModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeReward(@required String name) {
-    //ToDo 実装が必要
+  void removeReward(@required int index) {
+    rewardList.removeAt(index);
+    notifyListeners();
+  }
+
+  void replaceReward(@required int index, @required Reward reward) {
+    rewardList[index] = reward;
+    notifyListeners();
   }
 }
 
