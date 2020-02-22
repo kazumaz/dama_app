@@ -15,8 +15,17 @@ class LaborPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer2<LaborModel, PointModel>(
         builder: (context, laborModel, pointModel, child) {
-      return Scaffold(
-          body: ListView.builder(
+      return Scaffold(        
+          body: 
+          
+          Column(children: <Widget>[
+            Text(""),
+
+            Text("ボタンを押して、日付を入力してポイントゲット！"),
+            Text(""),
+
+            Expanded(child: 
+                      ListView.builder(
             itemBuilder: (BuildContext context, int index) {
               return Card(
                   child: Row(
@@ -31,9 +40,16 @@ class LaborPage extends StatelessWidget {
                       padding: EdgeInsets.all(20.0),
                     ),
                   ),
-                  IconButton(
-                    icon: Icon(Icons.check_circle),
-                    // tooltip: 'Increase volume by 10',
+                  RaisedButton(
+                    child: Text("+P"),
+                    color: Colors.white,
+                    shape: CircleBorder(
+                      side: BorderSide(
+                        color: Colors.black,
+                        width: 1.0,
+                        style: BorderStyle.solid,
+                      ),
+                    ),
                     onPressed: () {
                       _selectDate(context, laborModel, pointModel, index);
                     },
@@ -42,7 +58,10 @@ class LaborPage extends StatelessWidget {
               ));
             },
             itemCount: laborModel.laborList.length,
-          ),
+          ),),
+          ],),
+          
+
           floatingActionButton: FloatingActionButton(
               child: Icon(Ionicons.ios_add),
               onPressed: () {
@@ -130,7 +149,33 @@ class LaborPage extends StatelessWidget {
       lastDate: DateTime(2030),
     );
     if (selectedDate != null) {
-      pointModel.addTotalPoint(point: laborModel.laborList[index].point);
+      showDialog(
+  context: context,
+  builder: (_) {
+    return AlertDialog(
+      title: Text("ありがとう！!"),
+      content: Text(
+        pointModel.totalPoint.toString()+"+"+laborModel.laborList[index].point.toString()+"="+
+        (pointModel.totalPoint+laborModel.laborList[index].point).toString()+"point になります!"),
+        // +"\n"+selectedDate.toString()),        
+      actions: <Widget>[
+        // ボタン領域
+        FlatButton(
+          child: Text("Cancel"),
+          onPressed: () => Navigator.pop(context),
+        ),
+        FlatButton(
+          child: Text("OK"),
+          onPressed: () {
+            
+            pointModel.addTotalPoint(point: laborModel.laborList[index].point);
+            Navigator.pop(context);},
+        ),
+      ],
+    );
+  },
+);
+      
     }
   }
 }
