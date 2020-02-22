@@ -24,7 +24,8 @@ class HistoryPage extends StatelessWidget {
               Text("スワイプして削除実施！"),
               Text(""),
               Expanded(
-                child: ListView.builder(
+                child: ListView.builder(            
+                  // reverse: true,
                   itemBuilder: (BuildContext context, int index) {
                     return Card(
                         child: Slidable(
