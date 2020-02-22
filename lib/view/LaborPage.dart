@@ -31,7 +31,7 @@ class LaborPage extends StatelessWidget {
                           child: Padding(
                             child: Text(
                               laborModel.laborList[index].point.toString() +
-                                  " Point:　　" +
+                                  " Point:  " +
                                   laborModel.laborList[index].name,
                             ),
                             padding: EdgeInsets.all(20.0),
@@ -76,10 +76,12 @@ class LaborPage extends StatelessWidget {
                                   child: TextField(
                                 controller: myLaborNameController,
                                 autofocus: true,
+                                
                                 decoration: InputDecoration(
                                   labelText: "名前",
                                   // hintText: "test"
                                 ),
+                                maxLength: 10,
                                 onChanged: (value) {
                                   // nothing to do
                                 },
@@ -91,6 +93,7 @@ class LaborPage extends StatelessWidget {
                                   controller: myLaborPointController,
                                   decoration:
                                       InputDecoration(labelText: "ポイント"),
+                                      maxLength: 5,
                                   keyboardType: TextInputType.number,
                                   inputFormatters: <TextInputFormatter>[
                                 WhitelistingTextInputFormatter.digitsOnly
