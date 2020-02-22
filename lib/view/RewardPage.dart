@@ -10,21 +10,29 @@ class RewardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<RewordModel>(builder: (context, rewardModel, child) {      
+    return Consumer<RewordModel>(builder: (context, rewardModel, child) {
       return Scaffold(
-        body: ListView.builder(
-          itemBuilder: (BuildContext context, int index) {
-            return Card(
-              child: Padding(
-                child: Text(
-                  rewardModel.rewardList[index].point.toString() + " Point:　　" + rewardModel.rewardList[index].name,                  
-                ),
-                padding: EdgeInsets.all(20.0),
-              ),
-            );
-          },
-          itemCount: rewardModel.rewardList.length,
-        ),
+          body: Column(children: <Widget>[
+            Text(""),
+            Text("ここからご褒美追加！"),
+            Text(""),
+            Expanded(
+                child: ListView.builder(
+              itemBuilder: (BuildContext context, int index) {
+                return Card(
+                  child: Padding(
+                    child: Text(
+                      rewardModel.rewardList[index].point.toString() +
+                          " Point:　　" +
+                          rewardModel.rewardList[index].name,
+                    ),
+                    padding: EdgeInsets.all(20.0),
+                  ),
+                );
+              },
+              itemCount: rewardModel.rewardList.length,
+            ))
+          ]),
           floatingActionButton: FloatingActionButton(
               child: Icon(Ionicons.ios_add),
               onPressed: () {
@@ -42,7 +50,6 @@ class RewardPage extends StatelessWidget {
                                   child: TextField(
                                 controller: myRewardNameController,
                                 autofocus: true,
-                                
                                 decoration: InputDecoration(
                                   labelText: "名前",
                                   // hintText: "test"
@@ -59,7 +66,7 @@ class RewardPage extends StatelessWidget {
                                   controller: myRewardPointController,
                                   decoration:
                                       InputDecoration(labelText: "ポイント"),
-                                      maxLength: 5,
+                                  maxLength: 5,
                                   keyboardType: TextInputType.number,
                                   inputFormatters: <TextInputFormatter>[
                                 WhitelistingTextInputFormatter.digitsOnly
@@ -102,8 +109,7 @@ class RewardPage extends StatelessWidget {
                         ],
                       );
                     });
-              })
-      );
+              }));
     });
   }
 }

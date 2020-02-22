@@ -20,6 +20,7 @@ class LaborPage extends StatelessWidget {
             children: <Widget>[
               Text(""),
               Text("ボタンを押して、日付を入力してポイントゲット！"),
+              Text("お手伝い内容追加も可能！"),
               Text(""),
               Expanded(
                 child: ListView.builder(
