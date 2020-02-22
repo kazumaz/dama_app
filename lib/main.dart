@@ -9,6 +9,7 @@ import 'package:dama_app/view/HistoryPage.dart';
 import 'package:dama_app/view/PasswordSettingPage.dart';
 import 'package:dama_app/model/LaborModel.dart';
 import 'package:dama_app/model/RewardModel.dart';
+import 'package:dama_app/model/HistoryModel.dart';
 import 'package:dama_app/model/PointModel.dart';
 import 'package:dama_app/model/PasswordModel.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(providers: [
       ChangeNotifierProvider<LaborModel>(create: (_) => LaborModel()),
       ChangeNotifierProvider<RewordModel>(create: (_) => RewordModel()),
+      ChangeNotifierProvider<HistoryModel>(create: (_) => HistoryModel()),
       ChangeNotifierProvider<PointModel>(create: (_) => PointModel()),
       ChangeNotifierProvider<ColorModel>(create: (_) => ColorModel()),
       ChangeNotifierProvider<PasswordModel>(create: (_) => PasswordModel()),

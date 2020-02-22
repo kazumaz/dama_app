@@ -1,133 +1,67 @@
+import 'package:dama_app/model/HistoryModel.dart';
+import 'package:dama_app/model/PointModel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
-class HistoryPage extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return HistoryPageState();
-  }
-}
-
-class HistoryPageState extends State<HistoryPage> {
-  void _handleNewDate(date) {
-    setState(() {
-      _selectedDay = date;
-      _selectedEvents = _events[_selectedDay] ?? [];
-    });
-    print(_selectedEvents);
-  }
-
-  List _selectedEvents;
-  DateTime _selectedDay;
-
-  final Map _events = {
-    DateTime(2020, 2, 19): [
-      {'name': 'Event B', 'isDone':true},
-    ],
-    DateTime(2019, 3, 4): [
-      {'name': 'Event B', 'isDone':true},
-      {'name': 'Event B', 'isDone':true},
-    ],
-    DateTime(2019, 3, 5): [
-      {'name': 'Event A', 'isDone': true},
-      {'name': 'Event B', 'isDone': true},
-    ],
-    DateTime(2019, 3, 13): [
-      {'name': 'Event A', 'isDone': true},
-      {'name': 'Event B', 'isDone': true},
-      {'name': 'Event C', 'isDone': false},
-    ],
-    DateTime(2019, 3, 15): [
-      {'name': 'Event A', 'isDone': true},
-      {'name': 'Event B', 'isDone': true},
-      {'name': 'Event C', 'isDone': false},
-    ],
-    DateTime(2019, 3, 26): [
-      {'name': 'Event A', 'isDone': false},
-    ],
-  };
-
-  @override
-  void initState() {
-    super.initState();
-    _selectedEvents = _events[_selectedDay] ?? [];
-  }
+class HistoryPage extends StatelessWidget {
+  final myLaborNameController = TextEditingController();
+  final myLaborPointController = TextEditingController();
+  bool datePicked = false;
+  DateTime selectedDate;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Theme.of(context).primaryColor,
-      //   title: Text('Calendario'),
-      // ),
-      body: SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Container(
-              child: Calendar(
-                  events: _events,
-                  onRangeSelected: (range) =>
-                      print("Range is ${range.from}, ${range.to}"),
-                  onDateSelected: (date) => _handleNewDate(date),
-                  isExpandable: true,
-                  showTodayIcon: true,
-                  eventDoneColor: Colors.green,
-                  eventColor: Colors.grey),
-            ),
-            _buildEventList()
-          ],
-        ),
-      ),
-          floatingActionButton: FloatingActionButton(
-      onPressed: () {
-      
-         
-        // Add your onPressed code here!
-      },
-      child: Icon(Icons.navigation),
-      backgroundColor: Colors.green,
-    ),
-    );
-  }
-
-  Widget _buildEventList() {
-    return Expanded(
-      child: ListView.builder(
-        itemBuilder: (BuildContext context, int index) => Container(
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(width: 1.5, color: Colors.black12),
+    return Consumer2<HistoryModel, PointModel>(
+        builder: (context, historyModel, pointModel, child) {
+      return Scaffold(
+          body: Column(
+            children: <Widget>[
+              Text(""),
+              Text("間違えて登録したものはここから削除！"),
+              Text("スワイプして削除実施！"),
+              Text(""),
+              Expanded(
+                child: ListView.builder(
+                  itemBuilder: (BuildContext context, int index) {
+                    return Card(
+                        child: Slidable(
+                            actionPane: SlidableDrawerActionPane(),
+                            actionExtentRatio: 0.25,
+                            secondaryActions: <Widget>[
+                              IconSlideAction(
+                                caption: '削除',
+                                color: Colors.red,
+                                icon: Icons.delete,
+                                onTap: () {
+                                  historyModel.removeHistory(index);
+                                },
+                              ),                              
+                            ],
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(
+                                  child: Padding(
+                                    child: Text(
+                                      historyModel.historyList[index].point
+                                              .toString() +
+                                          " Point:　" +
+                                          historyModel.historyList[index].name,
+                                    ),
+                                    padding: EdgeInsets.all(20.0),
+                                  ),
+                                ),                                
+                              ],
+                            )));
+                  },
+                  itemCount: historyModel.historyList.length,
                 ),
               ),
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 0.0, vertical: 4.0),
-              child: ListTile(
-                title: Text(_selectedEvents[index]['name'].toString()),
-                onTap: () {},
-              ),
-            ),
-        itemCount: _selectedEvents.length,
-      ),
-    );
+            ],
+          ),
+          );
+    });
   }
-}
-
-
-
-
-class test {  
-  String name;
-  bool isDone;
-
-  test({@required this.name, @required this.isDone});
-
-  test.fromJson(Map<String, dynamic> json)
-      : name = json['name'],
-        isDone = json['isDone'];
-
-  Map<String, dynamic> toJson() => {
-        'name': name,
-        'isDone': isDone,
-      };
 }
