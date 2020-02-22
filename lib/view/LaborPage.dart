@@ -11,30 +11,32 @@ class LaborPage extends StatelessWidget {
   bool datePicked = false;
   DateTime selectedDate;
 
-
   @override
   Widget build(BuildContext context) {
-    return Consumer2<LaborModel, PointModel>(builder: (context, laborModel,pointModel, child) {
+    return Consumer2<LaborModel, PointModel>(
+        builder: (context, laborModel, pointModel, child) {
       return Scaffold(
           body: ListView.builder(
             itemBuilder: (BuildContext context, int index) {
               return Card(
                   child: Row(
                 children: <Widget>[
+                  Expanded(
+                    child: Padding(
+                      child: Text(
+                        laborModel.laborList[index].point.toString() +
+                            " Point:　　" +
+                            laborModel.laborList[index].name,
+                      ),
+                      padding: EdgeInsets.all(20.0),
+                    ),
+                  ),
                   IconButton(
                     icon: Icon(Icons.check_circle),
                     // tooltip: 'Increase volume by 10',
                     onPressed: () {
-                      _selectDate(context, laborModel, pointModel, index);                      
+                      _selectDate(context, laborModel, pointModel, index);
                     },
-                  ),
-                  Padding(
-                    child: Text(
-                      laborModel.laborList[index].point.toString() +
-                          " Point:　　" +
-                          laborModel.laborList[index].name,
-                    ),
-                    padding: EdgeInsets.all(20.0),
                   ),
                 ],
               ));
@@ -119,7 +121,8 @@ class LaborPage extends StatelessWidget {
     });
   }
 
-    Future<void> _selectDate(BuildContext context, LaborModel laborModel, PointModel pointModel, int index) async {
+  Future<void> _selectDate(BuildContext context, LaborModel laborModel,
+      PointModel pointModel, int index) async {
     selectedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -127,7 +130,7 @@ class LaborPage extends StatelessWidget {
       lastDate: DateTime(2030),
     );
     if (selectedDate != null) {
-      pointModel.addTotalPoint(point: laborModel.laborList[index].point);      
+      pointModel.addTotalPoint(point: laborModel.laborList[index].point);
     }
   }
 }
@@ -139,6 +142,3 @@ bool isInputValid(String name, String point) {
     return true;
   }
 }
-
-
-
