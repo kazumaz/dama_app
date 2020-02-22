@@ -16,6 +16,7 @@ class RewardPage extends StatelessWidget {
           body: Column(children: <Widget>[
             Text(""),
             Text("ここからご褒美追加！"),
+            Text("スワイプして削除・編集も可能！"),
             Text(""),
             Expanded(
                 child: ListView.builder(

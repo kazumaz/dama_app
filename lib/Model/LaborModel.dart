@@ -23,8 +23,14 @@ class LaborModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeLabor(@required String name) {
-    //ToDo 実装が必要
+    void removeLabor(@required int index) {
+    laborList.removeAt(index);
+    notifyListeners();
+  }
+
+  void replaceLabor(@required int index, @required Labor labor) {
+    laborList[index] = labor;
+    notifyListeners();
   }
 }
 

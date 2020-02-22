@@ -20,41 +20,135 @@ class LaborPage extends StatelessWidget {
           body: Column(
             children: <Widget>[
               Text(""),
-              Text("ボタンを押して、日付を入力してポイントゲット！"),
-              Text("お手伝い内容追加も可能！"),
+              Text("ボタンを押して、日付を選んでポイントゲット！"),
+              Text("スワイプして、削除・編集も可能！"),
               Text(""),
               Expanded(
                 child: ListView.builder(
                   itemBuilder: (BuildContext context, int index) {
                     return Card(
-                        child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: Padding(
-                            child: Text(
-                              laborModel.laborList[index].point.toString() +
-                                  " Point:　" +
-                                  laborModel.laborList[index].name,
-                            ),
-                            padding: EdgeInsets.all(20.0),
-                          ),
-                        ),
-                        RaisedButton(
-                          child: Text("+P"),
-                          color: Colors.white,
-                          shape: CircleBorder(
-                            side: BorderSide(
-                              color: Colors.black,
-                              width: 1.0,
-                              style: BorderStyle.solid,
-                            ),
-                          ),
-                          onPressed: () {
-                            _selectDate(context, laborModel, pointModel, index);
-                          },
-                        ),
-                      ],
-                    ));
+                        child: Slidable(
+                            actionPane: SlidableDrawerActionPane(),
+                            actionExtentRatio: 0.25,
+                            secondaryActions: <Widget>[
+                              IconSlideAction(
+                                caption: '削除',
+                                color: Colors.red,
+                                icon: Icons.delete,
+                                onTap: () {
+                                  laborModel.removeLabor(index);
+                                },
+                              ),
+                              IconSlideAction(
+                                caption: "編集",
+                                color: Colors.indigo,
+                                icon: Icons.edit,
+                                onTap: () {
+                                  //編集画面
+                                  showDialog<String>(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      builder: (BuildContext context) {
+                                        // String result = '';
+                                        return AlertDialog(
+                                          title: Text('編集する、名前とポイントを入力'),
+                                          content: Column(
+                                            children: <Widget>[
+                                              Flexible(
+                                                  child: TextField(
+                                                controller:
+                                                    myLaborNameController,
+                                                autofocus: true,
+                                                decoration: InputDecoration(
+                                                  // labelText: "編集する場合は入力してください",
+                                                  hintText: laborModel
+                                                      .laborList[index].name
+                                                      .toString(),
+                                                ),
+                                                maxLength: 10,
+                                              )),
+                                              Flexible(
+                                                  child: TextField(
+                                                      controller:
+                                                          myLaborPointController,
+                                                      autofocus: true,
+                                                      decoration: InputDecoration(
+                                                        // labelText: "編集する場合は入力してください",
+                                                        hintText: laborModel
+                                                            .laborList[index]
+                                                            .point
+                                                            .toString(),
+                                                      ),
+                                                      maxLength: 5,
+                                                      keyboardType: TextInputType.number,
+                                                      inputFormatters: <TextInputFormatter>[
+                                                    WhitelistingTextInputFormatter
+                                                        .digitsOnly
+                                                  ])),
+                                            ],
+                                          ),
+                                          actions: <Widget>[
+                                            FlatButton(
+                                              child: Text('Cancel'),
+                                              onPressed: () {
+                                                myLaborNameController.clear();
+                                                myLaborPointController.clear();
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                            FlatButton(
+                                              child: Text('Ok'),
+                                              onPressed: () {
+                                                Labor tmpReward = Labor(
+                                                    name: myLaborNameController
+                                                        .text
+                                                        .toString(),
+                                                    point: int.parse(
+                                                        myLaborPointController
+                                                            .text));
+                                                laborModel.replaceLabor(
+                                                    index, tmpReward);
+                                                myLaborNameController.clear();
+                                                myLaborPointController.clear();
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      });
+                                },
+                              ),
+                            ],
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(
+                                  child: Padding(
+                                    child: Text(
+                                      laborModel.laborList[index].point
+                                              .toString() +
+                                          " Point:　" +
+                                          laborModel.laborList[index].name,
+                                    ),
+                                    padding: EdgeInsets.all(20.0),
+                                  ),
+                                ),
+                                RaisedButton(
+                                  child: Text("+P"),
+                                  color: Colors.white,
+                                  shape: CircleBorder(
+                                    side: BorderSide(
+                                      color: Colors.black,
+                                      width: 1.0,
+                                      style: BorderStyle.solid,
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    _selectDate(
+                                        context, laborModel, pointModel, index);
+                                  },
+                                ),
+                              ],
+                            )));
                   },
                   itemCount: laborModel.laborList.length,
                 ),
@@ -78,7 +172,6 @@ class LaborPage extends StatelessWidget {
                                   child: TextField(
                                 controller: myLaborNameController,
                                 autofocus: true,
-                                
                                 decoration: InputDecoration(
                                   labelText: "名前",
                                   // hintText: "test"
@@ -95,7 +188,7 @@ class LaborPage extends StatelessWidget {
                                   controller: myLaborPointController,
                                   decoration:
                                       InputDecoration(labelText: "ポイント"),
-                                      maxLength: 5,
+                                  maxLength: 5,
                                   keyboardType: TextInputType.number,
                                   inputFormatters: <TextInputFormatter>[
                                 WhitelistingTextInputFormatter.digitsOnly
