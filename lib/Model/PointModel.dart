@@ -16,4 +16,11 @@ class PointModel extends ChangeNotifier {
     totalPoint -= point;
     notifyListeners();
   }
+
+  void decreaseTotalPointWithEver({@required int point}) {
+    totalPoint -= point;
+    totalPointEver -= point;
+    totalCountEver --;
+    notifyListeners();
+  }
 }

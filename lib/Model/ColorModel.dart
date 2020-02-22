@@ -77,21 +77,3 @@ class ColorModel extends ChangeNotifier {
     notifyListeners();
   }
 }
-
-
-
-class Labor {  
-  String name;
-  int point;
-
-  Labor({@required this.name, @required this.point});
-
-  Labor.fromJson(Map<String, dynamic> json)
-      : name = json['name'],
-        point = json['point'];
-
-  Map<String, dynamic> toJson() => {
-        'name': name,
-        'point': point,
-      };
-}
