@@ -68,7 +68,7 @@ Widget ayumi() {
             child: Column(
           children: <Widget>[
             Icon(
-              MaterialCommunityIcons.rowing,
+              Ionicons.md_bicycle,
               size: 50.0,
             ),
             Text("記録回数"),
