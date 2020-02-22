@@ -35,8 +35,12 @@ class HistoryPage extends StatelessWidget {
                                 caption: '削除',
                                 color: Colors.red,
                                 icon: Icons.delete,
-                                onTap: () {                                  
-                                  pointModel.decreaseTotalPointWithEver(point: historyModel.historyList[index].point);
+                                onTap: () { 
+                                  if(historyModel.historyList[index].sign){
+                                    pointModel.decreaseTotalPointWithEver(point: historyModel.historyList[index].point);
+                                  } else {
+                                    pointModel.increaseTotalPoint(point: historyModel.historyList[index].point);
+                                  }                                  
                                   historyModel.removeHistory(index);
                                 },
                               ),                              

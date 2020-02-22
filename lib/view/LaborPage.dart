@@ -1,5 +1,6 @@
 import 'package:dama_app/model/LaborModel.dart';
 import 'package:dama_app/model/PointModel.dart';
+import 'package:dama_app/model/HistoryModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -14,8 +15,8 @@ class LaborPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<LaborModel, PointModel>(
-        builder: (context, laborModel, pointModel, child) {
+    return Consumer3<LaborModel, PointModel, HistoryModel>(
+        builder: (context, laborModel, pointModel, historyModel, child) {
       return Scaffold(
           body: Column(
             children: <Widget>[
@@ -143,8 +144,8 @@ class LaborPage extends StatelessWidget {
                                     ),
                                   ),
                                   onPressed: () {
-                                    _selectDate(
-                                        context, laborModel, pointModel, index);
+                                    _selectDate(context, laborModel, pointModel,
+                                        historyModel, index);
                                   },
                                 ),
                               ],
@@ -236,7 +237,7 @@ class LaborPage extends StatelessWidget {
   }
 
   Future<void> _selectDate(BuildContext context, LaborModel laborModel,
-      PointModel pointModel, int index) async {
+      PointModel pointModel, HistoryModel historyModel, int index) async {
     selectedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -268,6 +269,12 @@ class LaborPage extends StatelessWidget {
                 onPressed: () {
                   pointModel.addTotalPoint(
                       point: laborModel.laborList[index].point);
+                  historyModel.addHistoryModel(
+                      history: History(
+                          dateTime: selectedDate,
+                          name: laborModel.laborList[index].name,
+                          point: laborModel.laborList[index].point,
+                          sign: true));
                   Navigator.pop(context);
                 },
               ),

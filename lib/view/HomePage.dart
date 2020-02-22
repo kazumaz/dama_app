@@ -3,14 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:dama_app/model/RewardModel.dart';
+import 'package:dama_app/model/HistoryModel.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer2<PointModel, RewordModel>(
-        builder: (context, pointModel, rewordModel, child) {
+    return Consumer3<PointModel, RewordModel, HistoryModel>(
+        builder: (context, pointModel, rewordModel, historyModel, child) {
       return Scaffold(
           body: Column(children: <Widget>[
         Row(
@@ -40,7 +41,7 @@ class HomePage extends StatelessWidget {
         SizedBox(
             height: 190.0,
             child: rewardAchievedList(
-                rewordModel.rewardList, pointModel.totalPoint)),
+                rewordModel.rewardList, historyModel, pointModel.totalPoint)),
         Text("これまでの歩み"),
         Text(""),
         ayumi()
@@ -91,7 +92,8 @@ Widget ayumi() {
   });
 }
 
-Widget rewardAchievedList(List<Reward> rewardList, int totalpoint) {
+Widget rewardAchievedList(
+    List<Reward> rewardList, HistoryModel historyModel, int totalpoint) {
   return Consumer<PointModel>(builder: (context, pointmodel, child) {
     return ListView.builder(
         itemBuilder: (BuildContext context, int index) {
@@ -111,12 +113,12 @@ Widget rewardAchievedList(List<Reward> rewardList, int totalpoint) {
                   ),
                   Text(rewardList[index].name,
                       style: TextStyle(
-                        fontSize: 12.0,                        
+                        fontSize: 12.0,
                         fontWeight: FontWeight.bold,
                       )),
                   Text(rewardList[index].point.toString() + " point",
                       style: TextStyle(
-                        fontSize: 12.0,                        
+                        fontSize: 12.0,
                         fontWeight: FontWeight.bold,
                       )),
                   IconButton(
@@ -156,6 +158,14 @@ Widget rewardAchievedList(List<Reward> rewardList, int totalpoint) {
                                             Navigator.pop(context);
                                             pointmodel.decreaseTotalPoint(
                                                 point: rewardList[index].point);
+                                            historyModel.addHistoryModel(
+                                                history: History(
+                                                    dateTime: DateTime.now(),
+                                                    name:
+                                                        rewardList[index].name,
+                                                    point:
+                                                        rewardList[index].point,
+                                                    sign: false));
                                           }),
                                     ],
                                   );

@@ -23,4 +23,9 @@ class PointModel extends ChangeNotifier {
     totalCountEver --;
     notifyListeners();
   }
+
+  void increaseTotalPoint({@required int point}) {
+    totalPoint += point;    
+    notifyListeners();
+  }
 }
