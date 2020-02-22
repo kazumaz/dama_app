@@ -144,8 +144,46 @@ class LaborPage extends StatelessWidget {
                                     ),
                                   ),
                                   onPressed: () {
-                                    _selectDate(context, laborModel, pointModel,
-                                        historyModel, index);
+                                    showDialog(
+                                      context: context,
+                                      builder: (_) {
+                                        return AlertDialog(
+                                          title: Text("ありがとう！!"),
+                                          content: Text(pointModel.totalPoint
+                                                  .toString() +
+                                              "+" +
+                                              laborModel.laborList[index].point
+                                                  .toString() +
+                                              "=" +
+                                              (pointModel.totalPoint +
+                                                      laborModel
+                                                          .laborList[index]
+                                                          .point)
+                                                  .toString() +
+                                              "point になります!\n日付けを選んでポイントゲット!"),
+                                          // +"\n"+selectedDate.toString()),
+                                          actions: <Widget>[
+                                            // ボタン領域
+                                            FlatButton(
+                                              child: Text("キャンセル"),
+                                              onPressed: () =>
+                                                  Navigator.pop(context),
+                                            ),
+                                            FlatButton(
+                                              child: Text("日付を選択"),
+                                              onPressed: () {
+                                                _selectDate(
+                                                    context,
+                                                    laborModel,
+                                                    pointModel,
+                                                    historyModel,
+                                                    index);
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
                                   },
                                 ),
                               ],
@@ -245,43 +283,14 @@ class LaborPage extends StatelessWidget {
       lastDate: DateTime(2030),
     );
     if (selectedDate != null) {
-      showDialog(
-        context: context,
-        builder: (_) {
-          return AlertDialog(
-            title: Text("ありがとう！!"),
-            content: Text(pointModel.totalPoint.toString() +
-                "+" +
-                laborModel.laborList[index].point.toString() +
-                "=" +
-                (pointModel.totalPoint + laborModel.laborList[index].point)
-                    .toString() +
-                "point になります!"),
-            // +"\n"+selectedDate.toString()),
-            actions: <Widget>[
-              // ボタン領域
-              FlatButton(
-                child: Text("Cancel"),
-                onPressed: () => Navigator.pop(context),
-              ),
-              FlatButton(
-                child: Text("OK"),
-                onPressed: () {
-                  pointModel.addTotalPoint(
-                      point: laborModel.laborList[index].point);
-                  historyModel.addHistoryModel(
-                      history: History(
-                          dateTime: selectedDate,
-                          name: laborModel.laborList[index].name,
-                          point: laborModel.laborList[index].point,
-                          sign: true));
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          );
-        },
-      );
+      pointModel.addTotalPoint(point: laborModel.laborList[index].point);
+      historyModel.addHistoryModel(
+          history: History(
+              dateTime: selectedDate,
+              name: laborModel.laborList[index].name,
+              point: laborModel.laborList[index].point,
+              sign: true));
+      Navigator.pop(context);
     }
   }
 }
