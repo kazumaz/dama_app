@@ -22,11 +22,11 @@ class HistoryPageState extends State<HistoryPage> {
 
   final Map _events = {
     DateTime(2020, 2, 19): [
-      {'name': 'Event A', 'isDone': true},
+      {'name': 'Event B', 'isDone':true},
     ],
     DateTime(2019, 3, 4): [
-      {'name': 'Event A', 'isDone': true},
-      {'name': 'Event B', 'isDone': true},
+      {'name': 'Event B', 'isDone':true},
+      {'name': 'Event B', 'isDone':true},
     ],
     DateTime(2019, 3, 5): [
       {'name': 'Event A', 'isDone': true},
@@ -79,6 +79,15 @@ class HistoryPageState extends State<HistoryPage> {
           ],
         ),
       ),
+          floatingActionButton: FloatingActionButton(
+      onPressed: () {
+      
+         
+        // Add your onPressed code here!
+      },
+      child: Icon(Icons.navigation),
+      backgroundColor: Colors.green,
+    ),
     );
   }
 
@@ -102,4 +111,23 @@ class HistoryPageState extends State<HistoryPage> {
       ),
     );
   }
+}
+
+
+
+
+class test {  
+  String name;
+  bool isDone;
+
+  test({@required this.name, @required this.isDone});
+
+  test.fromJson(Map<String, dynamic> json)
+      : name = json['name'],
+        isDone = json['isDone'];
+
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'isDone': isDone,
+      };
 }
