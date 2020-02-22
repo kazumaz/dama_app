@@ -1,143 +1,105 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:dama_app/parts/indicator.dart';
+import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
 
 class HistoryPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => HistoryPageState();
+  State<StatefulWidget> createState() {
+    return HistoryPageState();
+  }
 }
 
-class HistoryPageState extends State {
-  int touchedIndex;
+class HistoryPageState extends State<HistoryPage> {
+  void _handleNewDate(date) {
+    setState(() {
+      _selectedDay = date;
+      _selectedEvents = _events[_selectedDay] ?? [];
+    });
+    print(_selectedEvents);
+  }
+
+  List _selectedEvents;
+  DateTime _selectedDay;
+
+  final Map _events = {
+    DateTime(2020, 2, 19): [
+      {'name': 'Event A', 'isDone': true},
+    ],
+    DateTime(2019, 3, 4): [
+      {'name': 'Event A', 'isDone': true},
+      {'name': 'Event B', 'isDone': true},
+    ],
+    DateTime(2019, 3, 5): [
+      {'name': 'Event A', 'isDone': true},
+      {'name': 'Event B', 'isDone': true},
+    ],
+    DateTime(2019, 3, 13): [
+      {'name': 'Event A', 'isDone': true},
+      {'name': 'Event B', 'isDone': true},
+      {'name': 'Event C', 'isDone': false},
+    ],
+    DateTime(2019, 3, 15): [
+      {'name': 'Event A', 'isDone': true},
+      {'name': 'Event B', 'isDone': true},
+      {'name': 'Event C', 'isDone': false},
+    ],
+    DateTime(2019, 3, 26): [
+      {'name': 'Event A', 'isDone': false},
+    ],
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedEvents = _events[_selectedDay] ?? [];
+  }
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.3,
-      child: Card(
-        color: Colors.white,
-        child: Row(
+    return Scaffold(
+      // appBar: AppBar(
+      //   backgroundColor: Theme.of(context).primaryColor,
+      //   title: Text('Calendario'),
+      // ),
+      body: SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            const SizedBox(
-              height: 18,
+            Container(
+              child: Calendar(
+                  events: _events,
+                  onRangeSelected: (range) =>
+                      print("Range is ${range.from}, ${range.to}"),
+                  onDateSelected: (date) => _handleNewDate(date),
+                  isExpandable: true,
+                  showTodayIcon: true,
+                  eventDoneColor: Colors.green,
+                  eventColor: Colors.grey),
             ),
-            Expanded(
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: PieChart(
-                  PieChartData(
-                      pieTouchData: PieTouchData(touchCallback: (pieTouchResponse) {
-                        setState(() {
-                          if (pieTouchResponse.touchInput is FlLongPressEnd ||
-                              pieTouchResponse.touchInput is FlPanEnd) {
-                            touchedIndex = -1;
-                          } else {
-                            touchedIndex = pieTouchResponse.touchedSectionIndex;
-                          }
-                        });
-                      }),
-                      borderData: FlBorderData(
-                        show: false,
-                      ),
-                      sectionsSpace: 0,
-                      centerSpaceRadius: 40,
-                      sections: showingSections()),
-                ),
-              ),
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const <Widget>[
-                Indicator(
-                  color: Color(0xff0293ee),
-                  text: 'First',
-                  isSquare: true,
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Indicator(
-                  color: Color(0xfff8b250),
-                  text: 'Second',
-                  isSquare: true,
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Indicator(
-                  color: Color(0xff845bef),
-                  text: 'Third',
-                  isSquare: true,
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Indicator(
-                  color: Color(0xff13d38e),
-                  text: 'Fourth',
-                  isSquare: true,
-                ),
-                SizedBox(
-                  height: 18,
-                ),
-              ],
-            ),
-            const SizedBox(
-              width: 28,
-            ),
+            _buildEventList()
           ],
         ),
       ),
     );
   }
 
-  List<PieChartSectionData> showingSections() {
-    return List.generate(4, (i) {
-      final isTouched = i == touchedIndex;
-      final double fontSize = isTouched ? 25 : 16;
-      final double radius = isTouched ? 60 : 50;
-      switch (i) {
-        case 0:
-          return PieChartSectionData(
-            color: const Color(0xff0293ee),
-            value: 40,
-            title: '40%',
-            radius: radius,
-            titleStyle: TextStyle(
-                fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
-          );
-        case 1:
-          return PieChartSectionData(
-            color: const Color(0xfff8b250),
-            value: 30,
-            title: '30%',
-            radius: radius,
-            titleStyle: TextStyle(
-                fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
-          );
-        case 2:
-          return PieChartSectionData(
-            color: const Color(0xff845bef),
-            value: 15,
-            title: '15%',
-            radius: radius,
-            titleStyle: TextStyle(
-                fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
-          );
-        case 3:
-          return PieChartSectionData(
-            color: const Color(0xff13d38e),
-            value: 15,
-            title: '15%',
-            radius: radius,
-            titleStyle: TextStyle(
-                fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
-          );
-        default:
-          return null;
-      }
-    });
+  Widget _buildEventList() {
+    return Expanded(
+      child: ListView.builder(
+        itemBuilder: (BuildContext context, int index) => Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(width: 1.5, color: Colors.black12),
+                ),
+              ),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 0.0, vertical: 4.0),
+              child: ListTile(
+                title: Text(_selectedEvents[index]['name'].toString()),
+                onTap: () {},
+              ),
+            ),
+        itemCount: _selectedEvents.length,
+      ),
+    );
   }
 }
