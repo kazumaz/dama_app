@@ -29,6 +29,9 @@ class HistoryPage extends StatelessWidget {
               child: ListView.builder(
                 // reverse: true,
                 itemBuilder: (BuildContext context, int index) {
+                  //historyModel.historyList　をそのまま使うと、リストビューで最後に追加されたものが、画面上下に来てしまう。
+                  //履歴画面では、最後に追加されたものが、画面上上に来る方が見やすいため、反転リストを作成する。
+                  List<History> reversedHistoryList = historyModel.historyList.reversed.toList();
                   return Card(
                       child: Slidable(
                           actionPane: SlidableDrawerActionPane(),
@@ -39,16 +42,16 @@ class HistoryPage extends StatelessWidget {
                               color: Colors.red,
                               icon: Icons.delete,
                               onTap: () {
-                                if (historyModel.historyList[index].sign) {
+                                if (reversedHistoryList[index].sign) {
                                   pointModel.decreaseTotalPointWithEver(
-                                      point: historyModel
-                                          .historyList[index].point);
+                                      point: reversedHistoryList[index].point);
                                 } else {
                                   pointModel.increaseTotalPoint(
-                                      point: historyModel
-                                          .historyList[index].point);
+                                      point: reversedHistoryList[index].point);
                                 }
-                                historyModel.removeHistory(index);
+                                //reversedHistoryListのインデックスをそのままモデルから削除すると、間違ったindexのものを削除してしまうから
+                                //計算して正しいものを削除するようにする
+                                historyModel.removeHistory(historyModel.historyList.length-1-index);
                               },
                             ),
                           ],
@@ -58,8 +61,7 @@ class HistoryPage extends StatelessWidget {
                                 children: <Widget>[
                                   Text(
                                     dateFormat_YYYY_MM_DD
-                                        .format(historyModel
-                                            .historyList[index].dateTime)
+                                        .format(reversedHistoryList[index].dateTime)
                                         .toString(),
                                     style: TextStyle(
                                       fontSize: 10.0,
@@ -71,18 +73,18 @@ class HistoryPage extends StatelessWidget {
                               Row(
                                 children: <Widget>[
                                   Text("　"),
-                                  historyModel.historyList[index].sign
+                                  reversedHistoryList[index].sign
                                       ? Icon(MaterialCommunityIcons.run)
                                       : Icon(MaterialCommunityIcons.gift),
                                   Text("  "),
                                   Expanded(
                                     // child: Padding(
                                     child: Text(
-                                      historyModel.historyList[index].point
+                                      reversedHistoryList[index].point
                                               .toString() +
                                           " Point:　" +
-                                          historyModel.historyList[index].name +
-                                          (historyModel.historyList[index].sign
+                                          reversedHistoryList[index].name +
+                                          (reversedHistoryList[index].sign
                                               ? "　ありがとう！"
                                               : "　もらったよ！"),
                                     ),
