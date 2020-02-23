@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:awesome_dialog/animated_button.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 class LaborPage extends StatelessWidget {
   final myLaborNameController = TextEditingController();
@@ -144,46 +146,76 @@ class LaborPage extends StatelessWidget {
                                     ),
                                   ),
                                   onPressed: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (_) {
-                                        return AlertDialog(
-                                          title: Text("ありがとう！!"),
-                                          content: Text(pointModel.totalPoint
-                                                  .toString() +
-                                              "+" +
-                                              laborModel.laborList[index].point
-                                                  .toString() +
-                                              "=" +
-                                              (pointModel.totalPoint +
-                                                      laborModel
-                                                          .laborList[index]
-                                                          .point)
-                                                  .toString() +
-                                              "point になります!\n日付けを選んでポイントゲット!"),
-                                          // +"\n"+selectedDate.toString()),
-                                          actions: <Widget>[
-                                            // ボタン領域
-                                            FlatButton(
-                                              child: Text("キャンセル"),
-                                              onPressed: () =>
-                                                  Navigator.pop(context),
-                                            ),
-                                            FlatButton(
-                                              child: Text("日付を選択"),
-                                              onPressed: () {
-                                                _selectDate(
-                                                    context,
-                                                    laborModel,
-                                                    pointModel,
-                                                    historyModel,
-                                                    index);
-                                              },
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
+                                    AwesomeDialog(
+                                        context: context,
+                                        animType: AnimType.SCALE,
+                                        dialogType: DialogType.INFO,
+                                        body: Center(
+                                          child: Text("日付けを選んでポイントゲット!\n"+
+                                            pointModel.totalPoint.toString() +
+                                                "+" +
+                                                laborModel
+                                                    .laborList[index].point
+                                                    .toString() +
+                                                "=" +
+                                                (pointModel.totalPoint +
+                                                        laborModel
+                                                            .laborList[index]
+                                                            .point)
+                                                    .toString() +
+                                                "point になります!",
+                                            style: TextStyle(
+                                                fontStyle: FontStyle.italic),
+                                          ),
+                                        ),
+                                        tittle: 'This is Ignored',
+                                        desc: 'This is also Ignored',
+                                        btnCancelOnPress: () {},
+                                        btnOkOnPress: () {
+                                          _selectDate(context, laborModel,
+                                              pointModel, historyModel, index);
+                                        }).show();
+
+                                    // showDialog(
+                                    //   context: context,
+                                    //   builder: (_) {
+                                    //     return AlertDialog(
+                                    //       title: Text("ありがとう！!"),
+                                    //       content: Text(pointModel.totalPoint
+                                    //               .toString() +
+                                    //           "+" +
+                                    //           laborModel.laborList[index].point
+                                    //               .toString() +
+                                    //           "=" +
+                                    //           (pointModel.totalPoint +
+                                    //                   laborModel
+                                    //                       .laborList[index]
+                                    //                       .point)
+                                    //               .toString() +
+                                    //           "point になります!\n日付けを選んでポイントゲット!"),
+                                    //       // +"\n"+selectedDate.toString()),
+                                    //       actions: <Widget>[
+                                    //         // ボタン領域
+                                    //         FlatButton(
+                                    //           child: Text("キャンセル"),
+                                    //           onPressed: () =>
+                                    //               Navigator.pop(context),
+                                    //         ),
+                                    //         FlatButton(
+                                    //           child: Text("日付を選択"),
+                                    //           onPressed: () {
+                                    //             _selectDate(
+                                    //                 context,
+                                    //                 laborModel,
+                                    //                 pointModel,
+                                    //                 historyModel,
+                                    //                 index);
+                                    //           },
+                                    //         ),
+                                    //       ],
+                                    //     );
+                                    //   },
+                                    // );
                                   },
                                 ),
                               ],
@@ -290,7 +322,23 @@ class LaborPage extends StatelessWidget {
               name: laborModel.laborList[index].name,
               point: laborModel.laborList[index].point,
               sign: true));
-      Navigator.pop(context);
+      // Navigator.pop(context);
+      AwesomeDialog(
+        context: context,
+        animType: AnimType.SCALE,
+        dialogType: DialogType.SUCCES,
+        body: Center(
+          child: Text(
+            'ポイントを取得しました！間違って交換した場合は、履歴画面から削除してください。',
+            style: TextStyle(fontStyle: FontStyle.italic),
+          ),
+        ),
+        tittle: 'This is Ignored',
+        desc: 'This is also Ignored',
+        btnOkOnPress: () {
+          // Navigator.pop(context);
+        },
+      ).show();
     }
   }
 }

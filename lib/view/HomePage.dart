@@ -151,7 +151,8 @@ Widget rewardAchievedList(
                                           (pointmodel.totalPoint -
                                                   rewardList[index].point)
                                               .toString() +
-                                          " point になります！ ",
+                                          " point になります！ \n交換しますか?"
+                                          ,
                                       style: TextStyle(
                                           fontStyle: FontStyle.italic),
                                     ),
