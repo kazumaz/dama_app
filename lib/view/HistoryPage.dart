@@ -35,6 +35,7 @@ class HistoryPage extends StatelessWidget {
                   List<History> reversedHistoryList =
                       historyModel.historyList.reversed.toList();
                   return Card(
+                    // color: historyModel.historyList[index].sign ? Colors.blue[50] : Colors.red[50],
                       child: Slidable(
                           actionPane: SlidableDrawerActionPane(),
                           actionExtentRatio: 0.25,
@@ -115,8 +116,8 @@ class HistoryPage extends StatelessWidget {
                                 children: <Widget>[
                                   Text("　"),
                                   reversedHistoryList[index].sign
-                                      ? Icon(MaterialCommunityIcons.run)
-                                      : Icon(MaterialCommunityIcons.gift),
+                                      ? Icon(MaterialCommunityIcons.run, color: Colors.indigo,)
+                                      : Icon(MaterialCommunityIcons.gift, color: Colors.pink,),
                                   Text("  "),
                                   Expanded(
                                     // child: Padding(

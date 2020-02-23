@@ -322,7 +322,7 @@ class LaborPage extends StatelessWidget {
         animType: AnimType.SCALE,
         dialogType: DialogType.SUCCES,
         body: Center(
-          child: Text(
+          child: Text(laborModel.laborList[index].name+"　ありがとう！　"
             'ポイントを取得しました！間違って交換した場合は、履歴画面から削除してください。',
             style: TextStyle(fontStyle: FontStyle.italic),
           ),

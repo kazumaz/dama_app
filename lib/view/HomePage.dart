@@ -143,7 +143,7 @@ Widget rewardAchievedList(
                                   animType: AnimType.SCALE,
                                   dialogType: DialogType.INFO,
                                   body: Center(
-                                    child: Text(
+                                    child: Text("おめでとう！\n"+
                                       pointmodel.totalPoint.toString() +
                                           " - " +
                                           rewardList[index].point.toString() +
@@ -175,7 +175,7 @@ Widget rewardAchievedList(
                                       dialogType: DialogType.SUCCES,
                                       body: Center(
                                         child: Text(
-                                          'ポイントの交換が完了しました！間違って交換した場合は、履歴画面から削除してください。',
+                                          'おめでとう!　ポイントの交換が完了しました！　間違って交換した場合は、履歴画面から削除してください。',
                                           style: TextStyle(
                                               fontStyle: FontStyle.italic),
                                         ),
