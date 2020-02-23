@@ -151,8 +151,7 @@ Widget rewardAchievedList(
                                           (pointmodel.totalPoint -
                                                   rewardList[index].point)
                                               .toString() +
-                                          " point になります！ \n交換しますか?"
-                                          ,
+                                          " point になります！ \n交換しますか?",
                                       style: TextStyle(
                                           fontStyle: FontStyle.italic),
                                     ),
@@ -188,62 +187,6 @@ Widget rewardAchievedList(
                                       },
                                     ).show();
                                   }).show();
-
-                              // return AlertDialog(
-                              //   title: Text("おめでとう！！"),
-                              //   content: Text(
-                              //       pointmodel.totalPoint.toString() +
-                              //           " - " +
-                              //           rewardList[index].point.toString() +
-                              //           " = " +
-                              //           (pointmodel.totalPoint -
-                              //                   rewardList[index].point)
-                              //               .toString() +
-                              //           " point になります！ "),
-                              //   actions: <Widget>[
-                              //     // ボタン領域
-                              //     FlatButton(
-                              //       child: Text("Cancel"),
-                              //       onPressed: () => Navigator.pop(context),
-                              //     ),
-                              //     FlatButton(
-                              //         child: Text("OK"),
-                              //         onPressed: () {
-                              //           // Navigator.pop(context);
-                              //           pointmodel.decreaseTotalPoint(
-                              //               point: rewardList[index].point);
-                              //           historyModel.addHistoryModel(
-                              //               history: History(
-                              //                   dateTime: DateTime.now(),
-                              //                   name:
-                              //                       rewardList[index].name,
-                              //                   point:
-                              //                       rewardList[index].point,
-                              //                   sign: false));
-
-                              //           AwesomeDialog(
-                              //             context: context,
-                              //             animType: AnimType.SCALE,
-                              //             dialogType: DialogType.SUCCES,
-                              //             body: Center(
-                              //               child: Text(
-                              //                 'ポイントの交換が完了しました！間違って交換した場合は、履歴画面から削除してください。',
-                              //                 style: TextStyle(
-                              //                     fontStyle:
-                              //                         FontStyle.italic),
-                              //               ),
-                              //             ),
-                              //             tittle: 'This is Ignored',
-                              //             desc: 'This is also Ignored',
-                              //             btnOkOnPress: () {
-                              //               Navigator.pop(context);
-                              //             },
-                              //           ).show();
-                              //         }),
-                              //   ],
-                              // );
-                              //       },
-                              //     );
                             }
                           : null),
                 ],

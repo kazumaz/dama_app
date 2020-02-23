@@ -210,47 +210,6 @@ class LaborPage extends StatelessWidget {
                                           _selectDate(context, laborModel,
                                               pointModel, historyModel, index);
                                         }).show();
-
-                                    // showDialog(
-                                    //   context: context,
-                                    //   builder: (_) {
-                                    //     return AlertDialog(
-                                    //       title: Text("ありがとう！!"),
-                                    //       content: Text(pointModel.totalPoint
-                                    //               .toString() +
-                                    //           "+" +
-                                    //           laborModel.laborList[index].point
-                                    //               .toString() +
-                                    //           "=" +
-                                    //           (pointModel.totalPoint +
-                                    //                   laborModel
-                                    //                       .laborList[index]
-                                    //                       .point)
-                                    //               .toString() +
-                                    //           "point になります!\n日付けを選んでポイントゲット!"),
-                                    //       // +"\n"+selectedDate.toString()),
-                                    //       actions: <Widget>[
-                                    //         // ボタン領域
-                                    //         FlatButton(
-                                    //           child: Text("キャンセル"),
-                                    //           onPressed: () =>
-                                    //               Navigator.pop(context),
-                                    //         ),
-                                    //         FlatButton(
-                                    //           child: Text("日付を選択"),
-                                    //           onPressed: () {
-                                    //             _selectDate(
-                                    //                 context,
-                                    //                 laborModel,
-                                    //                 pointModel,
-                                    //                 historyModel,
-                                    //                 index);
-                                    //           },
-                                    //         ),
-                                    //       ],
-                                    //     );
-                                    //   },
-                                    // );
                                   },
                                 ),
                               ],
