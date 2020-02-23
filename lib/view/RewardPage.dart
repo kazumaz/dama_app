@@ -33,7 +33,39 @@ class RewardPage extends StatelessWidget {
                           color: Colors.red,
                           icon: Icons.delete,
                           onTap: () {
-                            rewardModel.removeReward(index);
+                            AwesomeDialog(
+                              context: context,
+                              animType: AnimType.SCALE,
+                              dialogType: DialogType.WARNING,
+                              body: Center(
+                                child: Text(
+                                  '本当に削除してよろしいでしょうか',
+                                  style: TextStyle(fontStyle: FontStyle.italic),
+                                ),
+                              ),
+                              tittle: 'This is Ignored',
+                              desc: 'This is also Ignored',
+                              btnCancelOnPress: () {},
+                              btnOkOnPress: () {
+                                rewardModel.removeReward(index);
+
+                                AwesomeDialog(
+                                  context: context,
+                                  animType: AnimType.SCALE,
+                                  dialogType: DialogType.SUCCES,
+                                  body: Center(
+                                    child: Text(
+                                      '削除が完了しました！',
+                                      style: TextStyle(
+                                          fontStyle: FontStyle.italic),
+                                    ),
+                                  ),
+                                  tittle: 'This is Ignored',
+                                  desc: 'This is also Ignored',
+                                  btnOkOnPress: () {},
+                                ).show();
+                              },
+                            ).show();
                           },
                         ),
                         IconSlideAction(

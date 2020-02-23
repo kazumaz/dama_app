@@ -39,7 +39,40 @@ class LaborPage extends StatelessWidget {
                                 color: Colors.red,
                                 icon: Icons.delete,
                                 onTap: () {
-                                  laborModel.removeLabor(index);
+                                  AwesomeDialog(
+                                    context: context,
+                                    animType: AnimType.SCALE,
+                                    dialogType: DialogType.WARNING,
+                                    body: Center(
+                                      child: Text(
+                                        '本当に削除してよろしいでしょうか？',
+                                        style: TextStyle(
+                                            fontStyle: FontStyle.italic),
+                                      ),
+                                    ),
+                                    tittle: 'This is Ignored',
+                                    desc: 'This is also Ignored',
+                                    btnCancelOnPress: () {},
+                                    btnOkOnPress: () {
+                                      laborModel.removeLabor(index);
+
+                                      AwesomeDialog(
+                                        context: context,
+                                        animType: AnimType.SCALE,
+                                        dialogType: DialogType.SUCCES,
+                                        body: Center(
+                                          child: Text(
+                                            '削除が完了しました！',
+                                            style: TextStyle(
+                                                fontStyle: FontStyle.italic),
+                                          ),
+                                        ),
+                                        tittle: 'This is Ignored',
+                                        desc: 'This is also Ignored',
+                                        btnOkOnPress: () {},
+                                      ).show();
+                                    },
+                                  ).show();
                                 },
                               ),
                               IconSlideAction(
@@ -151,8 +184,10 @@ class LaborPage extends StatelessWidget {
                                         animType: AnimType.SCALE,
                                         dialogType: DialogType.INFO,
                                         body: Center(
-                                          child: Text("日付けを選んでポイントゲット!\n"+
-                                            pointModel.totalPoint.toString() +
+                                          child: Text(
+                                            "日付けを選んでポイントゲット!\n" +
+                                                pointModel.totalPoint
+                                                    .toString() +
                                                 "+" +
                                                 laborModel
                                                     .laborList[index].point
