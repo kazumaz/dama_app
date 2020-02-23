@@ -15,7 +15,7 @@ class RewardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<RewordModel>(builder: (context, rewardModel, child) {
       return Scaffold(
-          appBar: AppBar(title: Text("ご褒美管理"), actions: <Widget>[
+          appBar: AppBar(title: Text("ご褒美"), actions: <Widget>[
             // IconButton(icon: Icon(Icons.help_outline), onPressed: () {})
           ]),
           body: Column(children: <Widget>[
