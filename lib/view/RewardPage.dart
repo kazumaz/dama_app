@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:awesome_dialog/animated_button.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 class RewardPage extends StatelessWidget {
   final myRewardNameController = TextEditingController();
