@@ -150,13 +150,22 @@ class RewardPage extends StatelessWidget {
                           },
                         ),
                       ],
-                      child: Padding(
-                        child: Text(
-                          rewardModel.rewardList[index].point.toString() +
-                              " Point:　　" +
-                              rewardModel.rewardList[index].name,
-                        ),
-                        padding: EdgeInsets.all(20.0),
+                      child: Row(
+                        children: <Widget>[
+                          Text("　"),
+                          Icon(
+                            MaterialCommunityIcons.gift,
+                            color: Colors.pink,
+                          ),
+                          Padding(
+                            child: Text(
+                              rewardModel.rewardList[index].point.toString() +
+                                  " Point:　　" +
+                                  rewardModel.rewardList[index].name,
+                            ),
+                            padding: EdgeInsets.all(20.0),
+                          )
+                        ],
                       )),
                 );
               },

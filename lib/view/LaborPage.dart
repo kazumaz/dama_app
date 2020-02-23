@@ -172,6 +172,8 @@ class LaborPage extends StatelessWidget {
                             ],
                             child: Row(
                               children: <Widget>[
+                                Text("　"),
+                                Icon(MaterialCommunityIcons.run, color: Colors.indigo,),
                                 Expanded(
                                   child: Padding(
                                     child: Text(
