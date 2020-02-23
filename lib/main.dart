@@ -14,7 +14,6 @@ import 'package:dama_app/model/PointModel.dart';
 import 'package:dama_app/model/PasswordModel.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:ff_navigation_bar/ff_navigation_bar.dart';
 
 void main() => runApp(MyApp());
@@ -38,7 +37,7 @@ class Application extends StatelessWidget {
     return Consumer<ColorModel>(
       builder: (context, color, child) {
         return MaterialApp(
-          title: 'Flutter Demo',
+          // title: 'Flutter Demo',
           theme: ThemeData(
             primarySwatch: color.themaColor,
           ),
@@ -82,9 +81,15 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      // appBar: AppBar(
+      //   title: Text(widget.title),
+      //           actions: <Widget>[
+      //     IconButton(
+      //       icon: Icon(Icons.help_outline),
+      //       onPressed: () {}
+                
+      //     )]
+      // ),
       body: PageView(
         controller: _pageController,
         onPageChanged: onPageChanged,

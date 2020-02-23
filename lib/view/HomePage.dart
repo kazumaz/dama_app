@@ -8,47 +8,177 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:awesome_dialog/animated_button.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
+import 'package:tutorial_coach_mark/animated_focus_light.dart';
 
 class HomePage extends StatelessWidget {
+  List<TargetFocus> targets = List();
+  GlobalKey keyButton1 = GlobalKey();
+  GlobalKey keyButton2 = GlobalKey();
+  GlobalKey keyButton3 = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Consumer3<PointModel, RewordModel, HistoryModel>(
         builder: (context, pointModel, rewordModel, historyModel, child) {
       return Scaffold(
+          appBar: AppBar(title: Text("HOME"), actions: <Widget>[
+            IconButton(
+                icon: Icon(Icons.help_outline),
+                onPressed: () {
+                  initTargets();
+                  showTutorial(context);
+                })
+          ]),
           body: Column(children: <Widget>[
-        Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                  width: MediaQuery.of(context).size.width,
-                  color: Theme.of(context).primaryColor.withAlpha(50),
-                  child: Column(
-                    children: <Widget>[
-                      Text(""),
-                      Text("交換可能ポイント"),
-                      Center(
-                        child: Text(
-                          pointModel.totalPoint.toString(),
-                          style: TextStyle(
-                            fontSize: 50.0,
-                            fontWeight: FontWeight.bold,
+            Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                      key: keyButton1,
+                      width: MediaQuery.of(context).size.width,
+                      color: Theme.of(context).primaryColor.withAlpha(50),
+                      child: Column(                        
+                        children: <Widget>[
+                          Text(""),
+                          Text("交換可能ポイント"),
+                          Center(
+                            child: Text(
+                              pointModel.totalPoint.toString(),
+                              style: TextStyle(
+                                fontSize: 50.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      Text(""),
-                    ],
-                  ))
-            ]),
-        SizedBox(
-            height: 190.0,
-            child: rewardAchievedList(
-                rewordModel.rewardList, historyModel, pointModel.totalPoint)),
-        Text("これまでの歩み"),
-        Text(""),
-        ayumi(),
-      ]));
+                          Text(""),
+                        ],
+                      ))
+                ]),
+            SizedBox(
+                key: keyButton2,
+                height: 190.0,
+                child: rewardAchievedList(rewordModel.rewardList, historyModel,
+                    pointModel.totalPoint)),
+            Text("これまでの歩み"),
+            Text(""),
+            Container(key:keyButton3, child: ayumi(),)
+            
+          ]));
     });
+  }
+
+  void showTutorial(context) {
+    TutorialCoachMark(context,
+        targets: targets,
+        colorShadow: Theme.of(context).primaryColor.withAlpha(200),
+        textSkip: "SKIP",
+        paddingFocus: 10,
+        opacityShadow: 0.8, finish: () {
+      print("finish");
+    }, clickTarget: (target) {
+      print(target);
+    }, clickSkip: () {
+      print("skip");
+    })
+      ..show();
+  }
+
+  void initTargets() {
+    targets.add(TargetFocus(
+      identify: "Target 1",
+      keyTarget: keyButton1,
+      contents: [
+        ContentTarget(
+            align: AlignContent.bottom,
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "交換可能ポイント",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20.0),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Text(
+                      "ここが交換可能ポインの残量を指し示しています。\nお手伝いをたくさんしてポイントを貯めよう！",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
+            ))
+      ],
+      shape: ShapeLightFocus.RRect,
+    ));
+    targets.add(TargetFocus(
+      identify: "Target 2",
+      keyTarget: keyButton2,
+      contents: [
+        ContentTarget(
+            align: AlignContent.bottom,
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "ご褒美の一覧",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20.0),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Text(
+                      "ご褒美の一覧を示しています！ポイントがたまったら、ハートをクリックしてご褒美と交換しよう！画面に映っていないご褒美は、横にスワイプしたら現れます！",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
+            ))
+      ],
+      shape: ShapeLightFocus.RRect,
+    ));
+    targets.add(TargetFocus(
+      identify: "Target 3",
+      keyTarget: keyButton3,
+      contents: [
+        ContentTarget(
+            align: AlignContent.bottom,
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "これまでの歩み",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20.0),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Text(
+                      "今までの合計ポイント、お手伝いの回数、ご褒美の回数を示しています！たくさんお手伝いして、たくさんご褒美をもらおう！！",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
+            ))
+      ],
+      shape: ShapeLightFocus.RRect,
+    ));
   }
 }
 
@@ -143,8 +273,9 @@ Widget rewardAchievedList(
                                   animType: AnimType.SCALE,
                                   dialogType: DialogType.INFO,
                                   body: Center(
-                                    child: Text("おめでとう！\n"+
-                                      pointmodel.totalPoint.toString() +
+                                    child: Text(
+                                      "おめでとう！\n" +
+                                          pointmodel.totalPoint.toString() +
                                           " - " +
                                           rewardList[index].point.toString() +
                                           " = " +

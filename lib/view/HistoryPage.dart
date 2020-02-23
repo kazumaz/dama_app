@@ -20,6 +20,9 @@ class HistoryPage extends StatelessWidget {
     return Consumer2<HistoryModel, PointModel>(
         builder: (context, historyModel, pointModel, child) {
       return Scaffold(
+        appBar: AppBar(title: Text("履歴"), actions: <Widget>[
+            IconButton(icon: Icon(Icons.help_outline), onPressed: () {})
+          ]),
         body: Column(
           children: <Widget>[
             Text(""),

@@ -8,6 +8,9 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(title: Text("設定"), actions: <Widget>[
+          // IconButton(icon: Icon(Icons.help_outline), onPressed: () {})
+        ]),
         backgroundColor: Colors.grey[100],
         body: Column(
           mainAxisSize: MainAxisSize.max,
@@ -201,7 +204,7 @@ class SettingsPage extends StatelessWidget {
           tittle: 'This is Ignored',
           desc: 'This is also Ignored',
           btnCancelText: "やめておく",
-          btnOkText: "、する",
+          btnOkText: "する",
           btnCancelOnPress: () {},
           btnOkOnPress: () {
             var email = 'kazumazuma1124@gmail.com';
@@ -339,7 +342,7 @@ class SettingsPage extends StatelessWidget {
             ],
           )),
       onTap: () {
-                AwesomeDialog(
+        AwesomeDialog(
           context: context,
           animType: AnimType.SCALE,
           dialogType: DialogType.INFO,

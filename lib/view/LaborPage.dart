@@ -8,8 +8,14 @@ import 'package:provider/provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:awesome_dialog/animated_button.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
+import 'package:tutorial_coach_mark/animated_focus_light.dart';
 
 class LaborPage extends StatelessWidget {
+  List<TargetFocus> targets = List();
+  GlobalKey keyButton1 = GlobalKey();
+  GlobalKey keyButton2 = GlobalKey();
+
   final myLaborNameController = TextEditingController();
   final myLaborPointController = TextEditingController();
   bool datePicked = false;
@@ -20,13 +26,22 @@ class LaborPage extends StatelessWidget {
     return Consumer3<LaborModel, PointModel, HistoryModel>(
         builder: (context, laborModel, pointModel, historyModel, child) {
       return Scaffold(
+          appBar: AppBar(title: Text("お手伝い"), actions: <Widget>[
+            IconButton(
+                icon: Icon(Icons.help_outline),
+                onPressed: () {
+                  initTargets();
+                  showTutorial(context);
+                })
+          ]),
           body: Column(
             children: <Widget>[
               Text(""),
-              Text("ボタンを押して、日付を選んでポイントゲット！"),
-              Text("スワイプして、削除・編集も可能！"),
+              Text(
+                 "ボタンを押して、日付を選んでポイントゲット！\nスワイプして、削除・編集も可能！",key: keyButton1),              
               Text(""),
               Expanded(
+                // key: keyButton1,
                 child: ListView.builder(
                   itemBuilder: (BuildContext context, int index) {
                     return Card(
@@ -221,6 +236,7 @@ class LaborPage extends StatelessWidget {
             ],
           ),
           floatingActionButton: FloatingActionButton(
+              key: keyButton2,
               child: Icon(Ionicons.ios_add),
               onPressed: () {
                 showDialog<String>(
@@ -322,8 +338,10 @@ class LaborPage extends StatelessWidget {
         animType: AnimType.SCALE,
         dialogType: DialogType.SUCCES,
         body: Center(
-          child: Text(laborModel.laborList[index].name+"　ありがとう！　"
-            'ポイントを取得しました！間違って交換した場合は、履歴画面から削除してください。',
+          child: Text(
+            laborModel.laborList[index].name +
+                "　ありがとう！　"
+                    'ポイントを取得しました！間違って交換した場合は、履歴画面から削除してください。',
             style: TextStyle(fontStyle: FontStyle.italic),
           ),
         ),
@@ -334,6 +352,87 @@ class LaborPage extends StatelessWidget {
         },
       ).show();
     }
+  }
+
+  void showTutorial(context) {
+    TutorialCoachMark(context,
+        targets: targets,
+        colorShadow: Theme.of(context).primaryColor.withAlpha(200),
+        textSkip: "SKIP",
+        paddingFocus: 10,
+        opacityShadow: 0.8, finish: () {
+      print("finish");
+    }, clickTarget: (target) {
+      print(target);
+    }, clickSkip: () {
+      print("skip");
+    })
+      ..show();
+  }
+
+  void initTargets() {
+    targets.add(TargetFocus(
+      identify: "Target 1",
+      keyTarget: keyButton1,
+      contents: [
+        ContentTarget(
+            align: AlignContent.bottom,
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "お手伝いリスト",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20.0),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Text(
+                      "お手伝いをしたら、(+P)ボタンを押して、ポイントをもらおう！お手伝いを修正・削除したい場合は、右から左にスワイプしよう！",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
+            ))
+      ],
+      shape: ShapeLightFocus.RRect,
+    ));
+    targets.add(TargetFocus(
+      identify: "Target 2",
+      keyTarget: keyButton2,
+      contents: [
+        ContentTarget(
+            align: AlignContent.top,
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "お手伝い追加ボタン",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20.0),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Text(
+                      "ここをクリックして、お手伝いを追加しよう！",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
+            ))
+      ],
+      shape: ShapeLightFocus.RRect,
+    ));
   }
 }
 
