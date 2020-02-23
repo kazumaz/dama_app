@@ -33,6 +33,7 @@ dependencies:
   share: ^0.6.3+5
   flutter_clean_calendar: ^1.0.1
   flutter_slidable: "^0.5.4"
+  intl: ^0.16.1
 
 dev_dependencies:
   flutter_test:

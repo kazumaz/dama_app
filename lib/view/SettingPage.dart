@@ -26,7 +26,7 @@ class SettingsPage extends StatelessWidget {
               _twitterPage("　開発者のツート", Icon(FontAwesome.twitter)),
               _appShare("　このアプリを紹介", Icon(Ionicons.ios_rocket)),
               _appReview("　このアプリを評価", Icon(Icons.star)),
-              _donate("　寄付", Icon(SimpleLineIcons.present)),
+              _donate("　寄付", Icon(MaterialCommunityIcons.gift)),
             ])),
           ],
         ));
