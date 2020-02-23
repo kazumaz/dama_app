@@ -388,8 +388,9 @@ class LaborPage extends StatelessWidget {
     TutorialCoachMark(context,
         targets: targets,
         colorShadow: Theme.of(context).primaryColor.withAlpha(200),
-        textSkip: "SKIP",
+        textSkip: "スキップ",
         paddingFocus: 10,
+        textStyleSkip: TextStyle(fontSize: 25, color: Colors.white),
         opacityShadow: 0.8, finish: () {
       print("finish");
     }, clickTarget: (target) {
@@ -421,59 +422,41 @@ class LaborPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0),
-                    child: 
-                    
-                    Column(children: <Widget>[
-                      
-                      
-                      
-                      
-                      Card(child: 
-                      
-                      Row(
-                              children: <Widget>[
-                                Text("　"),
-                                Icon(
-                                  MaterialCommunityIcons.run,
-                                  color: Colors.indigo,
+                    child: Column(
+                      children: <Widget>[
+                        Card(
+                            child: Row(children: <Widget>[
+                          Text("　"),
+                          Icon(
+                            MaterialCommunityIcons.run,
+                            color: Colors.indigo,
+                          ),
+                          Expanded(
+                            child: Padding(
+                              child: Text(
+                                3.toString() + " Point:　" + "お掃除",
+                              ),
+                              padding: EdgeInsets.all(20.0),
+                            ),
+                          ),
+                          RaisedButton(
+                              child: Text("+P"),
+                              color: Colors.white,
+                              shape: CircleBorder(
+                                side: BorderSide(
+                                  color: Colors.black,
+                                  width: 1.0,
+                                  style: BorderStyle.solid,
                                 ),
-                                Expanded(
-                                  child: Padding(
-                                    child: Text(
-                                      3.toString() +
-                                          " Point:　" +
-                                          "お掃除",
-                                    ),
-                                    padding: EdgeInsets.all(20.0),
-                                  ),
-                                ),
-                                RaisedButton(
-                                  child: Text("+P"),
-                                  color: Colors.white,
-                                  shape: CircleBorder(
-                                    side: BorderSide(
-                                      color: Colors.black,
-                                      width: 1.0,
-                                      style: BorderStyle.solid,
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    })
-                      
-                              ])),
-
-
-
-
-
-
-
-
-                      Text(
-                      "お手伝いをしたら、(+P)ボタンを押して、ポイントをもらおう！お手伝いを修正・削除したい場合は、右から左にスワイプしよう！",
-                      style: TextStyle(color: Colors.white),
-                    )],)
-                    ,
+                              ),
+                              onPressed: () {})
+                        ])),
+                        Text(
+                          "お手伝いをしたら、(+P)ボタンを押して、ポイントをもらおう！お手伝いを修正・削除したい場合は、右から左にスワイプしよう！",
+                          style: TextStyle(color: Colors.white),
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),

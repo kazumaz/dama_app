@@ -75,8 +75,11 @@ class HomePage extends StatelessWidget {
     TutorialCoachMark(context,
         targets: targets,
         colorShadow: Theme.of(context).primaryColor.withAlpha(200),
-        textSkip: "SKIP",
+        textSkip: "スキップ",
         paddingFocus: 10,
+        textStyleSkip: TextStyle(
+          fontSize:25,
+          color: Colors.white),
         opacityShadow: 0.8, finish: () {
       print("finish");
     }, clickTarget: (target) {
