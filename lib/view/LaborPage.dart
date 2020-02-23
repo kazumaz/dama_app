@@ -37,8 +37,33 @@ class LaborPage extends StatelessWidget {
           body: Column(
             children: <Widget>[
               Text(""),
-              Text(
-                 "ボタンを押して、日付を選んでポイントゲット！\nスワイプして、削除・編集も可能！",key: keyButton1),              
+              Row(
+                children: <Widget>[
+                  SizedBox(
+                    child: RaisedButton(
+                      child: Text(
+                        "+P",
+                        // style: TextStyle(fontSize: 7),
+                      ),
+                      color: Colors.white,
+                      shape: CircleBorder(
+                        side: BorderSide(
+                          color: Colors.black,
+                          width: 0.5,
+                          style: BorderStyle.solid,
+                        ),
+                      ),
+                      onPressed: () {},
+                    ),
+                    // width: 35
+                    // ,height: 35,
+                  ),
+                  Flexible(
+                    child: Text("ボタンを押して、ポイントゲット！\nスワイプして、削除・編集も可能！",
+                        key: keyButton1),
+                  ),
+                ],
+              ),
               Text(""),
               Expanded(
                 // key: keyButton1,
@@ -173,7 +198,10 @@ class LaborPage extends StatelessWidget {
                             child: Row(
                               children: <Widget>[
                                 Text("　"),
-                                Icon(MaterialCommunityIcons.run, color: Colors.indigo,),
+                                Icon(
+                                  MaterialCommunityIcons.run,
+                                  color: Colors.indigo,
+                                ),
                                 Expanded(
                                   child: Padding(
                                     child: Text(
@@ -393,10 +421,59 @@ class LaborPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0),
-                    child: Text(
+                    child: 
+                    
+                    Column(children: <Widget>[
+                      
+                      
+                      
+                      
+                      Card(child: 
+                      
+                      Row(
+                              children: <Widget>[
+                                Text("　"),
+                                Icon(
+                                  MaterialCommunityIcons.run,
+                                  color: Colors.indigo,
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    child: Text(
+                                      3.toString() +
+                                          " Point:　" +
+                                          "お掃除",
+                                    ),
+                                    padding: EdgeInsets.all(20.0),
+                                  ),
+                                ),
+                                RaisedButton(
+                                  child: Text("+P"),
+                                  color: Colors.white,
+                                  shape: CircleBorder(
+                                    side: BorderSide(
+                                      color: Colors.black,
+                                      width: 1.0,
+                                      style: BorderStyle.solid,
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    })
+                      
+                              ])),
+
+
+
+
+
+
+
+
+                      Text(
                       "お手伝いをしたら、(+P)ボタンを押して、ポイントをもらおう！お手伝いを修正・削除したい場合は、右から左にスワイプしよう！",
                       style: TextStyle(color: Colors.white),
-                    ),
+                    )],)
+                    ,
                   )
                 ],
               ),

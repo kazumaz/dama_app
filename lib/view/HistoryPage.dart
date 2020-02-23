@@ -21,7 +21,7 @@ class HistoryPage extends StatelessWidget {
         builder: (context, historyModel, pointModel, child) {
       return Scaffold(
         appBar: AppBar(title: Text("履歴"), actions: <Widget>[
-            IconButton(icon: Icon(Icons.help_outline), onPressed: () {})
+            // IconButton(icon: Icon(Icons.help_outline), onPressed: () {})
           ]),
         body: Column(
           children: <Widget>[

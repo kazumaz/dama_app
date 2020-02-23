@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
                       key: keyButton1,
                       width: MediaQuery.of(context).size.width,
                       color: Theme.of(context).primaryColor.withAlpha(50),
-                      child: Column(                        
+                      child: Column(
                         children: <Widget>[
                           Text(""),
                           Text("交換可能ポイント"),
@@ -63,8 +63,10 @@ class HomePage extends StatelessWidget {
                     pointModel.totalPoint)),
             Text("これまでの歩み"),
             Text(""),
-            Container(key:keyButton3, child: ayumi(),)
-            
+            Container(
+              key: keyButton3,
+              child: ayumi(),
+            )
           ]));
     });
   }
@@ -234,8 +236,11 @@ Widget rewardAchievedList(
               child: Column(
                 children: <Widget>[
                   CircularPercentIndicator(
+                  // LinearPercentIndicator(
                     radius: 50.0,
                     lineWidth: 5.0,
+                //     width: 140.0,
+                // lineHeight: 14.0,
                     percent: calculateRewardAchievesPercentage(
                         pointmodel.totalPoint, rewardList[index].point),
                     center: Text(calculateRewardAchievesPercentageString(
@@ -324,7 +329,8 @@ Widget rewardAchievedList(
               ));
         },
         itemCount: rewardList.length,
-        scrollDirection: Axis.horizontal);
+        scrollDirection: Axis.horizontal
+        );
   });
 }
 
