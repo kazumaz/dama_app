@@ -6,8 +6,15 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:awesome_dialog/animated_button.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
+import 'package:tutorial_coach_mark/animated_focus_light.dart';
 
 class RewardPage extends StatelessWidget {
+  //チュートリアルを実施した時の、チュートリアル対象のwidgetを指定するためのグローバルキー
+  List<TargetFocus> targets = List();
+  GlobalKey keyButton1 = GlobalKey();
+  GlobalKey keyButton2 = GlobalKey();
+
   final myRewardNameController = TextEditingController();
   final myRewardPointController = TextEditingController();
 
@@ -16,12 +23,17 @@ class RewardPage extends StatelessWidget {
     return Consumer<RewordModel>(builder: (context, rewardModel, child) {
       return Scaffold(
           appBar: AppBar(title: Text("ご褒美"), actions: <Widget>[
+            IconButton(
+                icon: Icon(Icons.help_outline),
+                onPressed: () {
+                  initTargets();
+                  showTutorial(context);
+                })
             // IconButton(icon: Icon(Icons.help_outline), onPressed: () {})
           ]),
           body: Column(children: <Widget>[
             Text(""),
-            Text("ここからご褒美追加！"),
-            Text("スワイプして削除・編集も可能！"),
+            Text("ここからご褒美追加！\nスワイプして削除・編集も可能！", key: keyButton1),
             Text(""),
             Expanded(
                 child: ListView.builder(
@@ -173,6 +185,7 @@ class RewardPage extends StatelessWidget {
             ))
           ]),
           floatingActionButton: FloatingActionButton(
+              key: keyButton2,
               child: Icon(Ionicons.ios_add),
               onPressed: () {
                 showDialog<String>(
@@ -250,5 +263,107 @@ class RewardPage extends StatelessWidget {
                     });
               }));
     });
+  }
+
+  void showTutorial(context) {
+    TutorialCoachMark(context,
+        targets: targets,
+        colorShadow: Theme.of(context).primaryColor.withAlpha(200),
+        textSkip: "スキップ",
+        paddingFocus: 10,
+        textStyleSkip: TextStyle(fontSize: 25, color: Colors.white),
+        opacityShadow: 0.8, finish: () {
+      print("finish");
+    }, clickTarget: (target) {
+      print(target);
+    }, clickSkip: () {
+      print("skip");
+    })
+      ..show();
+  }
+
+  void initTargets() {
+    targets.add(TargetFocus(
+      identify: "Target 1",
+      keyTarget: keyButton1,
+      contents: [
+        ContentTarget(
+            align: AlignContent.bottom,
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "ご褒美リスト",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20.0),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Column(
+                      children: <Widget>[
+                        Card(
+                            child: Row(children: <Widget>[
+                          Text("　"),
+                          Icon(
+                            MaterialCommunityIcons.gift,
+                            color: Colors.pink,
+                          ),
+                          Expanded(
+                            child: Padding(
+                              child: Text(
+                                100.toString() + " Point:　" + "遊園地",
+                              ),
+                              padding: EdgeInsets.all(20.0),
+                            ),
+                          ),
+                        ])),
+                        Text(
+                          "ご褒美を修正・削除したい場合は、右から左にスワイプしよう！",
+                          style: TextStyle(color: Colors.white),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ))
+      ],
+      shape: ShapeLightFocus.RRect,
+    ));
+    targets.add(TargetFocus(
+      identify: "Target 2",
+      keyTarget: keyButton2,
+      contents: [
+        ContentTarget(
+            align: AlignContent.top,
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "ご褒美追加ボタン",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20.0),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Text(
+                      "ここをクリックして、ご褒美を追加しよう！",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
+            ))
+      ],
+      shape: ShapeLightFocus.RRect,
+    ));
   }
 }
