@@ -77,7 +77,7 @@ class HistoryPage extends StatelessWidget {
                                           point:
                                               reversedHistoryList[index].point);
                                     } else {
-                                      pointModel.increaseTotalPoint(
+                                      pointModel.increaseTotalPointWithEver(
                                           point:
                                               reversedHistoryList[index].point);
                                     }

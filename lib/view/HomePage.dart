@@ -209,8 +209,8 @@ Widget ayumi() {
               Ionicons.md_bicycle,
               size: 50.0,
             ),
-            Text("記録回数"),
-            Text(pointmodel.totalCountEver.toString() + "回")
+            Text("お手伝い回数"),
+            Text(pointmodel.totalLaborEver.toString() + "回")
           ],
         )),
         Expanded(
@@ -220,8 +220,8 @@ Widget ayumi() {
               MaterialCommunityIcons.human_handsup,
               size: 50.0,
             ),
-            Text("連続"),
-            Text("2" + "日")
+            Text("ご褒美回数"),
+            Text(pointmodel.totalRewardEver.toString() + "回")
           ],
         ))
       ],
