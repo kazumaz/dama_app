@@ -266,7 +266,7 @@ class SettingsPage extends StatelessWidget {
           btnOkText: "してあげる",
           btnCancelOnPress: () {},
           btnOkOnPress: () {
-            Share.share('check out my app https://github.com/kazumaz');
+            Share.share('check out my app https://kazumaz.github.io/dama_app_pages/');
           },
         ).show();
       },
@@ -358,7 +358,7 @@ class SettingsPage extends StatelessWidget {
           btnOkText: "見てみる",
           btnCancelOnPress: () {},
           btnOkOnPress: () {
-            launchURL("https://github.com/kazumaz");
+            launchURL("https://kazumaz.github.io/dama_app_pages/");
           },
         ).show();
       },
