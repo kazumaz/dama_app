@@ -120,78 +120,144 @@ class LaborPage extends StatelessWidget {
                                 color: Colors.indigo,
                                 icon: Icons.edit,
                                 onTap: () {
-                                  //編集画面
-                                  showDialog<String>(
-                                      context: context,
-                                      barrierDismissible: false,
-                                      builder: (BuildContext context) {
-                                        // String result = '';
-                                        return AlertDialog(
-                                          title: Text('編集する、名前とポイントを入力'),
-                                          content: Column(
-                                            children: <Widget>[
-                                              Flexible(
-                                                  child: TextField(
-                                                controller:
-                                                    myLaborNameController,
-                                                autofocus: true,
-                                                decoration: InputDecoration(
-                                                  // labelText: "編集する場合は入力してください",
-                                                  hintText: laborModel
-                                                      .laborList[index].name
-                                                      .toString(),
-                                                ),
-                                                maxLength: 10,
-                                              )),
-                                              Flexible(
-                                                  child: TextField(
-                                                      controller:
-                                                          myLaborPointController,
-                                                      autofocus: true,
-                                                      decoration: InputDecoration(
-                                                        // labelText: "編集する場合は入力してください",
-                                                        hintText: laborModel
-                                                            .laborList[index]
-                                                            .point
-                                                            .toString(),
-                                                      ),
-                                                      maxLength: 5,
-                                                      keyboardType: TextInputType.number,
-                                                      inputFormatters: <TextInputFormatter>[
-                                                    WhitelistingTextInputFormatter
-                                                        .digitsOnly
-                                                  ])),
-                                            ],
+                                  AwesomeDialog(
+                                    context: context,
+                                    animType: AnimType.SCALE,
+                                    dialogType: DialogType.INFO,
+                                    body: Center(
+                                        child: Column(
+                                      children: <Widget>[
+                                        Text(
+                                          '編集する場合は入力してください。',
+                                          style: TextStyle(
+                                              fontStyle: FontStyle.italic),
+                                        ),
+
+                                        // Flexible(
+                                        // child:
+                                        TextField(
+                                          controller: myLaborNameController,
+                                          autofocus: true,
+                                          decoration: InputDecoration(
+                                            // labelText: "編集する場合は入力してください",
+                                            hintText: laborModel
+                                                .laborList[index].name
+                                                .toString(),
                                           ),
-                                          actions: <Widget>[
-                                            FlatButton(
-                                              child: Text('Cancel'),
-                                              onPressed: () {
-                                                myLaborNameController.clear();
-                                                myLaborPointController.clear();
-                                                Navigator.of(context).pop();
-                                              },
+                                          maxLength: 10,
+                                        ),
+                                        // Flexible(
+                                        // child:
+                                        TextField(
+                                            controller: myLaborPointController,
+                                            autofocus: true,
+                                            decoration: InputDecoration(
+                                              // labelText: "編集する場合は入力してください",
+                                              hintText: laborModel
+                                                  .laborList[index].point
+                                                  .toString(),
                                             ),
-                                            FlatButton(
-                                              child: Text('Ok'),
-                                              onPressed: () {
-                                                Labor tmpReward = Labor(
-                                                    name: myLaborNameController
-                                                        .text
-                                                        .toString(),
-                                                    point: int.parse(
-                                                        myLaborPointController
-                                                            .text));
-                                                laborModel.replaceLabor(
-                                                    index, tmpReward);
-                                                myLaborNameController.clear();
-                                                myLaborPointController.clear();
-                                                Navigator.of(context).pop();
-                                              },
-                                            ),
-                                          ],
-                                        );
-                                      });
+                                            maxLength: 5,
+                                            keyboardType: TextInputType.number,
+                                            inputFormatters: <
+                                                TextInputFormatter>[
+                                              WhitelistingTextInputFormatter
+                                                  .digitsOnly
+                                            ]),
+                                      ],
+                                    )),
+                                    tittle: 'This is Ignored',
+                                    desc: 'This is also Ignored',
+                                    aligment: Alignment.topCenter,
+                                    btnCancelOnPress: () {
+                                      myLaborNameController.clear();
+                                      myLaborPointController.clear();
+                                    },
+                                    btnOkOnPress: () {
+                                      Labor tmpReward = Labor(
+                                          name: myLaborNameController.text
+                                              .toString(),
+                                          point: int.parse(
+                                              myLaborPointController.text));
+                                      laborModel.replaceLabor(index, tmpReward);
+                                      myLaborNameController.clear();
+                                      myLaborPointController.clear();
+                                    },
+                                  ).show();
+
+                                  //通常ダイアログ
+                                  // //編集画面
+                                  // showDialog<String>(
+                                  //     context: context,
+                                  //     barrierDismissible: false,
+                                  //     builder: (BuildContext context) {
+                                  //       // String result = '';
+                                  //       return AlertDialog(
+                                  //         title: Text('編集する、名前とポイントを入力'),
+                                  //         content: Column(
+                                  //           children: <Widget>[
+                                  //             Flexible(
+                                  //                 child: TextField(
+                                  //               controller:
+                                  //                   myLaborNameController,
+                                  //               autofocus: true,
+                                  //               decoration: InputDecoration(
+                                  //                 // labelText: "編集する場合は入力してください",
+                                  //                 hintText: laborModel
+                                  //                     .laborList[index].name
+                                  //                     .toString(),
+                                  //               ),
+                                  //               maxLength: 10,
+                                  //             )),
+                                  //             Flexible(
+                                  //                 child: TextField(
+                                  //                     controller:
+                                  //                         myLaborPointController,
+                                  //                     autofocus: true,
+                                  //                     decoration: InputDecoration(
+                                  //                       // labelText: "編集する場合は入力してください",
+                                  //                       hintText: laborModel
+                                  //                           .laborList[index]
+                                  //                           .point
+                                  //                           .toString(),
+                                  //                     ),
+                                  //                     maxLength: 5,
+                                  //                     keyboardType: TextInputType.number,
+                                  //                     inputFormatters: <TextInputFormatter>[
+                                  //                   WhitelistingTextInputFormatter
+                                  //                       .digitsOnly
+                                  //                 ])),
+                                  //           ],
+                                  //         ),
+                                  //         actions: <Widget>[
+                                  //           FlatButton(
+                                  //             child: Text('Cancel'),
+                                  //             onPressed: () {
+                                  //               myLaborNameController.clear();
+                                  //               myLaborPointController.clear();
+                                  //               Navigator.of(context).pop();
+                                  //             },
+                                  //           ),
+                                  //           FlatButton(
+                                  //             child: Text('Ok'),
+                                  //             onPressed: () {
+                                  //               Labor tmpReward = Labor(
+                                  //                   name: myLaborNameController
+                                  //                       .text
+                                  //                       .toString(),
+                                  //                   point: int.parse(
+                                  //                       myLaborPointController
+                                  //                           .text));
+                                  //               laborModel.replaceLabor(
+                                  //                   index, tmpReward);
+                                  //               myLaborNameController.clear();
+                                  //               myLaborPointController.clear();
+                                  //               Navigator.of(context).pop();
+                                  //             },
+                                  //           ),
+                                  //         ],
+                                  //       );
+                                  //     });
                                 },
                               ),
                             ],
@@ -269,79 +335,146 @@ class LaborPage extends StatelessWidget {
               key: keyButton2,
               child: Icon(Ionicons.ios_add),
               onPressed: () {
-                showDialog<String>(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (BuildContext context) {
-                      // String result = '';
-                      return AlertDialog(
-                        title: Text('新規追加しますか？'),
-                        content: Column(children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Expanded(
-                                  child: TextField(
-                                controller: myLaborNameController,
-                                autofocus: true,
-                                decoration: InputDecoration(
-                                  labelText: "名前",
-                                  // hintText: "test"
-                                ),
-                                maxLength: 10,
-                                onChanged: (value) {
-                                  // nothing to do
-                                },
-                              )),
-                            ],
-                          ),
-                          Expanded(
-                              child: TextField(
-                                  controller: myLaborPointController,
-                                  decoration:
-                                      InputDecoration(labelText: "ポイント"),
-                                  maxLength: 5,
-                                  keyboardType: TextInputType.number,
-                                  inputFormatters: <TextInputFormatter>[
-                                WhitelistingTextInputFormatter.digitsOnly
-                              ]))
-                        ]),
-                        actions: <Widget>[
-                          FlatButton(
-                            child: Text('Cancel'),
-                            onPressed: () {
-                              myLaborNameController.clear();
-                              myLaborPointController.clear();
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                          FlatButton(
-                            child: Text('Ok'),
-                            onPressed: () {
-                              Labor tmpLabor = Labor(
-                                  name: myLaborNameController.text,
-                                  point:
-                                      int.parse(myLaborPointController.text));
+                AwesomeDialog(
+                  context: context,
+                  animType: AnimType.SCALE,
+                  dialogType: DialogType.INFO,
+                  body: Center(
+                      child: Column(
+                    children: <Widget>[
+                      Text(
+                        '追加する場合は入力してください。',
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      ),
 
-                              if (myLaborNameController.text == null ||
-                                  myLaborPointController.text == null ||
-                                  myLaborNameController.text == "" ||
-                                  myLaborPointController.text == "null") {
-                                myLaborNameController.clear();
-                                myLaborPointController.clear();
-                                Navigator.of(context).pop();
-                              }
-                              print(myLaborNameController.text);
-                              print(myLaborPointController.text);
+                      // Flexible(
+                      // child:
+                      TextField(
+                        controller: myLaborNameController,
+                        autofocus: true,
+                        decoration: InputDecoration(
+                          labelText: "名前",
+                          // hintText: "test"
+                        ),
+                        maxLength: 10,
+                        onChanged: (value) {
+                          // nothing to do
+                        },
+                      ),
+                      // Flexible(
+                      // child:
+                      TextField(
+                          controller: myLaborPointController,
+                          decoration: InputDecoration(labelText: "ポイント"),
+                          maxLength: 5,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: <TextInputFormatter>[
+                            WhitelistingTextInputFormatter.digitsOnly
+                          ]),
+                    ],
+                  )),
+                  tittle: 'This is Ignored',
+                  desc: 'This is also Ignored',
+                  aligment: Alignment.topCenter,
+                  btnCancelOnPress: () {
+                    myLaborNameController.clear();
+                    myLaborPointController.clear();
+                  },
+                  btnOkOnPress: () {
+                    Labor tmpLabor = Labor(
+                        name: myLaborNameController.text,
+                        point: int.parse(myLaborPointController.text));
 
-                              laborModel.addLaborModel(labor: tmpLabor);
-                              myLaborNameController.clear();
-                              myLaborPointController.clear();
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        ],
-                      );
-                    });
+                    if (myLaborNameController.text == null ||
+                        myLaborPointController.text == null ||
+                        myLaborNameController.text == "" ||
+                        myLaborPointController.text == "null") {
+                      myLaborNameController.clear();
+                      myLaborPointController.clear();
+                      Navigator.of(context).pop();
+                    }
+                    print(myLaborNameController.text);
+                    print(myLaborPointController.text);
+
+                    laborModel.addLaborModel(labor: tmpLabor);
+                    myLaborNameController.clear();
+                    myLaborPointController.clear();
+                  },
+                ).show();
+
+                // showDialog<String>(
+                //     context: context,
+                //     barrierDismissible: false,
+                //     builder: (BuildContext context) {
+                //       // String result = '';
+                //       return AlertDialog(
+                //         title: Text('新規追加しますか？'),
+                //         content: Column(children: <Widget>[
+                //           Row(
+                //             children: <Widget>[
+                //               Expanded(
+                //                   child: TextField(
+                //                 controller: myLaborNameController,
+                //                 autofocus: true,
+                //                 decoration: InputDecoration(
+                //                   labelText: "名前",
+                //                   // hintText: "test"
+                //                 ),
+                //                 maxLength: 10,
+                //                 onChanged: (value) {
+                //                   // nothing to do
+                //                 },
+                //               )),
+                //             ],
+                //           ),
+                //           Expanded(
+                //               child: TextField(
+                //                   controller: myLaborPointController,
+                //                   decoration:
+                //                       InputDecoration(labelText: "ポイント"),
+                //                   maxLength: 5,
+                //                   keyboardType: TextInputType.number,
+                //                   inputFormatters: <TextInputFormatter>[
+                //                 WhitelistingTextInputFormatter.digitsOnly
+                //               ]))
+                //         ]),
+                //         actions: <Widget>[
+                //           FlatButton(
+                //             child: Text('Cancel'),
+                //             onPressed: () {
+                //               myLaborNameController.clear();
+                //               myLaborPointController.clear();
+                //               Navigator.of(context).pop();
+                //             },
+                //           ),
+                //           FlatButton(
+                //             child: Text('Ok'),
+                //             onPressed: () {
+                //               Labor tmpLabor = Labor(
+                //                   name: myLaborNameController.text,
+                //                   point:
+                //                       int.parse(myLaborPointController.text));
+
+                //               if (myLaborNameController.text == null ||
+                //                   myLaborPointController.text == null ||
+                //                   myLaborNameController.text == "" ||
+                //                   myLaborPointController.text == "null") {
+                //                 myLaborNameController.clear();
+                //                 myLaborPointController.clear();
+                //                 Navigator.of(context).pop();
+                //               }
+                //               print(myLaborNameController.text);
+                //               print(myLaborPointController.text);
+
+                //               laborModel.addLaborModel(labor: tmpLabor);
+                //               myLaborNameController.clear();
+                //               myLaborPointController.clear();
+                //               Navigator.of(context).pop();
+                //             },
+                //           ),
+                //         ],
+                //       );
+                //     });
               }));
     });
   }
