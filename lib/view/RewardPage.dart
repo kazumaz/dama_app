@@ -88,77 +88,142 @@ class RewardPage extends StatelessWidget {
                           color: Colors.indigo,
                           icon: Icons.edit,
                           onTap: () {
-                            //編集画面
-                            showDialog<String>(
-                                context: context,
-                                barrierDismissible: false,
-                                builder: (BuildContext context) {
-                                  // String result = '';
-                                  return AlertDialog(
-                                    title: Text('編集する、名前とポイントを入力'),
-                                    content: Column(
-                                      children: <Widget>[
-                                        Flexible(
-                                            child: TextField(
-                                          controller: myRewardNameController,
-                                          autofocus: true,
-                                          decoration: InputDecoration(
-                                            // labelText: "編集する場合は入力してください",
-                                            hintText: rewardModel
-                                                .rewardList[index].name
-                                                .toString(),
-                                          ),
-                                          maxLength: 10,
-                                        )),
-                                        Flexible(
-                                            child: TextField(
-                                                controller:
-                                                    myRewardPointController,
-                                                autofocus: true,
-                                                decoration: InputDecoration(
-                                                  // labelText: "編集する場合は入力してください",
-                                                  hintText: rewardModel
-                                                      .rewardList[index].point
-                                                      .toString(),
-                                                ),
-                                                maxLength: 5,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                inputFormatters: <
-                                                    TextInputFormatter>[
-                                              WhitelistingTextInputFormatter
-                                                  .digitsOnly
-                                            ])),
-                                      ],
+                            AwesomeDialog(
+                              context: context,
+                              animType: AnimType.SCALE,
+                              dialogType: DialogType.INFO,
+                              body: Center(
+                                  child: Column(
+                                children: <Widget>[
+                                  Text(
+                                    '編集する場合は入力してください。',
+                                    style:
+                                        TextStyle(fontStyle: FontStyle.italic),
+                                  ),
+
+                                  // Flexible(
+                                  // child:
+                                  TextField(
+                                    controller: myRewardNameController,
+                                    autofocus: true,
+                                    decoration: InputDecoration(
+                                      hintText: rewardModel
+                                          .rewardList[index].name
+                                          .toString(),
                                     ),
-                                    actions: <Widget>[
-                                      FlatButton(
-                                        child: Text('Cancel'),
-                                        onPressed: () {
-                                          myRewardNameController.clear();
-                                          myRewardPointController.clear();
-                                          Navigator.of(context).pop();
-                                        },
+                                    maxLength: 10,
+                                    // )
+                                  ),
+                                  // Flexible(
+                                  // child:
+                                  TextField(
+                                      controller: myRewardPointController,
+                                      autofocus: true,
+                                      decoration: InputDecoration(
+                                        hintText: rewardModel
+                                            .rewardList[index].point
+                                            .toString(),
                                       ),
-                                      FlatButton(
-                                        child: Text('Ok'),
-                                        onPressed: () {
-                                          Reward tmpReward = Reward(
-                                              name: myRewardNameController.text
-                                                  .toString(),
-                                              point: int.parse(
-                                                  myRewardPointController
-                                                      .text));
-                                          rewardModel.replaceReward(
-                                              index, tmpReward);
-                                          myRewardNameController.clear();
-                                          myRewardPointController.clear();
-                                          Navigator.of(context).pop();
-                                        },
+                                      maxLength: 5,
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: <TextInputFormatter>[
+                                        WhitelistingTextInputFormatter
+                                            .digitsOnly
+                                      ]
+
+                                      // )
                                       ),
-                                    ],
-                                  );
-                                });
+                                ],
+                              )),
+                              tittle: 'This is Ignored',
+                              desc: 'This is also Ignored',
+                              aligment: Alignment.topCenter,
+                              btnCancelOnPress: () {
+                                myRewardNameController.clear();
+                                myRewardPointController.clear();
+                              },
+                              btnOkOnPress: () {
+                                Reward tmpReward = Reward(
+                                    name:
+                                        myRewardNameController.text.toString(),
+                                    point: int.parse(
+                                        myRewardPointController.text));
+                                rewardModel.replaceReward(index, tmpReward);
+                                myRewardNameController.clear();
+                                myRewardPointController.clear();
+                              },
+                            ).show();
+
+//以下は通常のダイアログ
+                            // //編集画面
+                            // showDialog<String>(
+                            //     context: context,
+                            //     barrierDismissible: false,
+                            //     builder: (BuildContext context) {
+                            //       // String result = '';
+                            //       return AlertDialog(
+                            //         title: Text('編集する、名前とポイントを入力'),
+                            //         content: Column(
+                            //           children: <Widget>[
+                            //             Flexible(
+                            //                 child: TextField(
+                            //               controller: myRewardNameController,
+                            //               autofocus: true,
+                            //               decoration: InputDecoration(
+                            //                 hintText: rewardModel
+                            //                     .rewardList[index].name
+                            //                     .toString(),
+                            //               ),
+                            //               maxLength: 10,
+                            //             )),
+                            //             Flexible(
+                            //                 child: TextField(
+                            //                     controller:
+                            //                         myRewardPointController,
+                            //                     autofocus: true,
+                            //                     decoration: InputDecoration(
+                            //                       hintText: rewardModel
+                            //                           .rewardList[index].point
+                            //                           .toString(),
+                            //                     ),
+                            //                     maxLength: 5,
+                            //                     keyboardType:
+                            //                         TextInputType.number,
+                            //                     inputFormatters: <
+                            //                         TextInputFormatter>[
+                            //                   WhitelistingTextInputFormatter
+                            //                       .digitsOnly
+                            //                 ])),
+                            //           ],
+                            //         ),
+                            //         actions: <Widget>[
+                            //           FlatButton(
+                            //             child: Text('Cancel'),
+                            //             onPressed: () {
+                            //               myRewardNameController.clear();
+                            //               myRewardPointController.clear();
+                            //               Navigator.of(context).pop();
+                            //             },
+                            //           ),
+                            //           FlatButton(
+                            //             child: Text('Ok'),
+                            //             onPressed: () {
+                            //               Reward tmpReward = Reward(
+                            //                   name: myRewardNameController.text
+                            //                       .toString(),
+                            //                   point: int.parse(
+                            //                       myRewardPointController
+                            //                           .text));
+                            //               rewardModel.replaceReward(
+                            //                   index, tmpReward);
+                            //               myRewardNameController.clear();
+                            //               myRewardPointController.clear();
+                            //               Navigator.of(context).pop();
+                            //             },
+                            //           ),
+                            //         ],
+                            //       );
+                            //     });
                           },
                         ),
                       ],
@@ -188,79 +253,146 @@ class RewardPage extends StatelessWidget {
               key: keyButton2,
               child: Icon(Ionicons.ios_add),
               onPressed: () {
-                showDialog<String>(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (BuildContext context) {
-                      // String result = '';
-                      return AlertDialog(
-                        title: Text('新規追加しますか？'),
-                        content: Column(children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Expanded(
-                                  child: TextField(
-                                controller: myRewardNameController,
-                                autofocus: true,
-                                decoration: InputDecoration(
-                                  labelText: "名前",
-                                  // hintText: "test"
-                                ),
-                                maxLength: 10,
-                                onChanged: (value) {
-                                  // nothing to do
-                                },
-                              )),
-                            ],
-                          ),
-                          Expanded(
-                              child: TextField(
-                                  controller: myRewardPointController,
-                                  decoration:
-                                      InputDecoration(labelText: "ポイント"),
-                                  maxLength: 5,
-                                  keyboardType: TextInputType.number,
-                                  inputFormatters: <TextInputFormatter>[
-                                WhitelistingTextInputFormatter.digitsOnly
-                              ]))
-                        ]),
-                        actions: <Widget>[
-                          FlatButton(
-                            child: Text('Cancel'),
-                            onPressed: () {
-                              myRewardNameController.clear();
-                              myRewardPointController.clear();
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                          FlatButton(
-                            child: Text('Ok'),
-                            onPressed: () {
-                              Reward tmpLabor = Reward(
-                                  name: myRewardNameController.text,
-                                  point:
-                                      int.parse(myRewardPointController.text));
+                AwesomeDialog(
+                  context: context,
+                  animType: AnimType.SCALE,
+                  dialogType: DialogType.INFO,
+                  body: Center(
+                      child: Column(
+                    children: <Widget>[
+                      Text(
+                        '追加する場合は入力してください。',
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      ),
 
-                              if (myRewardNameController.text == null ||
-                                  myRewardPointController.text == null ||
-                                  myRewardNameController.text == "" ||
-                                  myRewardPointController.text == "null") {
-                                myRewardNameController.clear();
-                                myRewardPointController.clear();
-                                Navigator.of(context).pop();
-                              }
-                              print(myRewardNameController.text);
-                              print(myRewardPointController.text);
+                      // Flexible(
+                      // child:
+                      TextField(
+                        controller: myRewardNameController,
+                        autofocus: true,
+                        decoration: InputDecoration(
+                          labelText: "名前",
+                          // hintText: "test"
+                        ),
+                        maxLength: 10,
+                        onChanged: (value) {
+                          // nothing to do
+                        },
+                      ),
+                      // Flexible(
+                      // child:
+                      TextField(
+                          controller: myRewardPointController,
+                          decoration: InputDecoration(labelText: "ポイント"),
+                          maxLength: 5,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: <TextInputFormatter>[
+                            WhitelistingTextInputFormatter.digitsOnly
+                          ]),
+                    ],
+                  )),
+                  tittle: 'This is Ignored',
+                  desc: 'This is also Ignored',
+                  aligment: Alignment.topCenter,
+                  btnCancelOnPress: () {
+                    myRewardNameController.clear();
+                    myRewardPointController.clear();
+                  },
+                  btnOkOnPress: () {
+                    Reward tmpLabor = Reward(
+                        name: myRewardNameController.text,
+                        point: int.parse(myRewardPointController.text));
 
-                              rewardModel.addRewardModel(reward: tmpLabor);
-                              myRewardNameController.clear();
-                              myRewardPointController.clear();
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        ],
-                      );
-                    });
+                    if (myRewardNameController.text == null ||
+                        myRewardPointController.text == null ||
+                        myRewardNameController.text == "" ||
+                        myRewardPointController.text == "null") {
+                      myRewardNameController.clear();
+                      myRewardPointController.clear();
+                      Navigator.of(context).pop();
+                    }
+                    print(myRewardNameController.text);
+                    print(myRewardPointController.text);
+
+                    rewardModel.addRewardModel(reward: tmpLabor);
+                    myRewardNameController.clear();
+                    myRewardPointController.clear();
+                  },
+                ).show();
+
+                // showDialog<String>(
+                //     context: context,
+                //     barrierDismissible: false,
+                //     builder: (BuildContext context) {
+                //       // String result = '';
+                //       return AlertDialog(
+                //         title: Text('新規追加しますか？'),
+                //         content: Column(children: <Widget>[
+                //           Row(
+                //             children: <Widget>[
+                //               Expanded(
+                //                   child: TextField(
+                //                 controller: myRewardNameController,
+                //                 autofocus: true,
+                //                 decoration: InputDecoration(
+                //                   labelText: "名前",
+                //                   // hintText: "test"
+                //                 ),
+                //                 maxLength: 10,
+                //                 onChanged: (value) {
+                //                   // nothing to do
+                //                 },
+                //               )),
+                //             ],
+                //           ),
+                //           Expanded(
+                //               child: TextField(
+                //                   controller: myRewardPointController,
+                //                   decoration:
+                //                       InputDecoration(labelText: "ポイント"),
+                //                   maxLength: 5,
+                //                   keyboardType: TextInputType.number,
+                //                   inputFormatters: <TextInputFormatter>[
+                //                 WhitelistingTextInputFormatter.digitsOnly
+                //               ]))
+                //         ]),
+                //         actions: <Widget>[
+                //           FlatButton(
+                //             child: Text('Cancel'),
+                //             onPressed: () {
+                //               myRewardNameController.clear();
+                //               myRewardPointController.clear();
+                //               Navigator.of(context).pop();
+                //             },
+                //           ),
+                //           FlatButton(
+                //             child: Text('Ok'),
+                //             onPressed: () {
+                //               Reward tmpLabor = Reward(
+                //                   name: myRewardNameController.text,
+                //                   point:
+                //                       int.parse(myRewardPointController.text));
+
+                //               if (myRewardNameController.text == null ||
+                //                   myRewardPointController.text == null ||
+                //                   myRewardNameController.text == "" ||
+                //                   myRewardPointController.text == "null") {
+                //                 myRewardNameController.clear();
+                //                 myRewardPointController.clear();
+                //                 Navigator.of(context).pop();
+                //               }
+                //               print(myRewardNameController.text);
+                //               print(myRewardPointController.text);
+
+                //               rewardModel.addRewardModel(reward: tmpLabor);
+                //               myRewardNameController.clear();
+                //               myRewardPointController.clear();
+                //               Navigator.of(context).pop();
+                //             },
+                //           ),
+                //         ],
+                //       );
+                //     });
               }));
     });
   }
