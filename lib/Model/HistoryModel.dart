@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class HistoryModel extends ChangeNotifier {  
 
   List<History> historyList = [
-    History(dateTime: DateTime.now(), name: "掃除", point: 3, sign: true),
-    History(dateTime: DateTime.now(), name: "おやつ", point: 3, sign: false),
-    History(dateTime: DateTime.now(), name: "料理", point: 4, sign: true),
+    // History(dateTime: DateTime.now(), name: "掃除", point: 3, sign: true),
+    // History(dateTime: DateTime.now(), name: "おやつ", point: 3, sign: false),
+    // History(dateTime: DateTime.now(), name: "料理", point: 4, sign: true),
   ];
 
   void addHistory({@required DateTime dateTime, @required String name, @required int point, @required bool sign}) {

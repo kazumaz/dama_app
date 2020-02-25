@@ -38,132 +38,156 @@ class HistoryPage extends StatelessWidget {
             Text(""),
             Text("間違えて登録したものはここから削除！\nスワイプして削除実施！", key: keyButton1),
             Text(""),
-            Expanded(
-              child: ListView.builder(
-                // reverse: true,
-                itemBuilder: (BuildContext context, int index) {
-                  //historyModel.historyList　をそのまま使うと、リストビューで最後に追加されたものが、画面上下に来てしまう。
-                  //履歴画面では、最後に追加されたものが、画面上上に来る方が見やすいため、反転リストを作成する。
-                  List<History> reversedHistoryList =
-                      historyModel.historyList.reversed.toList();
-                  return Card(
-                      // color: historyModel.historyList[index].sign ? Colors.blue[50] : Colors.red[50],
-                      child: Slidable(
-                          actionPane: SlidableDrawerActionPane(),
-                          actionExtentRatio: 0.25,
-                          secondaryActions: <Widget>[
-                            IconSlideAction(
-                              caption: '削除',
-                              color: Colors.red,
-                              icon: Icons.delete,
-                              onTap: () {
-                                AwesomeDialog(
-                                  context: context,
-                                  animType: AnimType.SCALE,
-                                  dialogType: DialogType.WARNING,
-                                  body: Center(
-                                    child: Text(
-                                      '本当に削除してよろしいでしょうか？',
-                                      style: TextStyle(
-                                          fontStyle: FontStyle.italic),
-                                    ),
-                                  ),
-                                  tittle: 'This is Ignored',
-                                  desc: 'This is also Ignored',
-                                  btnCancelOnPress: () {},
-                                  btnOkOnPress: () {
-                                    if (reversedHistoryList[index].sign) {
-                                      pointModel.decreaseTotalPointWithEver(
-                                          point:
-                                              reversedHistoryList[index].point);
-                                    } else {
-                                      pointModel.increaseTotalPointWithEver(
-                                          point:
-                                              reversedHistoryList[index].point);
-                                    }
-                                    //reversedHistoryListのインデックスをそのままモデルから削除すると、間違ったindexのものを削除してしまうから
-                                    //計算して正しいものを削除するようにする
-                                    historyModel.removeHistory(
-                                        historyModel.historyList.length -
-                                            1 -
-                                            index);
+            // 履歴が0件の場合は、「履歴がありません」の表示をできるようにする。
+            historyModel.historyList.length == 0
+                ? Center(
+                    child: Column(
+                    children: <Widget>[
+                      Text(""),
+                      Text(""),
+                      SizedBox(
+                        width: 150.0,
+                        height: 150.0,
+                        child: Image.asset('images/step.png'),
+                      ),
+                      Text(""),
+                      Text("履歴がまだ登録されていません！"),
+                      Text("どんどんお手伝いしよう！"),
+                    ],
+                  ))
+                // ここまで履歴0件の表示
+                : Expanded(
+                    child: ListView.builder(
+                      // reverse: true,
+                      itemBuilder: (BuildContext context, int index) {
+                        //historyModel.historyList　をそのまま使うと、リストビューで最後に追加されたものが、画面上下に来てしまう。
+                        //履歴画面では、最後に追加されたものが、画面上上に来る方が見やすいため、反転リストを作成する。
+                        List<History> reversedHistoryList =
+                            historyModel.historyList.reversed.toList();
+                        return Card(
+                            // color: historyModel.historyList[index].sign ? Colors.blue[50] : Colors.red[50],
+                            child: Slidable(
+                                actionPane: SlidableDrawerActionPane(),
+                                actionExtentRatio: 0.25,
+                                secondaryActions: <Widget>[
+                                  IconSlideAction(
+                                    caption: '削除',
+                                    color: Colors.red,
+                                    icon: Icons.delete,
+                                    onTap: () {
+                                      AwesomeDialog(
+                                        context: context,
+                                        animType: AnimType.SCALE,
+                                        dialogType: DialogType.WARNING,
+                                        body: Center(
+                                          child: Text(
+                                            '本当に削除してよろしいでしょうか？',
+                                            style: TextStyle(
+                                                fontStyle: FontStyle.italic),
+                                          ),
+                                        ),
+                                        tittle: 'This is Ignored',
+                                        desc: 'This is also Ignored',
+                                        btnCancelOnPress: () {},
+                                        btnOkOnPress: () {
+                                          if (reversedHistoryList[index].sign) {
+                                            pointModel
+                                                .decreaseTotalPointWithEver(
+                                                    point: reversedHistoryList[
+                                                            index]
+                                                        .point);
+                                          } else {
+                                            pointModel
+                                                .increaseTotalPointWithEver(
+                                                    point: reversedHistoryList[
+                                                            index]
+                                                        .point);
+                                          }
+                                          //reversedHistoryListのインデックスをそのままモデルから削除すると、間違ったindexのものを削除してしまうから
+                                          //計算して正しいものを削除するようにする
+                                          historyModel.removeHistory(
+                                              historyModel.historyList.length -
+                                                  1 -
+                                                  index);
 
-                                    AwesomeDialog(
-                                      context: context,
-                                      animType: AnimType.SCALE,
-                                      dialogType: DialogType.SUCCES,
-                                      body: Center(
-                                        child: Text(
-                                          '削除が成功しました！',
+                                          AwesomeDialog(
+                                            context: context,
+                                            animType: AnimType.SCALE,
+                                            dialogType: DialogType.SUCCES,
+                                            body: Center(
+                                              child: Text(
+                                                '削除が成功しました！',
+                                                style: TextStyle(
+                                                    fontStyle:
+                                                        FontStyle.italic),
+                                              ),
+                                            ),
+                                            tittle: 'This is Ignored',
+                                            desc: 'This is also Ignored',
+                                            btnOkOnPress: () {},
+                                          ).show();
+                                        },
+                                      ).show();
+                                    },
+                                  ),
+                                ],
+                                child: Column(
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+                                        Text(
+                                          dateFormat_YYYY_MM_DD
+                                              .format(reversedHistoryList[index]
+                                                  .dateTime)
+                                              .toString(),
                                           style: TextStyle(
-                                              fontStyle: FontStyle.italic),
+                                            fontSize: 10.0,
+                                          ),
                                         ),
-                                      ),
-                                      tittle: 'This is Ignored',
-                                      desc: 'This is also Ignored',
-                                      btnOkOnPress: () {},
-                                    ).show();
-                                  },
-                                ).show();
-                              },
-                            ),
-                          ],
-                          child: Column(
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Text(
-                                    dateFormat_YYYY_MM_DD
-                                        .format(
-                                            reversedHistoryList[index].dateTime)
-                                        .toString(),
-                                    style: TextStyle(
-                                      fontSize: 10.0,
+                                        Text(""),
+                                      ],
                                     ),
-                                  ),
-                                  Text(""),
-                                ],
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  Text("　"),
-                                  reversedHistoryList[index].sign
-                                      ? Icon(
-                                          MaterialCommunityIcons.run,
-                                          color: Colors.indigo,
-                                        )
-                                      : Icon(
-                                          MaterialCommunityIcons.gift,
-                                          color: Colors.pink,
+                                    Row(
+                                      children: <Widget>[
+                                        Text("　"),
+                                        reversedHistoryList[index].sign
+                                            ? Icon(
+                                                MaterialCommunityIcons.run,
+                                                color: Colors.indigo,
+                                              )
+                                            : Icon(
+                                                MaterialCommunityIcons.gift,
+                                                color: Colors.pink,
+                                              ),
+                                        Text("  "),
+                                        Expanded(
+                                          // child: Padding(
+                                          child: Text(
+                                            reversedHistoryList[index]
+                                                    .point
+                                                    .toString() +
+                                                " Point:　" +
+                                                reversedHistoryList[index]
+                                                    .name +
+                                                (reversedHistoryList[index].sign
+                                                    ? "　ありがとう！"
+                                                    : "　もらったよ！"),
+                                          ),
+                                          // padding: EdgeInsets.all(20.0),
+                                          // ),
                                         ),
-                                  Text("  "),
-                                  Expanded(
-                                    // child: Padding(
-                                    child: Text(
-                                      reversedHistoryList[index]
-                                              .point
-                                              .toString() +
-                                          " Point:　" +
-                                          reversedHistoryList[index].name +
-                                          (reversedHistoryList[index].sign
-                                              ? "　ありがとう！"
-                                              : "　もらったよ！"),
+                                      ],
                                     ),
-                                    // padding: EdgeInsets.all(20.0),
-                                    // ),
-                                  ),
-                                ],
-                              ),
-                              Text("",
-                                  style: TextStyle(
-                                    fontSize: 10.0,
-                                  )),
-                            ],
-                          )));
-                },
-                itemCount: historyModel.historyList.length,
-              ),
-            ),
+                                    Text("",
+                                        style: TextStyle(
+                                          fontSize: 10.0,
+                                        )),
+                                  ],
+                                )));
+                      },
+                      itemCount: historyModel.historyList.length,
+                    ),
+                  ),
           ],
         ),
       );
