@@ -77,9 +77,7 @@ class HomePage extends StatelessWidget {
         colorShadow: Theme.of(context).primaryColor.withAlpha(200),
         textSkip: "スキップ",
         paddingFocus: 10,
-        textStyleSkip: TextStyle(
-          fontSize:25,
-          color: Colors.white),
+        textStyleSkip: TextStyle(fontSize: 25, color: Colors.white),
         opacityShadow: 0.8, finish: () {
       print("finish");
     }, clickTarget: (target) {
@@ -235,15 +233,16 @@ Widget rewardAchievedList(
     return ListView.builder(
         itemBuilder: (BuildContext context, int index) {
           return Padding(
-              padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
+            child: InkWell(
               child: Column(
                 children: <Widget>[
                   CircularPercentIndicator(
-                  // LinearPercentIndicator(
+                    // LinearPercentIndicator(
                     radius: 50.0,
                     lineWidth: 5.0,
-                //     width: 140.0,
-                // lineHeight: 14.0,
+                    //     width: 140.0,
+                    // lineHeight: 14.0,
                     percent: calculateRewardAchievesPercentage(
                         pointmodel.totalPoint, rewardList[index].point),
                     center: Text(calculateRewardAchievesPercentageString(
@@ -261,79 +260,73 @@ Widget rewardAchievedList(
                         fontSize: 12.0,
                         fontWeight: FontWeight.bold,
                       )),
-                  IconButton(
-                      icon: Icon(
-                        Entypo.heart,
-                        color: isButtonDisabled(
-                                pointmodel.totalPoint, rewardList[index].point)
-                            ? Colors.pink
-                            : Colors.grey,
-                      ),
-                      onPressed: isButtonDisabled(
-                              pointmodel.totalPoint, rewardList[index].point)
-                          ? () {
-                              // showDialog(
-                              //   context: context,
-                              //   builder: (_) {
-
-                              return AwesomeDialog(
-                                  context: context,
-                                  animType: AnimType.SCALE,
-                                  dialogType: DialogType.INFO,
-                                  body: Center(
-                                    child: Text(
-                                      "おめでとう！\n" +
-                                          pointmodel.totalPoint.toString() +
-                                          " - " +
-                                          rewardList[index].point.toString() +
-                                          " = " +
-                                          (pointmodel.totalPoint -
-                                                  rewardList[index].point)
-                                              .toString() +
-                                          " point になります！ \n交換しますか?",
-                                      style: TextStyle(
-                                          fontStyle: FontStyle.italic),
-                                    ),
-                                  ),
-                                  tittle: 'This is Ignored',
-                                  desc: 'This is also Ignored',
-                                  btnCancelOnPress: () {},
-                                  btnOkOnPress: () {
-                                    pointmodel.decreaseTotalPoint(
-                                        point: rewardList[index].point);
-                                    historyModel.addHistoryModel(
-                                        history: History(
-                                            dateTime: DateTime.now(),
-                                            name: rewardList[index].name,
-                                            point: rewardList[index].point,
-                                            sign: false));
-
-                                    AwesomeDialog(
-                                      context: context,
-                                      animType: AnimType.SCALE,
-                                      dialogType: DialogType.SUCCES,
-                                      body: Center(
-                                        child: Text(
-                                          'おめでとう!　ポイントの交換が完了しました！　間違って交換した場合は、履歴画面から削除してください。',
-                                          style: TextStyle(
-                                              fontStyle: FontStyle.italic),
-                                        ),
-                                      ),
-                                      tittle: 'This is Ignored',
-                                      desc: 'This is also Ignored',
-                                      btnOkOnPress: () {
-                                        // Navigator.pop(context);
-                                      },
-                                    ).show();
-                                  }).show();
-                            }
-                          : null),
+                  Icon(
+                    Entypo.heart,
+                    color: isButtonDisabled(
+                            pointmodel.totalPoint, rewardList[index].point)
+                        ? Colors.pink
+                        : Colors.grey,
+                  )
                 ],
-              ));
+              ),
+              onTap: (isButtonDisabled(
+                      pointmodel.totalPoint, rewardList[index].point)
+                  ? () {
+                      return AwesomeDialog(
+                          context: context,
+                          animType: AnimType.SCALE,
+                          dialogType: DialogType.INFO,
+                          body: Center(
+                            child: Text(
+                              "おめでとう！\n" +
+                                  pointmodel.totalPoint.toString() +
+                                  " - " +
+                                  rewardList[index].point.toString() +
+                                  " = " +
+                                  (pointmodel.totalPoint -
+                                          rewardList[index].point)
+                                      .toString() +
+                                  " point になります！ \n交換しますか?",
+                              style: TextStyle(fontStyle: FontStyle.italic),
+                            ),
+                          ),
+                          tittle: 'This is Ignored',
+                          desc: 'This is also Ignored',
+                          btnCancelOnPress: () {},
+                          btnOkOnPress: () {
+                            pointmodel.decreaseTotalPoint(
+                                point: rewardList[index].point);
+                            historyModel.addHistoryModel(
+                                history: History(
+                                    dateTime: DateTime.now(),
+                                    name: rewardList[index].name,
+                                    point: rewardList[index].point,
+                                    sign: false));
+
+                            AwesomeDialog(
+                              context: context,
+                              animType: AnimType.SCALE,
+                              dialogType: DialogType.SUCCES,
+                              body: Center(
+                                child: Text(
+                                  'おめでとう!　ポイントの交換が完了しました！　間違って交換した場合は、履歴画面から削除してください。',
+                                  style: TextStyle(fontStyle: FontStyle.italic),
+                                ),
+                              ),
+                              tittle: 'This is Ignored',
+                              desc: 'This is also Ignored',
+                              btnOkOnPress: () {
+                                // Navigator.pop(context);
+                              },
+                            ).show();
+                          }).show();
+                    }
+                  : null),
+            ),
+          );
         },
         itemCount: rewardList.length,
-        scrollDirection: Axis.horizontal
-        );
+        scrollDirection: Axis.horizontal);
   });
 }
 
