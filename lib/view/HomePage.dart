@@ -190,37 +190,45 @@ Widget ayumi() {
     return Row(
       children: <Widget>[
         Expanded(
-            child: Column(
-          children: <Widget>[
-            Icon(
-              MaterialIcons.directions_run,
-              size: 50.0,
-            ),
-            Text("総ポイント"),
-            Text(pointmodel.totalPointEver.toString() + "ポイント")
-          ],
+            child: InkWell(
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      MaterialIcons.directions_run,
+                      size: 50.0,
+                    ),
+                    Text("総ポイント"),
+                    Text(pointmodel.totalPointEver.toString() + "ポイント")
+                  ],
+                ),
+                onTap: () {})),
+        Expanded(
+            child: InkWell(
+          child: Column(
+            children: <Widget>[
+              Icon(
+                Ionicons.md_bicycle,
+                size: 50.0,
+              ),
+              Text("お手伝い回数"),
+              Text(pointmodel.totalLaborEver.toString() + "回")
+            ],
+          ),
+          onTap: () {},
         )),
         Expanded(
-            child: Column(
-          children: <Widget>[
-            Icon(
-              Ionicons.md_bicycle,
-              size: 50.0,
-            ),
-            Text("お手伝い回数"),
-            Text(pointmodel.totalLaborEver.toString() + "回")
-          ],
-        )),
-        Expanded(
-            child: Column(
-          children: <Widget>[
-            Icon(
-              MaterialCommunityIcons.human_handsup,
-              size: 50.0,
-            ),
-            Text("ご褒美回数"),
-            Text(pointmodel.totalRewardEver.toString() + "回")
-          ],
+            child: InkWell(
+          child: Column(
+            children: <Widget>[
+              Icon(
+                MaterialCommunityIcons.human_handsup,
+                size: 50.0,
+              ),
+              Text("ご褒美回数"),
+              Text(pointmodel.totalRewardEver.toString() + "回")
+            ],
+          ),
+          onTap: () {},
         ))
       ],
     );
