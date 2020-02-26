@@ -66,7 +66,7 @@ class HomePage extends StatelessWidget {
             Text(""),
             Container(
               key: keyButton3,
-              child: ayumi(),
+              child: ayumi(pointModel),
             ),
           ])));
     });
@@ -186,7 +186,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
-Widget ayumi() {
+Widget ayumi(PointModel pointModel) {
   return Consumer<PointModel>(builder: (context, pointmodel, child) {
     return Row(
       children: <Widget>[
@@ -202,7 +202,27 @@ Widget ayumi() {
                     Text(pointmodel.totalPointEver.toString() + "ポイント")
                   ],
                 ),
-                onTap: () {})),
+                onTap: () {
+                  AwesomeDialog(
+                    context: context,
+                    animType: AnimType.SCALE,
+                    customHeader: SizedBox(
+                        width: 110.0,
+                        height: 110.0,
+                        child: Image.asset('images/jump.png')),
+                    body: Center(
+                      child: Text(
+                        'これまでのお手伝い総ポイントは' +
+                            pointModel.totalPointEver.toString() +
+                            'ポイントです！たくさんためて交換しよう！',
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      ),
+                    ),
+                    tittle: 'This is Ignored',
+                    desc: 'This is also Ignored',
+                    btnOkOnPress: () {},
+                  ).show();
+                })),
         Expanded(
             child: InkWell(
           child: Column(
@@ -215,7 +235,28 @@ Widget ayumi() {
               Text(pointmodel.totalLaborEver.toString() + "回")
             ],
           ),
-          onTap: () {},
+          onTap: () {
+            AwesomeDialog(
+                    context: context,
+                    animType: AnimType.SCALE,
+                    customHeader: SizedBox(
+                        width: 90.0,
+                        height: 90.0,
+                        child: Image.asset('images/bysicle.png')),
+                    body: Center(
+                      child: Text(
+                        'これまでのお手伝い回数は' +
+                            pointModel.totalLaborEver.toString() +
+                            '回です！どんどん手伝って楽にしてあげよう！',
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      ),
+                    ),
+                    tittle: 'This is Ignored',
+                    desc: 'This is also Ignored',
+                    btnOkOnPress: () {},
+                  ).show();
+          }
+          ,
         )),
         Expanded(
             child: InkWell(
@@ -229,7 +270,27 @@ Widget ayumi() {
               Text(pointmodel.totalRewardEver.toString() + "回")
             ],
           ),
-          onTap: () {},
+          onTap: () {
+            AwesomeDialog(
+                    context: context,
+                    animType: AnimType.SCALE,
+                    customHeader: SizedBox(
+                        width: 110.0,
+                        height: 110.0,
+                        child: Image.asset('images/chakuchi.png')),
+                    body: Center(
+                      child: Text(
+                        'これまでのご褒美回数は' +
+                            pointModel.totalRewardEver.toString() +
+                            '回です！たくさんご褒美をもらっちゃおう！',
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      ),
+                    ),
+                    tittle: 'This is Ignored',
+                    desc: 'This is also Ignored',
+                    btnOkOnPress: () {},
+                  ).show();
+          },
         ))
       ],
     );
