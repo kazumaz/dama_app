@@ -13,6 +13,7 @@ import 'package:tutorial_coach_mark/animated_focus_light.dart';
 class HistoryPage extends StatelessWidget {
   List<TargetFocus> targets = List();
   GlobalKey keyButton1 = GlobalKey();
+  GlobalKey keyButton2 = GlobalKey();
 
   final myLaborNameController = TextEditingController();
   final myLaborPointController = TextEditingController();
@@ -197,7 +198,7 @@ class HistoryPage extends StatelessWidget {
             ],
           ),
           floatingActionButton: FloatingActionButton(
-              // key: keyButton2,
+              key: keyButton2,
               child: Icon(MaterialCommunityIcons.delete_forever),
               onPressed: () {
                 AwesomeDialog(
@@ -331,6 +332,37 @@ class HistoryPage extends StatelessWidget {
                           style: TextStyle(color: Colors.white),
                         )
                       ],
+                    ),
+                  )
+                ],
+              ),
+            ))
+      ],
+      shape: ShapeLightFocus.RRect,
+    ));
+       targets.add(TargetFocus(
+      identify: "Target 2",
+      keyTarget: keyButton2,
+      contents: [
+        ContentTarget(
+            align: AlignContent.top,
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "履歴非表示ボタン",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20.0),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Text(
+                      "履歴が増えすぎた場合は、ここをクリックして非表示にしよう！ただし、一度非表示にすると、再度表示することはできないので注意！履歴を非表示にしてもポイントの変動はありません。",
+                      style: TextStyle(color: Colors.white),
                     ),
                   )
                 ],
