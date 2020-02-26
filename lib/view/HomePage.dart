@@ -30,7 +30,8 @@ class HomePage extends StatelessWidget {
                   showTutorial(context);
                 })
           ]),
-          body: Column(children: <Widget>[
+          body: SingleChildScrollView(
+              child: Column(children: <Widget>[
             Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -66,8 +67,8 @@ class HomePage extends StatelessWidget {
             Container(
               key: keyButton3,
               child: ayumi(),
-            )
-          ]));
+            ),
+          ])));
     });
   }
 
