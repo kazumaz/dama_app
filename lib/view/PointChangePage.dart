@@ -57,7 +57,14 @@ class PointChangePage extends StatelessWidget {
               shape: UnderlineInputBorder(),
               onPressed: () {},
             ),
-            Text("ここで追加・削減されたポイントは履歴画面には表示されません。"),
+            Text(""),
+                         Container(
+                  width: 300,
+                  child: Text(
+                    "ここで追加・削減されたポイントは履歴画面には表示されません。",
+                    style: TextStyle(
+                        color: Colors.red, fontStyle: FontStyle.italic),
+                  )),
           ]));
     });
   }
