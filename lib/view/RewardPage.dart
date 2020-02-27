@@ -103,36 +103,40 @@ class RewardPage extends StatelessWidget {
 
                                   // Flexible(
                                   // child:
-                                  TextField(
-                                    controller: myRewardNameController,
-                                    autofocus: true,
-                                    decoration: InputDecoration(
-                                      hintText: rewardModel
-                                          .rewardList[index].name
-                                          .toString(),
-                                    ),
-                                    maxLength: 10,
-                                    // )
-                                  ),
+                                  Container(
+                                      width: 200.0,
+                                      child: TextField(
+                                        controller: myRewardNameController,
+                                        autofocus: true,
+                                        decoration: InputDecoration(
+                                          hintText: rewardModel
+                                              .rewardList[index].name
+                                              .toString(),
+                                        ),
+                                        maxLength: 10,
+                                        // )
+                                      )),
                                   // Flexible(
                                   // child:
-                                  TextField(
-                                      controller: myRewardPointController,
-                                      autofocus: true,
-                                      decoration: InputDecoration(
-                                        hintText: rewardModel
-                                            .rewardList[index].point
-                                            .toString(),
-                                      ),
-                                      maxLength: 5,
-                                      keyboardType: TextInputType.number,
-                                      inputFormatters: <TextInputFormatter>[
-                                        WhitelistingTextInputFormatter
-                                            .digitsOnly
-                                      ]
+                                  Container(
+                                      width: 200.0,
+                                      child: TextField(
+                                          controller: myRewardPointController,
+                                          autofocus: true,
+                                          decoration: InputDecoration(
+                                            hintText: rewardModel
+                                                .rewardList[index].point
+                                                .toString(),
+                                          ),
+                                          maxLength: 5,
+                                          keyboardType: TextInputType.number,
+                                          inputFormatters: <TextInputFormatter>[
+                                            WhitelistingTextInputFormatter
+                                                .digitsOnly
+                                          ]
 
-                                      // )
-                                      ),
+                                          // )
+                                          )),
                                 ],
                               )),
                               tittle: 'This is Ignored',
@@ -154,7 +158,7 @@ class RewardPage extends StatelessWidget {
                               },
                             ).show();
 
-//以下は通常のダイアログ
+//以下は通常のダ���アログ
                             // //編集画面
                             // showDialog<String>(
                             //     context: context,
@@ -267,28 +271,32 @@ class RewardPage extends StatelessWidget {
 
                       // Flexible(
                       // child:
-                      TextField(
-                        controller: myRewardNameController,
-                        autofocus: true,
-                        decoration: InputDecoration(
-                          labelText: "名前",
-                          // hintText: "test"
-                        ),
-                        maxLength: 10,
-                        onChanged: (value) {
-                          // nothing to do
-                        },
-                      ),
+                      Container(
+                          width: 200.0,
+                          child: TextField(
+                            controller: myRewardNameController,
+                            autofocus: true,
+                            decoration: InputDecoration(
+                              labelText: "名前",
+                              // hintText: "test"
+                            ),
+                            maxLength: 10,
+                            onChanged: (value) {
+                              // nothing to do
+                            },
+                          )),
                       // Flexible(
                       // child:
-                      TextField(
-                          controller: myRewardPointController,
-                          decoration: InputDecoration(labelText: "ポイント"),
-                          maxLength: 5,
-                          keyboardType: TextInputType.number,
-                          inputFormatters: <TextInputFormatter>[
-                            WhitelistingTextInputFormatter.digitsOnly
-                          ]),
+                      Container(
+                          width: 200.0,
+                          child: TextField(
+                              controller: myRewardPointController,
+                              decoration: InputDecoration(labelText: "ポイント"),
+                              maxLength: 5,
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                WhitelistingTextInputFormatter.digitsOnly
+                              ])),
                     ],
                   )),
                   tittle: 'This is Ignored',

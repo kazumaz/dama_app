@@ -133,37 +133,41 @@ class LaborPage extends StatelessWidget {
                                               fontStyle: FontStyle.italic),
                                         ),
 
+                                        Container(
+                                            width: 200.0,
+                                            child: TextField(
+                                              controller: myLaborNameController,
+                                              autofocus: true,
+                                              decoration: InputDecoration(
+                                                // labelText: "編集する場合は入力してください",
+                                                hintText: laborModel
+                                                    .laborList[index].name
+                                                    .toString(),
+                                              ),
+                                              maxLength: 10,
+                                            )),
                                         // Flexible(
                                         // child:
-                                        TextField(
-                                          controller: myLaborNameController,
-                                          autofocus: true,
-                                          decoration: InputDecoration(
-                                            // labelText: "編集する場合は入力してください",
-                                            hintText: laborModel
-                                                .laborList[index].name
-                                                .toString(),
-                                          ),
-                                          maxLength: 10,
-                                        ),
-                                        // Flexible(
-                                        // child:
-                                        TextField(
-                                            controller: myLaborPointController,
-                                            autofocus: true,
-                                            decoration: InputDecoration(
-                                              // labelText: "編集する場合は入力してください",
-                                              hintText: laborModel
-                                                  .laborList[index].point
-                                                  .toString(),
-                                            ),
-                                            maxLength: 5,
-                                            keyboardType: TextInputType.number,
-                                            inputFormatters: <
-                                                TextInputFormatter>[
-                                              WhitelistingTextInputFormatter
-                                                  .digitsOnly
-                                            ]),
+                                        Container(
+                                            width: 200.0,
+                                            child: TextField(
+                                                controller:
+                                                    myLaborPointController,
+                                                autofocus: true,
+                                                decoration: InputDecoration(
+                                                  // labelText: "編集する場合は入力してください",
+                                                  hintText: laborModel
+                                                      .laborList[index].point
+                                                      .toString(),
+                                                ),
+                                                maxLength: 5,
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                inputFormatters: <
+                                                    TextInputFormatter>[
+                                                  WhitelistingTextInputFormatter
+                                                      .digitsOnly
+                                                ])),
                                       ],
                                     )),
                                     tittle: 'This is Ignored',
@@ -349,28 +353,32 @@ class LaborPage extends StatelessWidget {
 
                       // Flexible(
                       // child:
-                      TextField(
-                        controller: myLaborNameController,
-                        autofocus: true,
-                        decoration: InputDecoration(
-                          labelText: "名前",
-                          // hintText: "test"
-                        ),
-                        maxLength: 10,
-                        onChanged: (value) {
-                          // nothing to do
-                        },
-                      ),
+                      Container(
+                          width: 200.0,
+                          child: TextField(
+                            controller: myLaborNameController,
+                            autofocus: true,
+                            decoration: InputDecoration(
+                              labelText: "名前",
+                              // hintText: "test"
+                            ),
+                            maxLength: 10,
+                            onChanged: (value) {
+                              // nothing to do
+                            },
+                          )),
                       // Flexible(
                       // child:
-                      TextField(
-                          controller: myLaborPointController,
-                          decoration: InputDecoration(labelText: "ポイント"),
-                          maxLength: 5,
-                          keyboardType: TextInputType.number,
-                          inputFormatters: <TextInputFormatter>[
-                            WhitelistingTextInputFormatter.digitsOnly
-                          ]),
+                      Container(
+                          width: 200.0,
+                          child: TextField(
+                              controller: myLaborPointController,
+                              decoration: InputDecoration(labelText: "ポイント"),
+                              maxLength: 5,
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                WhitelistingTextInputFormatter.digitsOnly
+                              ])),
                     ],
                   )),
                   tittle: 'This is Ignored',
