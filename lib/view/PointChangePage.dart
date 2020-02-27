@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 
 class PointChangePage extends StatelessWidget {
+  final pointPlusController = TextEditingController();
+  final pointMinusController = TextEditingController();
   final passwordInputController = TextEditingController();
-  final passwordInputConfirmController = TextEditingController();
-  final beforePasswordInputController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,23 +20,46 @@ class PointChangePage extends StatelessWidget {
             ),
             backgroundColor: Theme.of(context).primaryColor,
             elevation: 0.0,
-            title: Text("パスワード変更画面"),
+            title: Text("ポイントを強制的に足す"),
           ),
-          body: Column(
-            children: <Widget>[
-              Center(
-                  child: Container(
-                      width: 300.0,
-                      child: TextFormField(
-                        controller: passwordInputController,
-                        autocorrect: false,
-                        decoration: new InputDecoration(
-                          border: const UnderlineInputBorder(),
-                          labelText: '確認用',
-                        ),
-                        obscureText: true,
-                      )))])
-    );});
+          body: Column(children: <Widget>[
+            Center(
+                child: Container(
+                    width: 300.0,
+                    child: TextFormField(
+                      controller: pointPlusController,
+                      autocorrect: false,
+                      decoration: new InputDecoration(
+                        border: const UnderlineInputBorder(),
+                        labelText: '追加ポイント',
+                      ),
+                      obscureText: true,
+                    ))),
+            RaisedButton(
+              child: Text("追加"),
+              shape: UnderlineInputBorder(),
+              onPressed: () {},
+            ),
+            Center(
+                child: Container(
+                    width: 300.0,
+                    child: TextFormField(
+                      controller: pointMinusController,
+                      autocorrect: false,
+                      decoration: new InputDecoration(
+                        border: const UnderlineInputBorder(),
+                        labelText: '削減ポイント',
+                      ),
+                      obscureText: true,
+                    ))),
+            RaisedButton(
+              child: Text("削減"),
+              shape: UnderlineInputBorder(),
+              onPressed: () {},
+            ),
+            Text("ここで追加・削減されたポイントは履歴画面には表示されません。"),
+          ]));
+    });
   }
 
   // Widget _passwordForm() {
