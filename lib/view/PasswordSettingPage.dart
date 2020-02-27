@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:awesome_dialog/animated_button.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:toggle_switch/toggle_switch.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
 class PassWordSettingPage extends StatelessWidget {
   final passwordInputController = TextEditingController();
@@ -21,7 +24,7 @@ class PassWordSettingPage extends StatelessWidget {
             ),
             backgroundColor: Theme.of(context).primaryColor,
             elevation: 0.0,
-            title: Text("パスワード変更画面"),
+            title: Text("パスワード管理画面"),
           ),
           body: Column(
             children: <Widget>[
@@ -108,7 +111,9 @@ class PassWordSettingPage extends StatelessWidget {
                               tittle: 'This is Ignored',
                               desc: 'This is also Ignored',
                               btnOkOnPress: () {
-                                passwordModel.setPassword(newPassword: passwordInputController.text.toString());
+                                passwordModel.setPassword(
+                                    newPassword: passwordInputController.text
+                                        .toString());
                                 passwordInputController.clear();
                                 passwordInputConfirmController.clear();
                                 beforePasswordInputController.clear();
@@ -150,7 +155,9 @@ class PassWordSettingPage extends StatelessWidget {
                         tittle: 'This is Ignored',
                         desc: 'This is also Ignored',
                         btnOkOnPress: () {
-                          passwordModel.setPassword(newPassword: passwordInputController.text.toString());
+                          passwordModel.setPassword(
+                              newPassword:
+                                  passwordInputController.text.toString());
                           passwordInputController.clear();
                           passwordInputConfirmController.clear();
                           beforePasswordInputController.clear();
@@ -175,8 +182,46 @@ class PassWordSettingPage extends StatelessWidget {
                   }
                 },
               ),
+              Text(""),
+              Text(""),
+              Text("ポイント強制変更画面のロック"),
+              ToggleSwitch(
+                  minWidth: 90.0,
+                  cornerRadius: 20,
+                  activeBgColor: Colors.green,
+                  activeTextColor: Colors.white,
+                  inactiveBgColor: Colors.grey,
+                  inactiveTextColor: Colors.white,
+                  labels: ['ロック', '解除'],
+                  icons: [FontAwesome.lock, FontAwesome.unlock],
+                  activeColors: [Colors.blue, Colors.pink],
+                  initialLabelIndex: 1,
+                  onToggle: (index) {
+                    print('switched to: $index');
+                    index = 0;
+                  })
+                  ,
+
+LiteRollingSwitch(
+    //initial value
+    value: true,
+    textOn: '解除',
+    textOff: 'ロック',
+    colorOn: Colors.greenAccent[700],
+    colorOff: Colors.redAccent[700],
+    iconOn: Icons.done,
+    iconOff: Icons.remove_circle_outline,
+    textSize: 16.0,
+    onChanged: (bool state) {
+      state = false;
+      //Use it to manage the different states
+      print('Current State of SWITCH IS: $state');
+    },
+),
             ],
           ));
+      // ],
+      // ));
     });
   }
 
