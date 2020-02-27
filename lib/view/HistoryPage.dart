@@ -214,9 +214,11 @@ class HistoryPage extends StatelessWidget {
                   tittle: 'This is Ignored',
                   desc: 'This is also Ignored',
                   btnCancelOnPress: () {},
-                  btnOkOnPress: () {},
+                  btnOkOnPress: () {
+
+                                  historyModel.removeAllHistory();
+                  },
                 ).show();
-                historyModel.removeAllHistory();
               }));
     });
   }
