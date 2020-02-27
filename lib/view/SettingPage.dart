@@ -22,7 +22,7 @@ class SettingsPage extends StatelessWidget {
               Text("　設定"),
               _PasswordSetting("　パスワード設定", Icon(Ionicons.ios_lock), context),
               _ColorSetting("　テーマカラーの変更", Icon(Icons.map), context),
-              _menuItem("　メニュー3", Icon(Icons.room)),
+              _pointChange("　ポイント強制修正", Icon(Icons.room), context),
               _menuItem("　メニュー4", Icon(Icons.local_shipping)),
               Text(""),
               Text("　アプリについて"),
@@ -117,6 +117,35 @@ class SettingsPage extends StatelessWidget {
           )),
       onTap: () {
         Navigator.of(context).pushReplacementNamed("/passwordSetting");
+        print("onTap called.");
+      },
+    );
+  }
+
+    Widget _pointChange(String title, Icon icon, BuildContext context) {
+    return GestureDetector(
+      child: Container(
+          padding: EdgeInsets.all(8.0),
+          decoration: new BoxDecoration(
+              color: Colors.white,
+              border: new Border(
+                  bottom: BorderSide(width: 1.0, color: Colors.grey))),
+          child: Row(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.all(5.0),
+                child: icon,
+              ),
+              Text(
+                title,
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          )),
+      onTap: () {
+        Navigator.of(context).pushReplacementNamed("/pointChange");
         print("onTap called.");
       },
     );
