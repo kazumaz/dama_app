@@ -212,7 +212,7 @@ Widget ayumi(PointModel pointModel) {
                         child: Image.asset('images/jump.png')),
                     body: Center(
                       child: Text(
-                        'これまで���お手伝い総ポイントは' +
+                        'これまでのお手伝い総ポイントは' +
                             pointModel.totalPointEver.toString() +
                             'ポイントです！たくさんためて交換しよう！',
                         style: TextStyle(fontStyle: FontStyle.italic),
