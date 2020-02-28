@@ -20,10 +20,10 @@ class SettingsPage extends StatelessWidget {
                 child: ListView(children: [
               Text(""),
               Text("　設定"),
-              _PasswordSetting("　パスワード設定", Icon(Ionicons.ios_lock), context),
-              _ColorSetting("　テーマカラーの変更", Icon(Icons.map), context),
+              _passwordSetting("　パスワード設定", Icon(Ionicons.ios_lock), context),
+              _colorSetting("　テーマカラーの変更", Icon(Icons.map), context),
               _pointChange("　ポイント強制修正", Icon(Icons.room), context),
-              _rockSetting("　メニュー4", Icon(Icons.local_shipping), context),
+              _rockSetting("　ロック対象機能設定", Icon(Icons.local_shipping), context),
               Text(""),
               Text("　アプリについて"),
               _opinionPage("　ご意見・ご要望など", Icon(Entypo.pencil), context),
@@ -66,7 +66,7 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  Widget _ColorSetting(String title, Icon icon, BuildContext context) {
+  Widget _colorSetting(String title, Icon icon, BuildContext context) {
     return GestureDetector(
       child: Container(
           padding: EdgeInsets.all(8.0),
@@ -95,7 +95,7 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  Widget _PasswordSetting(String title, Icon icon, BuildContext context) {
+  Widget _passwordSetting(String title, Icon icon, BuildContext context) {
     return GestureDetector(
       child: Container(
           padding: EdgeInsets.all(8.0),
