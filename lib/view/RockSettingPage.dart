@@ -32,7 +32,8 @@ class RockSettingPage extends StatelessWidget {
           body: Column(
             children: <Widget>[
               Text(""),
-              Text("パスワードを必要とする機能を選択"),
+              
+              Text("機能を使う時にパスワードを必要にする場合は、\n対象の機能をロック！"),
               Text(""),
               Text(""),
               Text(""),
