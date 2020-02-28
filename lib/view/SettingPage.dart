@@ -59,10 +59,9 @@ class SettingsPage extends StatelessWidget {
             ],
           )),
       onTap: () {
-        Navigator.of(context).pushReplacementNamed("/rockSetting");
+        // Navigator.of(context).pushReplacementNamed("/rockSetting");
+        Navigator.of(context).pushNamed("/rockSetting");
         print("onTap called.");
-
-        
       },
     );
   }
@@ -90,7 +89,7 @@ class SettingsPage extends StatelessWidget {
             ],
           )),
       onTap: () {
-        Navigator.of(context).pushReplacementNamed("/colorSettings");
+        Navigator.of(context).pushNamed("/colorSettings");
         print("onTap called.");
       },
     );
@@ -119,13 +118,13 @@ class SettingsPage extends StatelessWidget {
             ],
           )),
       onTap: () {
-        Navigator.of(context).pushReplacementNamed("/passwordSetting");
+        Navigator.of(context).pushNamed("/passwordSetting");
         print("onTap called.");
       },
     );
   }
 
-    Widget _pointChange(String title, Icon icon, BuildContext context) {
+  Widget _pointChange(String title, Icon icon, BuildContext context) {
     return GestureDetector(
       child: Container(
           padding: EdgeInsets.all(8.0),
@@ -148,7 +147,7 @@ class SettingsPage extends StatelessWidget {
             ],
           )),
       onTap: () {
-        Navigator.of(context).pushReplacementNamed("/pointChange");
+        Navigator.of(context).pushNamed("/pointChange");
         print("onTap called.");
       },
     );
@@ -298,7 +297,8 @@ class SettingsPage extends StatelessWidget {
           btnOkText: "してあげる",
           btnCancelOnPress: () {},
           btnOkOnPress: () {
-            Share.share('check out my app https://kazumaz.github.io/dama_app_pages/');
+            Share.share(
+                'check out my app https://kazumaz.github.io/dama_app_pages/');
           },
         ).show();
       },

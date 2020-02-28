@@ -11,7 +11,7 @@ class ColorSettingPage extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.home),
-            onPressed: () => Navigator.of(context).pushReplacementNamed("/home"),
+            onPressed: () => Navigator.of(context).pop(),
           ),
           backgroundColor: Theme.of(context).primaryColor,
           elevation: 0.0,
