@@ -1,7 +1,6 @@
 import 'package:dama_app/model/PasswordModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
 
 class PointChangePage extends StatelessWidget {
   final pointPlusController = TextEditingController();

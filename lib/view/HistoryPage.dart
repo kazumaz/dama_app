@@ -1,7 +1,6 @@
 import 'package:dama_app/model/HistoryModel.dart';
 import 'package:dama_app/model/PointModel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -215,8 +214,7 @@ class HistoryPage extends StatelessWidget {
                   desc: 'This is also Ignored',
                   btnCancelOnPress: () {},
                   btnOkOnPress: () {
-
-                                  historyModel.removeAllHistory();
+                    historyModel.removeAllHistory();
                   },
                 ).show();
               }));
@@ -342,7 +340,7 @@ class HistoryPage extends StatelessWidget {
       ],
       shape: ShapeLightFocus.RRect,
     ));
-       targets.add(TargetFocus(
+    targets.add(TargetFocus(
       identify: "Target 2",
       keyTarget: keyButton2,
       contents: [

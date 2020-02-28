@@ -2,13 +2,9 @@ import 'package:dama_app/model/PasswordModel.dart';
 import 'package:dama_app/model/LockModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:awesome_dialog/animated_button.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 class RockSettingPage extends StatelessWidget {

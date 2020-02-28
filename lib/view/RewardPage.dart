@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:awesome_dialog/animated_button.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 import 'package:tutorial_coach_mark/animated_focus_light.dart';
