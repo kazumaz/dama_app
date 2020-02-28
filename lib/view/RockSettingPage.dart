@@ -7,7 +7,7 @@ import 'package:toggle_switch/toggle_switch.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
-class PassWordSettingPage extends StatelessWidget {
+class RockSettingPage extends StatelessWidget {
   final passwordInputController = TextEditingController();
   final passwordInputConfirmController = TextEditingController();
   final beforePasswordInputController = TextEditingController();
@@ -24,7 +24,7 @@ class PassWordSettingPage extends StatelessWidget {
             ),
             backgroundColor: Theme.of(context).primaryColor,
             elevation: 0.0,
-            title: Text("パスワード管理画面"),
+            title: Text("ロック設定"),
           ),
           body: Column(
             children: <Widget>[

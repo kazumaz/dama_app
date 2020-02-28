@@ -8,6 +8,7 @@ import 'package:dama_app/view/ColorSettingPage.dart';
 import 'package:dama_app/view/HistoryPage.dart';
 import 'package:dama_app/view/PointChangePage.dart';
 import 'package:dama_app/view/PasswordSettingPage.dart';
+import 'package:dama_app/view/RockSettingPage.dart';
 import 'package:dama_app/model/LaborModel.dart';
 import 'package:dama_app/model/RewardModel.dart';
 import 'package:dama_app/model/HistoryModel.dart';
@@ -48,6 +49,7 @@ class Application extends StatelessWidget {
             '/home': (_) => MyHomePage(title: 'Flutter Demo Home Page'),
             '/passwordSetting': (_) => PassWordSettingPage(),
             '/pointChange': (_) => PointChangePage(),
+            '/rockSetting': (_) => RockSettingPage(),
           },
         );
       },

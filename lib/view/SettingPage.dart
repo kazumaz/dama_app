@@ -23,7 +23,7 @@ class SettingsPage extends StatelessWidget {
               _PasswordSetting("　パスワード設定", Icon(Ionicons.ios_lock), context),
               _ColorSetting("　テーマカラーの変更", Icon(Icons.map), context),
               _pointChange("　ポイント強制修正", Icon(Icons.room), context),
-              _menuItem("　メニュー4", Icon(Icons.local_shipping)),
+              _rockSetting("　メニュー4", Icon(Icons.local_shipping), context),
               Text(""),
               Text("　アプリについて"),
               _opinionPage("　ご意見・ご要望など", Icon(Entypo.pencil), context),
@@ -36,7 +36,7 @@ class SettingsPage extends StatelessWidget {
         ));
   }
 
-  Widget _menuItem(String title, Icon icon) {
+  Widget _rockSetting(String title, Icon icon, BuildContext context) {
     return GestureDetector(
       child: Container(
           padding: EdgeInsets.all(8.0),
@@ -59,7 +59,10 @@ class SettingsPage extends StatelessWidget {
             ],
           )),
       onTap: () {
+        Navigator.of(context).pushReplacementNamed("/rockSetting");
         print("onTap called.");
+
+        
       },
     );
   }
