@@ -3,6 +3,12 @@ import 'package:dama_app/model/PointModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 class PointChangePage extends StatelessWidget {
   final pointPlusController = TextEditingController();
@@ -27,14 +33,18 @@ class PointChangePage extends StatelessWidget {
                 child: Container(
                     width: 300.0,
                     child: TextFormField(
-                      controller: pointPlusController,
-                      autocorrect: false,
-                      decoration: new InputDecoration(
-                        border: const UnderlineInputBorder(),
-                        labelText: '追加ポイント',
-                      ),
-                      obscureText: true,
-                    ))),
+                        controller: pointPlusController,
+                        autocorrect: false,
+                        decoration: new InputDecoration(
+                          border: const UnderlineInputBorder(),
+                          labelText: '追加ポイント',
+                        ),
+                        obscureText: true,
+                        maxLength: 5,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          WhitelistingTextInputFormatter.digitsOnly
+                        ]))),
             RaisedButton(
               child: Text("追加"),
               shape: UnderlineInputBorder(),
@@ -87,14 +97,18 @@ class PointChangePage extends StatelessWidget {
                 child: Container(
                     width: 300.0,
                     child: TextFormField(
-                      controller: pointMinusController,
-                      autocorrect: false,
-                      decoration: new InputDecoration(
-                        border: const UnderlineInputBorder(),
-                        labelText: '削減ポイント',
-                      ),
-                      obscureText: true,
-                    ))),
+                        controller: pointMinusController,
+                        autocorrect: false,
+                        decoration: new InputDecoration(
+                          border: const UnderlineInputBorder(),
+                          labelText: '削減ポイント',
+                        ),
+                        obscureText: true,
+                        maxLength: 5,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          WhitelistingTextInputFormatter.digitsOnly
+                        ]))),
             RaisedButton(
               child: Text("削減"),
               shape: UnderlineInputBorder(),
