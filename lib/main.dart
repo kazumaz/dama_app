@@ -14,6 +14,7 @@ import 'package:dama_app/model/RewardModel.dart';
 import 'package:dama_app/model/HistoryModel.dart';
 import 'package:dama_app/model/PointModel.dart';
 import 'package:dama_app/model/PasswordModel.dart';
+import 'package:dama_app/model/LockModel.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:ff_navigation_bar/ff_navigation_bar.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider<PointModel>(create: (_) => PointModel()),
       ChangeNotifierProvider<ColorModel>(create: (_) => ColorModel()),
       ChangeNotifierProvider<PasswordModel>(create: (_) => PasswordModel()),
+      ChangeNotifierProvider<LockModel>(create: (_) => LockModel()),
     ], child: Application());
   }
 }

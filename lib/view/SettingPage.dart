@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dama_app/model/PasswordModel.dart';
+import 'package:dama_app/model/LockModel.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share/share.dart';
@@ -11,7 +12,8 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<PasswordModel>(builder: (context, passwordModel, child) {
+    return Consumer2<PasswordModel, LockModel>(
+        builder: (context, passwordModel, lockModel, child) {
       return Scaffold(
           appBar: AppBar(title: Text("設定"), actions: <Widget>[
             // IconButton(icon: Icon(Icons.help_outline), onPressed: () {})
@@ -27,7 +29,8 @@ class SettingsPage extends StatelessWidget {
                 Text("　設定"),
                 _passwordSetting("　パスワード設定", Icon(Ionicons.ios_lock), context),
                 _colorSetting("　テーマカラーの変更", Icon(Icons.map), context),
-                _pointChange("　ポイント強制修正", Icon(Icons.room), context),
+                _pointChange("　ポイント強制修正", Icon(Icons.room), context,
+                    passwordModel, lockModel),
                 _rockSetting("　ロック対象機能設定", Icon(Icons.local_shipping), context,
                     passwordModel),
                 Text(""),
@@ -96,6 +99,7 @@ class SettingsPage extends StatelessWidget {
               if (passwordModel.isValidPassword(
                   checkPassword: passwordInputController.text.toString())) {
                 Navigator.of(context).pushNamed("/rockSetting");
+                passwordInputController.clear();
               } else {
                 AwesomeDialog(
                   context: context,
@@ -111,6 +115,7 @@ class SettingsPage extends StatelessWidget {
                   desc: 'This is also Ignored',
                   btnOkOnPress: () {},
                 ).show();
+                passwordInputController.clear();
               }
             },
           ).show();
@@ -197,7 +202,8 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  Widget _pointChange(String title, Icon icon, BuildContext context) {
+  Widget _pointChange(String title, Icon icon, BuildContext context,
+      PasswordModel passwordModel, LockModel lockModel) {
     return GestureDetector(
       child: Container(
           padding: EdgeInsets.all(8.0),
@@ -220,8 +226,57 @@ class SettingsPage extends StatelessWidget {
             ],
           )),
       onTap: () {
-        Navigator.of(context).pushNamed("/pointChange");
-        print("onTap called.");
+        if (lockModel.pointChangePageState) {
+          AwesomeDialog(
+            context: context,
+            animType: AnimType.SCALE,
+            dialogType: DialogType.INFO,
+            aligment: Alignment.topCenter,
+            body: Center(
+              child: Column(children: <Widget>[
+                Container(
+                    child: Text(
+                  'パスワードを入力してください。',
+                  style: TextStyle(fontStyle: FontStyle.italic),
+                )),
+                Container(
+                    width: 200.0,
+                    child: TextField(
+                        controller: passwordInputController, autofocus: true
+                        // decoration: InputDecoration(
+                        //   // labelText: "編集する場合は入力してください",
+
+                        ))
+              ]),
+            ),
+            tittle: 'This is Ignored',
+            desc: 'This is also Ignored',
+            btnOkOnPress: () {
+              if (passwordModel.isValidPassword(
+                  checkPassword: passwordInputController.text.toString())) {
+                Navigator.of(context).pushNamed("/pointChange");
+              } else {
+                AwesomeDialog(
+                  context: context,
+                  animType: AnimType.SCALE,
+                  dialogType: DialogType.ERROR,
+                  body: Center(
+                    child: Text(
+                      'パスワードエラーです。入力し直してください。',
+                      style: TextStyle(fontStyle: FontStyle.italic),
+                    ),
+                  ),
+                  tittle: 'This is Ignored',
+                  desc: 'This is also Ignored',
+                  btnOkOnPress: () {},
+                ).show();
+              }
+            },
+          ).show();
+        } else {
+          Navigator.of(context).pushNamed("/pointChange");
+          passwordInputController.clear();
+        }
       },
     );
   }

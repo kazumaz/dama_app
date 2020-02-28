@@ -1,4 +1,5 @@
 import 'package:dama_app/model/PasswordModel.dart';
+import 'package:dama_app/model/LockModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:awesome_dialog/animated_button.dart';
@@ -6,6 +7,9 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class RockSettingPage extends StatelessWidget {
   final passwordInputController = TextEditingController();
@@ -14,253 +18,64 @@ class RockSettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<PasswordModel>(builder: (context, passwordModel, child) {
+    return Consumer2<PasswordModel, LockModel>(
+        builder: (context, passwordModel, lockModel, child) {
       return Scaffold(
           appBar: AppBar(
             leading: IconButton(
-              icon: Icon(Icons.home),
-              onPressed: () =>                  
-                  Navigator.of(context).pop()
-            ),
+                icon: Icon(Icons.home),
+                onPressed: () => Navigator.of(context).pop()),
             backgroundColor: Theme.of(context).primaryColor,
             elevation: 0.0,
             title: Text("ロック設定"),
           ),
           body: Column(
             children: <Widget>[
+              Text(""),
+              Text("パスワードを必要とする機能を選択"),
+              Text(""),
+              Text(""),
+              Text(""),
+              Text("ポイント強制変更"),
               Center(
-                  child: Container(
-                      width: 300.0,
-                      child: TextFormField(
-                        controller: passwordInputController,
-                        autocorrect: false,
-                        decoration: new InputDecoration(
-                          border: const UnderlineInputBorder(),
-                          labelText: '確認用',
-                        ),
-                        obscureText: true,
-                      ))),
-              Center(
-                  child: Container(
-                      width: 300.0,
-                      child: TextFormField(
-                        controller: passwordInputConfirmController,
-                        autocorrect: false,
-                        decoration: new InputDecoration(
-                          border: const UnderlineInputBorder(),
-                          labelText: 'パスワード',
-                        ),
-                        obscureText: true,
-                      ))),
-              Text(""),
-              Container(
-                  width: 300,
-                  child: Text(
-                    "セキュリティ強化のため、パスワードの再発行はできないようにしてあります。",
-                    style: TextStyle(
-                        color: Colors.red, fontStyle: FontStyle.italic),
-                  )),
-              Text(""),
-              RaisedButton(
-                child: Text("登録"),
-                shape: UnderlineInputBorder(),
-                onPressed: () {
-                  if (checkPasswordConfirmed(
-                      passwordInputController.text.toString(),
-                      passwordInputConfirmController.text.toString())) {
-                    if (passwordModel.checkPassworIsAlreadyExist()) {
-                      AwesomeDialog(
-                        context: context,
-                        animType: AnimType.SCALE,
-                        dialogType: DialogType.INFO,
-                        aligment: Alignment.topCenter,
-                        body: Center(
-                          child: Column(children: <Widget>[
-                            Container(
-                                child: Text(
-                              '既存のパスワードを入力してください。',
-                              style: TextStyle(fontStyle: FontStyle.italic),
-                            )),
-                            Container(
-                                width: 200.0,
-                                child: TextField(
-                                    controller: beforePasswordInputController,
-                                    autofocus: true
-                                    // decoration: InputDecoration(
-                                    //   // labelText: "編集する場合は入力してください",
+                child:
 
-                                    ))
-                          ]),
-                        ),
-                        tittle: 'This is Ignored',
-                        desc: 'This is also Ignored',
-                        btnOkOnPress: () {
-                          if (passwordModel.isValidPassword(
-                              checkPassword: beforePasswordInputController.text
-                                  .toString())) {
-                            AwesomeDialog(
-                              context: context,
-                              animType: AnimType.SCALE,
-                              dialogType: DialogType.SUCCES,
-                              body: Center(
-                                child: Text(
-                                  'パスワードの登録が完了しました！',
-                                  style: TextStyle(fontStyle: FontStyle.italic),
-                                ),
-                              ),
-                              tittle: 'This is Ignored',
-                              desc: 'This is also Ignored',
-                              btnOkOnPress: () {
-                                passwordModel.setPassword(
-                                    newPassword: passwordInputController.text
-                                        .toString());
-                                passwordInputController.clear();
-                                passwordInputConfirmController.clear();
-                                beforePasswordInputController.clear();
-                              },
-                            ).show();
-
-                            passwordModel.setPassword(
-                                newPassword:
-                                    passwordInputController.text.toString());
-                          } else {
-                            AwesomeDialog(
-                              context: context,
-                              animType: AnimType.SCALE,
-                              dialogType: DialogType.ERROR,
-                              body: Center(
-                                child: Text(
-                                  'パスワードエラーです。入力し直してください。',
-                                  style: TextStyle(fontStyle: FontStyle.italic),
-                                ),
-                              ),
-                              tittle: 'This is Ignored',
-                              desc: 'This is also Ignored',
-                              btnOkOnPress: () {},
-                            ).show();
-                          }
-                        },
-                      ).show();
-                    } else {
-                      AwesomeDialog(
-                        context: context,
-                        animType: AnimType.SCALE,
-                        dialogType: DialogType.SUCCES,
-                        body: Center(
-                          child: Text(
-                            'パスワードの登録が完了しました！',
-                            style: TextStyle(fontStyle: FontStyle.italic),
-                          ),
-                        ),
-                        tittle: 'This is Ignored',
-                        desc: 'This is also Ignored',
-                        btnOkOnPress: () {
-                          passwordModel.setPassword(
-                              newPassword:
-                                  passwordInputController.text.toString());
-                          passwordInputController.clear();
-                          passwordInputConfirmController.clear();
-                          beforePasswordInputController.clear();
-                        },
-                      ).show();
-                    }
-                  } else {
-                    AwesomeDialog(
-                      context: context,
-                      animType: AnimType.SCALE,
-                      dialogType: DialogType.ERROR,
-                      body: Center(
-                        child: Text(
-                          '入力した2つのパスワードが一致しません。',
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                        ),
-                      ),
-                      tittle: 'This is Ignored',
-                      desc: 'This is also Ignored',
-                      btnOkOnPress: () {},
-                    ).show();
-                  }
-                },
-              ),
-              Text(""),
-              Text(""),
-              
-//               ToggleSwitch(
-//                   minWidth: 90.0,
-//                   cornerRadius: 20,
-//                   activeBgColor: Colors.green,
-//                   activeTextColor: Colors.white,
-//                   inactiveBgColor: Colors.grey,
-//                   inactiveTextColor: Colors.white,
-//                   labels: ['ロック', '解除'],
-//                   icons: [FontAwesome.lock, FontAwesome.unlock],
-//                   activeColors: [Colors.blue, Colors.pink],
-//                   initialLabelIndex: 1,
-//                   onToggle: (index) {
-//                     print('switched to: $index');
-//                     index = 0;
-//                   })
-//                   ,
-
-// LiteRollingSwitch(
+//           LiteRollingSwitch(
 //     //initial value
 //     value: true,
 //     textOn: '解除',
 //     textOff: 'ロック',
 //     colorOn: Colors.greenAccent[700],
 //     colorOff: Colors.redAccent[700],
-//     iconOn: Icons.done,
-//     iconOff: Icons.remove_circle_outline,
+//     iconOn: Icons.lock_open,
+//     iconOff: Icons.lock,
 //     textSize: 16.0,
 //     onChanged: (bool state) {
-//       state = false;
 //       //Use it to manage the different states
 //       print('Current State of SWITCH IS: $state');
 //     },
-// ),
+// )
+// ,
 
+                    ToggleSwitch(
+                        minWidth: 90.0,
+                        cornerRadius: 20,
+                        activeBgColor: Colors.green,
+                        activeTextColor: Colors.white,
+                        inactiveBgColor: Colors.grey,
+                        inactiveTextColor: Colors.white,
+                        labels: ['ロック', '解除'],
+                        icons: [FontAwesome.lock, FontAwesome.unlock],
+                        activeColors: [Colors.blue, Colors.pink],
+                        initialLabelIndex:
+                            lockModel.pointChangePageState ? 0 : 1,
+                        onToggle: (index) {
+                          print('switched to: $index');
+                          lockModel.changeLockStateOfPointChangePageState();
+                        }),
+              )
             ],
           ));
-      // ],
-      // ));
     });
-  }
-
-  // Widget _passwordForm() {
-  //   return Center(
-  //       child: Container(
-  //           width: 300.0,
-  //           child: TextFormField(
-  //             controller: passwordInputConfirmController,
-  //             autocorrect: false,
-  //             decoration: new InputDecoration(
-  //               border: const UnderlineInputBorder(),
-  //               labelText: 'パスワード',
-  //             ),
-  //             obscureText: true,
-  //           )));
-  // }
-
-  Widget _passwordConfirmForm() {
-    return Center(
-        child: Container(
-            width: 300.0,
-            child: TextFormField(
-              controller: passwordInputController,
-              autocorrect: false,
-              decoration: new InputDecoration(
-                border: const UnderlineInputBorder(),
-                labelText: '確認用',
-              ),
-              obscureText: true,
-            )));
-  }
-}
-
-bool checkPasswordConfirmed(String password, String confirmPassword) {
-  if (password == confirmPassword) {
-    return true;
-  } else {
-    return false;
   }
 }

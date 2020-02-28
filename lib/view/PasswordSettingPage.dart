@@ -19,8 +19,7 @@ class PassWordSettingPage extends StatelessWidget {
           appBar: AppBar(
             leading: IconButton(
               icon: Icon(Icons.home),
-              onPressed: () =>
-                  Navigator.of(context).pop(),
+              onPressed: () => Navigator.of(context).pop(),
             ),
             backgroundColor: Theme.of(context).primaryColor,
             elevation: 0.0,
@@ -184,7 +183,7 @@ class PassWordSettingPage extends StatelessWidget {
               ),
               Text(""),
               Text(""),
-              
+
 //               ToggleSwitch(
 //                   minWidth: 90.0,
 //                   cornerRadius: 20,
@@ -218,7 +217,6 @@ class PassWordSettingPage extends StatelessWidget {
 //       print('Current State of SWITCH IS: $state');
 //     },
 // ),
-
             ],
           ));
       // ],
