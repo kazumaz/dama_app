@@ -20,7 +20,19 @@ class PointModel extends ChangeNotifier {
     totalPoint -= point;    
     totalRewardEver++;
     notifyListeners();
-    
+  }
+
+  //ポイントを追加する時に使う
+  void addTotalPointWithoutLabor({@required int point}) {
+    totalPoint += point;
+    totalPointEver += point;    
+    notifyListeners();
+  }
+
+  //ご褒美をもらい、ポイントを減算する時に使う。
+  void decreaseTotalPointWithoutReward({@required int point}) {
+    totalPoint -= point;        
+    notifyListeners();
   }
 
 //履歴削除の時に使う。今までの履歴も戻す。

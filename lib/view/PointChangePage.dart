@@ -1,6 +1,8 @@
 import 'package:dama_app/model/PasswordModel.dart';
+import 'package:dama_app/model/PointModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 class PointChangePage extends StatelessWidget {
   final pointPlusController = TextEditingController();
@@ -9,17 +11,16 @@ class PointChangePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<PasswordModel>(builder: (context, passwordModel, child) {
+    return Consumer2<PasswordModel, PointModel>(
+        builder: (context, passwordModel, pointModel, child) {
       return Scaffold(
           appBar: AppBar(
             leading: IconButton(
-              icon: Icon(Icons.home),
-              onPressed: () =>
-                  Navigator.of(context).pop()
-            ),
+                icon: Icon(Icons.home),
+                onPressed: () => Navigator.of(context).pop()),
             backgroundColor: Theme.of(context).primaryColor,
             elevation: 0.0,
-            title: Text("ポイントを強制的に足す"),
+            title: Text("ポイント変更"),
           ),
           body: Column(children: <Widget>[
             Center(
@@ -37,7 +38,50 @@ class PointChangePage extends StatelessWidget {
             RaisedButton(
               child: Text("追加"),
               shape: UnderlineInputBorder(),
-              onPressed: () {},
+              onPressed: () {
+                AwesomeDialog(
+                    context: context,
+                    animType: AnimType.SCALE,
+                    dialogType: DialogType.INFO,
+                    body: Center(
+                      child: Text(
+                        pointModel.totalPoint.toString() +
+                            " +" +
+                            pointPlusController.text.toString() +
+                            " = " +
+                            (pointModel.totalPoint +
+                                    int.parse(pointPlusController.text))
+                                .toString() +
+                            " point になります！ \追加しますか?",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      ),
+                    ),
+                    tittle: 'This is Ignored',
+                    desc: 'This is also Ignored',
+                    btnCancelOnPress: () {},
+                    btnOkOnPress: () {
+                      pointModel.addTotalPointWithoutLabor(
+                          point: int.parse(pointPlusController.text));
+
+                      AwesomeDialog(
+                        context: context,
+                        animType: AnimType.SCALE,
+                        dialogType: DialogType.SUCCES,
+                        body: Center(
+                          child: Text(
+                            'ポイントの追加が完了しました！',
+                            style: TextStyle(fontStyle: FontStyle.italic),
+                          ),
+                        ),
+                        tittle: 'This is Ignored',
+                        desc: 'This is also Ignored',
+                        btnOkOnPress: () {
+                          // Navigator.pop(context);
+                        },
+                      ).show();
+                      pointPlusController.clear();
+                    }).show();
+              },
             ),
             Center(
                 child: Container(
@@ -54,16 +98,80 @@ class PointChangePage extends StatelessWidget {
             RaisedButton(
               child: Text("削減"),
               shape: UnderlineInputBorder(),
-              onPressed: () {},
+              onPressed: () {
+                if ((pointModel.totalPoint -
+                        int.parse(pointMinusController.text)) <
+                    0) {
+                  AwesomeDialog(
+                    context: context,
+                    animType: AnimType.SCALE,
+                    dialogType: DialogType.ERROR,
+                    body: Center(
+                      child: Text(
+                        'ポイントがマイナスになります。最大' +
+                            pointModel.totalPoint.toString() +
+                            'の削減が可能です！',
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      ),
+                    ),
+                    tittle: 'This is Ignored',
+                    desc: 'This is also Ignored',
+                    btnOkOnPress: () {},
+                  ).show();
+                } else {
+                  AwesomeDialog(
+                      context: context,
+                      animType: AnimType.SCALE,
+                      dialogType: DialogType.INFO,
+                      body: Center(
+                        child: Text(
+                          pointModel.totalPoint.toString() +
+                              " -" +
+                              pointMinusController.text.toString() +
+                              " = " +
+                              (pointModel.totalPoint -
+                                      int.parse(pointMinusController.text))
+                                  .toString() +
+                              " point になります！ \削減しますか?",
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        ),
+                      ),
+                      tittle: 'This is Ignored',
+                      desc: 'This is also Ignored',
+                      btnCancelOnPress: () {},
+                      btnOkOnPress: () {
+                        pointModel.decreaseTotalPointWithoutReward(
+                            point: int.parse(pointMinusController.text));
+
+                        AwesomeDialog(
+                          context: context,
+                          animType: AnimType.SCALE,
+                          dialogType: DialogType.SUCCES,
+                          body: Center(
+                            child: Text(
+                              'ポイントの追加が完了しました！',
+                              style: TextStyle(fontStyle: FontStyle.italic),
+                            ),
+                          ),
+                          tittle: 'This is Ignored',
+                          desc: 'This is also Ignored',
+                          btnOkOnPress: () {
+                            // Navigator.pop(context);
+                          },
+                        ).show();
+                        pointMinusController.clear();
+                      }).show();
+                }
+              },
             ),
             Text(""),
-                         Container(
-                  width: 300,
-                  child: Text(
-                    "ここで追加・削減されたポイントは履歴画面には表示されません。",
-                    style: TextStyle(
-                        color: Colors.red, fontStyle: FontStyle.italic),
-                  )),
+            Container(
+                width: 300,
+                child: Text(
+                  "ここで追加・削減されたポイントは履歴画面には表示されません。",
+                  style:
+                      TextStyle(color: Colors.red, fontStyle: FontStyle.italic),
+                )),
           ]));
     });
   }
