@@ -60,121 +60,126 @@ class PassWordSettingPage extends StatelessWidget {
                 child: Text("登録"),
                 shape: UnderlineInputBorder(),
                 onPressed: () {
-                  if (checkPasswordConfirmed(
-                      passwordInputController.text.toString(),
-                      passwordInputConfirmController.text.toString())) {
-                    if (passwordModel.checkPassworIsAlreadyExist()) {
-                      AwesomeDialog(
-                        context: context,
-                        animType: AnimType.SCALE,
-                        dialogType: DialogType.INFO,
-                        aligment: Alignment.topCenter,
-                        body: Center(
-                          child: Column(children: <Widget>[
-                            Container(
-                                child: Text(
-                              '既存のパスワードを入力してください。',
-                              style: TextStyle(fontStyle: FontStyle.italic),
-                            )),
-                            Container(
-                                width: 200.0,
-                                child: TextField(
-                                    controller: beforePasswordInputController,
-                                    autofocus: true
-                                    // decoration: InputDecoration(
-                                    //   // labelText: "編集する場合は入力してください",
+                  if (passwordInputController.text.length > 0) {
+                    if (checkPasswordConfirmed(
+                        passwordInputController.text.toString(),
+                        passwordInputConfirmController.text.toString())) {
+                      if (passwordModel.checkPassworIsAlreadyExist()) {
+                        AwesomeDialog(
+                          context: context,
+                          animType: AnimType.SCALE,
+                          dialogType: DialogType.INFO,
+                          aligment: Alignment.topCenter,
+                          body: Center(
+                            child: Column(children: <Widget>[
+                              Container(
+                                  child: Text(
+                                '既存のパスワードを入力してください。',
+                                style: TextStyle(fontStyle: FontStyle.italic),
+                              )),
+                              Container(
+                                  width: 200.0,
+                                  child: TextField(
+                                      controller: beforePasswordInputController,
+                                      autofocus: true
+                                      // decoration: InputDecoration(
+                                      //   // labelText: "編集する場合は入力してください",
 
-                                    ))
-                          ]),
-                        ),
-                        tittle: 'This is Ignored',
-                        desc: 'This is also Ignored',
-                        btnOkOnPress: () {
-                          if (passwordModel.isValidPassword(
-                              checkPassword: beforePasswordInputController.text
-                                  .toString())) {
-                            AwesomeDialog(
-                              context: context,
-                              animType: AnimType.SCALE,
-                              dialogType: DialogType.SUCCES,
-                              body: Center(
-                                child: Text(
-                                  'パスワードの登録が完了しました！',
-                                  style: TextStyle(fontStyle: FontStyle.italic),
+                                      ))
+                            ]),
+                          ),
+                          tittle: 'This is Ignored',
+                          desc: 'This is also Ignored',
+                          btnOkOnPress: () {
+                            if (passwordModel.isValidPassword(
+                                checkPassword: beforePasswordInputController
+                                    .text
+                                    .toString())) {
+                              AwesomeDialog(
+                                context: context,
+                                animType: AnimType.SCALE,
+                                dialogType: DialogType.SUCCES,
+                                body: Center(
+                                  child: Text(
+                                    'パスワードの登録が完了しました！',
+                                    style:
+                                        TextStyle(fontStyle: FontStyle.italic),
+                                  ),
                                 ),
-                              ),
-                              tittle: 'This is Ignored',
-                              desc: 'This is also Ignored',
-                              btnOkOnPress: () {
-                                passwordModel.setPassword(
-                                    newPassword: passwordInputController.text
-                                        .toString());
-                                passwordInputController.clear();
-                                passwordInputConfirmController.clear();
-                                beforePasswordInputController.clear();
-                              },
-                            ).show();
+                                tittle: 'This is Ignored',
+                                desc: 'This is also Ignored',
+                                btnOkOnPress: () {
+                                  passwordModel.setPassword(
+                                      newPassword: passwordInputController.text
+                                          .toString());
+                                  passwordInputController.clear();
+                                  passwordInputConfirmController.clear();
+                                  beforePasswordInputController.clear();
+                                },
+                              ).show();
 
+                              passwordModel.setPassword(
+                                  newPassword:
+                                      passwordInputController.text.toString());
+                            } else {
+                              AwesomeDialog(
+                                context: context,
+                                animType: AnimType.SCALE,
+                                dialogType: DialogType.ERROR,
+                                body: Center(
+                                  child: Text(
+                                    'パスワードエラーです。入力し直してください。',
+                                    style:
+                                        TextStyle(fontStyle: FontStyle.italic),
+                                  ),
+                                ),
+                                tittle: 'This is Ignored',
+                                desc: 'This is also Ignored',
+                                btnOkOnPress: () {},
+                              ).show();
+                            }
+                          },
+                        ).show();
+                      } else {
+                        AwesomeDialog(
+                          context: context,
+                          animType: AnimType.SCALE,
+                          dialogType: DialogType.SUCCES,
+                          body: Center(
+                            child: Text(
+                              'パスワードの登録が完了しました！',
+                              style: TextStyle(fontStyle: FontStyle.italic),
+                            ),
+                          ),
+                          tittle: 'This is Ignored',
+                          desc: 'This is also Ignored',
+                          btnOkOnPress: () {
                             passwordModel.setPassword(
                                 newPassword:
                                     passwordInputController.text.toString());
-                          } else {
-                            AwesomeDialog(
-                              context: context,
-                              animType: AnimType.SCALE,
-                              dialogType: DialogType.ERROR,
-                              body: Center(
-                                child: Text(
-                                  'パスワードエラーです。入力し直してください。',
-                                  style: TextStyle(fontStyle: FontStyle.italic),
-                                ),
-                              ),
-                              tittle: 'This is Ignored',
-                              desc: 'This is also Ignored',
-                              btnOkOnPress: () {},
-                            ).show();
-                          }
-                        },
-                      ).show();
+                            passwordInputController.clear();
+                            passwordInputConfirmController.clear();
+                            beforePasswordInputController.clear();
+                          },
+                        ).show();
+                      }
                     } else {
                       AwesomeDialog(
                         context: context,
                         animType: AnimType.SCALE,
-                        dialogType: DialogType.SUCCES,
+                        dialogType: DialogType.ERROR,
                         body: Center(
                           child: Text(
-                            'パスワードの登録が完了しました！',
+                            '入力した2つのパスワードが一致しません。',
                             style: TextStyle(fontStyle: FontStyle.italic),
                           ),
                         ),
                         tittle: 'This is Ignored',
                         desc: 'This is also Ignored',
-                        btnOkOnPress: () {
-                          passwordModel.setPassword(
-                              newPassword:
-                                  passwordInputController.text.toString());
-                          passwordInputController.clear();
-                          passwordInputConfirmController.clear();
-                          beforePasswordInputController.clear();
-                        },
+                        btnOkOnPress: () {},
                       ).show();
                     }
-                  } else {
-                    AwesomeDialog(
-                      context: context,
-                      animType: AnimType.SCALE,
-                      dialogType: DialogType.ERROR,
-                      body: Center(
-                        child: Text(
-                          '入力した2つのパスワードが一致しません。',
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                        ),
-                      ),
-                      tittle: 'This is Ignored',
-                      desc: 'This is also Ignored',
-                      btnOkOnPress: () {},
-                    ).show();
-                  }
+                  } else {}
                 },
               ),
               Text(""),

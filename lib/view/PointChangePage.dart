@@ -33,18 +33,23 @@ class PointChangePage extends StatelessWidget {
                 child: Container(
                     width: 300.0,
                     child: TextFormField(
-                        controller: pointPlusController,
-                        autocorrect: false,
-                        decoration: new InputDecoration(
-                          border: const UnderlineInputBorder(),
-                          labelText: '追加ポイント',
-                        ),
-                        obscureText: true,
-                        maxLength: 5,
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          WhitelistingTextInputFormatter.digitsOnly
-                        ]))),
+                      controller: pointPlusController,
+                      autocorrect: false,
+                      decoration: new InputDecoration(
+                        border: const UnderlineInputBorder(),
+                        labelText: '追加ポイント',
+                      ),
+                      obscureText: true,
+
+                       maxLength: 5,
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                inputFormatters: <
+                                                    TextInputFormatter>[
+                                                  WhitelistingTextInputFormatter
+                                                      .digitsOnly
+                                                ]
+                    ))),
             RaisedButton(
               child: Text("追加"),
               shape: UnderlineInputBorder(),
@@ -97,18 +102,22 @@ class PointChangePage extends StatelessWidget {
                 child: Container(
                     width: 300.0,
                     child: TextFormField(
-                        controller: pointMinusController,
-                        autocorrect: false,
-                        decoration: new InputDecoration(
-                          border: const UnderlineInputBorder(),
-                          labelText: '削減ポイント',
-                        ),
-                        obscureText: true,
-                        maxLength: 5,
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          WhitelistingTextInputFormatter.digitsOnly
-                        ]))),
+                      controller: pointMinusController,
+                      autocorrect: false,
+                      decoration: new InputDecoration(
+                        border: const UnderlineInputBorder(),
+                        labelText: '削減ポイント',
+                      ),
+                      obscureText: true,
+                       maxLength: 5,
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                inputFormatters: <
+                                                    TextInputFormatter>[
+                                                  WhitelistingTextInputFormatter
+                                                      .digitsOnly
+                                                ]
+                    ))),
             RaisedButton(
               child: Text("削減"),
               shape: UnderlineInputBorder(),
