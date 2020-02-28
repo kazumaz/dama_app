@@ -39,7 +39,7 @@ class SettingsPage extends StatelessWidget {
                 _twitterPage("　開発者のツート", Icon(FontAwesome.twitter), context),
                 _appShare("　このアプリを紹介", Icon(Ionicons.ios_rocket), context),
                 _appReview("　このアプリを評価", Icon(Icons.star), context),
-                _donate("　寄付", Icon(MaterialCommunityIcons.gift), context),
+                _donate("　アプリのサポートページ", Icon(MaterialCommunityIcons.gift), context),
               ])),
             ],
           ));
@@ -508,7 +508,7 @@ class SettingsPage extends StatelessWidget {
           dialogType: DialogType.INFO,
           body: Center(
             child: Text(
-              'まずは考え方を説明するべきだと思ったので、説明用のページを作成しました。',
+              'APLのサポートページを作ったので、時間があれば見てみてください。',
               style: TextStyle(fontStyle: FontStyle.italic),
             ),
           ),
