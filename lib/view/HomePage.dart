@@ -59,7 +59,9 @@ class HomePage extends StatelessWidget {
             SizedBox(
                 key: keyButton2,
                 height: 190.0,
-                child: rewardAchievedList(rewordModel.rewardList, historyModel,
+                child: 
+                (rewordModel.rewardList.length == 0) ? Center(child: const Text("まだご褒美の登録がありません。\nご褒美画面から登録しよう！")):
+                rewardAchievedList(rewordModel.rewardList, historyModel,
                     pointModel.totalPoint)),
             const Text("これまでの歩み"),
             const Text(""),
