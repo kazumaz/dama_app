@@ -29,7 +29,8 @@ class RockSettingPage extends StatelessWidget {
             children: <Widget>[
               Text(""),
               
-              Text("機能を使う時にパスワードを必要にする場合は、\n対象の機能をロック！"),
+              Padding( padding: EdgeInsets.all(20.0),child:
+              Text("機能を使う時にパスワードを必要にする場合は、\n対象の機能をロック! \n子供が自由にポイントを増やせないようにする場合は、ここでロックをかけます！")),
               Text(""),
               Text(""),
               Text(""),
