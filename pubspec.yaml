@@ -39,10 +39,16 @@ dependencies:
   toggle_switch: ^0.1.4
   lite_rolling_switch: ^0.1.1
   flutter_native_splash: ^0.1.9
+  flutter_launcher_icons: "^0.7.3"
 
 flutter_native_splash:
   image: images/present.png
   color: "FFFFFF"
+
+flutter_icons:
+  android: "launcher_icon" 
+  ios: true
+  image_path: "images/icon.png"
 
 dev_dependencies:
   flutter_test:
