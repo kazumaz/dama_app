@@ -1,5 +1,5 @@
-import 'package:dama_app/model/HistoryModel.dart';
-import 'package:dama_app/model/PointModel.dart';
+import 'package:colleks/model/HistoryModel.dart';
+import 'package:colleks/model/PointModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';

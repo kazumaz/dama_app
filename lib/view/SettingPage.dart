@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:dama_app/model/PasswordModel.dart';
-import 'package:dama_app/model/LockModel.dart';
+import 'package:colleks/model/PasswordModel.dart';
+import 'package:colleks/model/LockModel.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share/share.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:provider/provider.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
+import 'package:tutorial_coach_mark/animated_focus_light.dart';
 
 class SettingsPage extends StatelessWidget {
+    List<TargetFocus> targets = List();
+  GlobalKey keyButton1 = GlobalKey();
+  GlobalKey keyButton2 = GlobalKey();
+  GlobalKey keyButton3 = GlobalKey();
+  GlobalKey keyButton4 = GlobalKey();
+  
   final passwordInputController = TextEditingController();
 
   @override
@@ -16,7 +24,12 @@ class SettingsPage extends StatelessWidget {
         builder: (context, passwordModel, lockModel, child) {
       return Scaffold(
           appBar: AppBar(title: Text("設定"), actions: <Widget>[
-            // IconButton(icon: Icon(Icons.help_outline), onPressed: () {})
+                        IconButton(
+                icon: Icon(Icons.help_outline),
+                onPressed: () {
+                  initTargets();
+                  showTutorial(context);
+                })
           ]),
           backgroundColor: Colors.grey[100],
           body: Column(
@@ -28,11 +41,11 @@ class SettingsPage extends StatelessWidget {
                 Text(""),
                 Text("　設定"),
                 _passwordSetting("　パスワード設定", Icon(Ionicons.ios_lock), context),
+                _rockSetting("　ポイント追加時のパスワード要否設定", Icon(Ionicons.ios_contact), context,
+                    passwordModel),
                 _colorSetting("　テーマカラーの変更", Icon(Ionicons.ios_color_palette), context),
                 _pointChange("　ポイントの追加・削除", Icon(MaterialCommunityIcons.coins), context,
-                    passwordModel, lockModel),
-                _rockSetting("　ポイント追加にパスワードを必要にする", Icon(Ionicons.ios_contact), context,
-                    passwordModel),
+                    passwordModel, lockModel),                
                 Text(""),
                 Text("　アプリについて"),
                 _opinionPage("　ご意見・ご要望など", Icon(Entypo.pencil), context),
@@ -50,6 +63,7 @@ class SettingsPage extends StatelessWidget {
       PasswordModel passwordModel) {
     return GestureDetector(
       child: Container(
+        key: keyButton2,
           padding: EdgeInsets.all(8.0),
           decoration: new BoxDecoration(
               color: Colors.white,
@@ -147,6 +161,7 @@ class SettingsPage extends StatelessWidget {
   Widget _colorSetting(String title, Icon icon, BuildContext context) {
     return GestureDetector(
       child: Container(
+        key: keyButton3,
           padding: EdgeInsets.all(8.0),
           decoration: new BoxDecoration(
               color: Colors.white,
@@ -176,6 +191,7 @@ class SettingsPage extends StatelessWidget {
   Widget _passwordSetting(String title, Icon icon, BuildContext context) {
     return GestureDetector(
       child: Container(
+        key: keyButton1,
           padding: EdgeInsets.all(8.0),
           decoration: new BoxDecoration(
               color: Colors.white,
@@ -205,7 +221,8 @@ class SettingsPage extends StatelessWidget {
   Widget _pointChange(String title, Icon icon, BuildContext context,
       PasswordModel passwordModel, LockModel lockModel) {
     return GestureDetector(
-      child: Container(
+      child: Container(key: keyButton4,
+
           padding: EdgeInsets.all(8.0),
           decoration: new BoxDecoration(
               color: Colors.white,
@@ -329,7 +346,7 @@ class SettingsPage extends StatelessWidget {
 
   Widget _opinionPage(String title, Icon icon, BuildContext context) {
     return GestureDetector(
-      child: Container(
+      child: Container(        
           padding: EdgeInsets.all(8.0),
           decoration: new BoxDecoration(
               color: Colors.white,
@@ -426,7 +443,7 @@ class SettingsPage extends StatelessWidget {
           btnCancelOnPress: () {},
           btnOkOnPress: () {
             Share.share(
-                'check out my app https://kazumaz.github.io/dama_app_pages/');
+                'check out my app https://kazumaz.github.io/colleks_pages/');
           },
         ).show();
       },
@@ -518,10 +535,156 @@ class SettingsPage extends StatelessWidget {
           btnOkText: "見てみる",
           btnCancelOnPress: () {},
           btnOkOnPress: () {
-            launchURL("https://kazumaz.github.io/dama_app_pages/");
+            launchURL("https://kazumaz.github.io/colleks_pages/");
           },
         ).show();
       },
     );
   }
+
+   void showTutorial(context) {
+    TutorialCoachMark(context,
+        targets: targets,
+        colorShadow: Theme.of(context).primaryColor.withAlpha(200),
+        textSkip: "スキップ",
+        paddingFocus: 10,
+        textStyleSkip: TextStyle(fontSize: 25, color: Colors.white),
+        opacityShadow: 0.8, finish: () {
+      print("finish");
+    }, clickTarget: (target) {
+      print(target);
+    }, clickSkip: () {
+      print("skip");
+    })
+      ..show();
+  }
+
+  void initTargets() {
+    targets.add(TargetFocus(
+      identify: "Target 1",
+      keyTarget: keyButton1,
+      contents: [
+        ContentTarget(
+            align: AlignContent.bottom,
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const Text(
+                    "パスワード設定",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20.0),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Text(
+                      "本アプリで使う、パスワードを設定する！パスワードは、再発行ができないので注意が必要！",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
+            ))
+      ],
+      shape: ShapeLightFocus.RRect,
+    ));
+    targets.add(TargetFocus(
+      identify: "Target 2",
+      keyTarget: keyButton2,
+      contents: [
+        ContentTarget(
+            align: AlignContent.bottom,
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "一部機能をパスワード入力必須とする",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20.0),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: const Text(
+                      "一部機能を、パスワードを入力しないと、使用不可能にすることが出来るよ！現状、ポイント数を指定してのポイント追加機能や、お手伝いを実施した時のポイント追加が、パスワード入力を必要とすることが出来るよ！",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
+            ))
+      ],
+      shape: ShapeLightFocus.RRect,
+    ));
+    targets.add(TargetFocus(
+      identify: "Target 3",
+      keyTarget: keyButton3,
+      contents: [
+        ContentTarget(
+            align: AlignContent.bottom,
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const Text(
+                    "テーマカラーの選択",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20.0),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: const Text(
+                      "本アプリのテーマカラーを設定可能！選べる、全15色！自分好みのテーマカラーを見つけよう！",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
+            ))
+      ],
+      shape: ShapeLightFocus.RRect,
+    ));
+    targets.add(TargetFocus(
+      identify: "Target 4",
+      keyTarget: keyButton4,
+      contents: [
+        ContentTarget(
+            align: AlignContent.bottom,
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "ポイントの追加・削減",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20.0),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: const Text(
+                      "この画面で、ポイントの追加と削除が可能！",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
+            ))
+      ],
+      shape: ShapeLightFocus.RRect,
+    ));
+  }
 }
+
+

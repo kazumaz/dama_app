@@ -1,4 +1,4 @@
-package com.example.dama_app
+package com.example.colleks
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

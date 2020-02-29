@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dama_app/model/ColorModel.dart';
+import 'package:colleks/model/ColorModel.dart';
 import 'package:provider/provider.dart';
 
 class SelectionScreen extends StatelessWidget {

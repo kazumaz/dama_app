@@ -1,5 +1,5 @@
-import 'package:dama_app/model/RewardModel.dart';
-import 'package:dama_app/parts/ColorPicker.dart';
+import 'package:colleks/model/RewardModel.dart';
+import 'package:colleks/parts/ColorPicker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -1,4 +1,4 @@
-import 'package:dama_app/model/RewardModel.dart';
+import 'package:colleks/model/RewardModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';

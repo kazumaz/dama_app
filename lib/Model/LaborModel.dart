@@ -1,5 +1,5 @@
 
-import 'package:dama_app/Model/LaborModel.dart';
+import 'package:colleks/Model/LaborModel.dart';
 import 'package:flutter/material.dart';
 
 class LaborModel extends ChangeNotifier {  

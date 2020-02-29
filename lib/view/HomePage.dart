@@ -1,9 +1,9 @@
-import 'package:dama_app/model/PointModel.dart';
+import 'package:colleks/model/PointModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:dama_app/model/RewardModel.dart';
-import 'package:dama_app/model/HistoryModel.dart';
+import 'package:colleks/model/RewardModel.dart';
+import 'package:colleks/model/HistoryModel.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
