@@ -22,7 +22,7 @@ class PointChangePage extends StatelessWidget {
       return Scaffold(
           appBar: AppBar(
             leading: IconButton(
-                icon: Icon(Icons.home),
+                icon: Icon(Icons.arrow_back_ios),
                 onPressed: () => Navigator.of(context).pop()),
             backgroundColor: Theme.of(context).primaryColor,
             elevation: 0.0,
