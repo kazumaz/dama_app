@@ -52,13 +52,15 @@ class HomePage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const Text(""),
+                          const Text(""),                          
                         ],
                       ))
                 ]),
+                const Text(""),
+                const Text("たまったポイントをご褒美と交換"),
             SizedBox(
                 key: keyButton2,
-                height: 190.0,
+                height: 180.0,
                 child: 
                 (rewordModel.rewardList.length == 0) ? Center(child: const Text("まだご褒美の登録がありません。\nご褒美画面から登録しよう！")):
                 rewardAchievedList(rewordModel.rewardList, historyModel,

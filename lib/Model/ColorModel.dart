@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ColorModel extends ChangeNotifier {
-  Color themaColor = Colors.indigo;
+  Color themaColor = Colors.purple;
   void setBlue() {
     themaColor = Colors.blue;
     notifyListeners();
