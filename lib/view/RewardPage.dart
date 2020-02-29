@@ -31,9 +31,9 @@ class RewardPage extends StatelessWidget {
             // IconButton(icon: Icon(Icons.help_outline), onPressed: () {})
           ]),
           body: Column(children: <Widget>[
-            Text(""),
+            const Text(""),
             Text("ここからご褒美追加！\nスワイプして削除・編集も可能！", key: keyButton1),
-            Text(""),
+            const Text(""),
             Expanded(
                 child: ListView.builder(
               itemBuilder: (BuildContext context, int index) {
@@ -52,7 +52,7 @@ class RewardPage extends StatelessWidget {
                               animType: AnimType.SCALE,
                               dialogType: DialogType.WARNING,
                               body: Center(
-                                child: Text(
+                                child: const Text(
                                   '本当に削除してよろしいでしょうか',
                                   style: TextStyle(fontStyle: FontStyle.italic),
                                 ),
@@ -68,7 +68,7 @@ class RewardPage extends StatelessWidget {
                                   animType: AnimType.SCALE,
                                   dialogType: DialogType.SUCCES,
                                   body: Center(
-                                    child: Text(
+                                    child: const Text(
                                       '削除が完了しました！',
                                       style: TextStyle(
                                           fontStyle: FontStyle.italic),
@@ -94,7 +94,7 @@ class RewardPage extends StatelessWidget {
                               body: Center(
                                   child: Column(
                                 children: <Widget>[
-                                  Text(
+                                  const Text(
                                     '編集する場合は入力してください。',
                                     style:
                                         TextStyle(fontStyle: FontStyle.italic),
@@ -263,7 +263,7 @@ class RewardPage extends StatelessWidget {
                   body: Center(
                       child: Column(
                     children: <Widget>[
-                      Text(
+                      const Text(
                         '追加する場合は入力してください。',
                         style: TextStyle(fontStyle: FontStyle.italic),
                       ),
@@ -460,7 +460,7 @@ class RewardPage extends StatelessWidget {
                             ),
                           ),
                         ])),
-                        Text(
+                        const Text(
                           "ご褒美を修正・削除したい場合は、右から左にスワイプしよう！",
                           style: TextStyle(color: Colors.white),
                         )
@@ -484,7 +484,7 @@ class RewardPage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     "ご褒美追加ボタン",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -493,7 +493,7 @@ class RewardPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0),
-                    child: Text(
+                    child: const Text(
                       "ここをクリックして、ご褒美を追加しよう！",
                       style: TextStyle(color: Colors.white),
                     ),

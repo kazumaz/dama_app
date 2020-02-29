@@ -26,7 +26,7 @@ class PointChangePage extends StatelessWidget {
                 onPressed: () => Navigator.of(context).pop()),
             backgroundColor: Theme.of(context).primaryColor,
             elevation: 0.0,
-            title: Text("ポイント変更"),
+            title: const Text("ポイント変更"),
           ),
           body: Column(children: <Widget>[
             Center(
@@ -119,7 +119,7 @@ class PointChangePage extends StatelessWidget {
                                                 ]
                     ))),
             RaisedButton(
-              child: Text("削減"),
+              child: const Text("削減"),
               shape: UnderlineInputBorder(),
               onPressed: () {
                 if ((pointModel.totalPoint -
@@ -171,7 +171,7 @@ class PointChangePage extends StatelessWidget {
                           animType: AnimType.SCALE,
                           dialogType: DialogType.SUCCES,
                           body: Center(
-                            child: Text(
+                            child: const Text(
                               'ポイントの追加が完了しました！',
                               style: TextStyle(fontStyle: FontStyle.italic),
                             ),
@@ -190,7 +190,7 @@ class PointChangePage extends StatelessWidget {
             Text(""),
             Container(
                 width: 300,
-                child: Text(
+                child: const Text(
                   "ここで追加・削減されたポイントは履歴画面には表示されません。",
                   style:
                       TextStyle(color: Colors.red, fontStyle: FontStyle.italic),

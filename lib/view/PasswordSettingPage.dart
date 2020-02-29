@@ -19,7 +19,7 @@ class PassWordSettingPage extends StatelessWidget {
             ),
             backgroundColor: Theme.of(context).primaryColor,
             elevation: 0.0,
-            title: Text("パスワード管理画面"),
+            title: const Text("パスワード管理画面"),
           ),
           body: Column(
             children: <Widget>[
@@ -50,14 +50,14 @@ class PassWordSettingPage extends StatelessWidget {
               Text(""),
               Container(
                   width: 300,
-                  child: Text(
+                  child: const Text(
                     "セキュリティ強化のため、パスワードの再発行はできないようにしてあります。",
                     style: TextStyle(
                         color: Colors.red, fontStyle: FontStyle.italic),
                   )),
-              Text(""),
+              const Text(""),
               RaisedButton(
-                child: Text("登録"),
+                child: const Text("登録"),
                 shape: UnderlineInputBorder(),
                 onPressed: () {
                   if (passwordInputController.text.length > 0) {
@@ -73,7 +73,7 @@ class PassWordSettingPage extends StatelessWidget {
                           body: Center(
                             child: Column(children: <Widget>[
                               Container(
-                                  child: Text(
+                                  child: const Text(
                                 '既存のパスワードを入力してください。',
                                 style: TextStyle(fontStyle: FontStyle.italic),
                               )),
@@ -100,7 +100,7 @@ class PassWordSettingPage extends StatelessWidget {
                                 animType: AnimType.SCALE,
                                 dialogType: DialogType.SUCCES,
                                 body: Center(
-                                  child: Text(
+                                  child: const Text(
                                     'パスワードの登録が完了しました！',
                                     style:
                                         TextStyle(fontStyle: FontStyle.italic),
@@ -127,7 +127,7 @@ class PassWordSettingPage extends StatelessWidget {
                                 animType: AnimType.SCALE,
                                 dialogType: DialogType.ERROR,
                                 body: Center(
-                                  child: Text(
+                                  child: const Text(
                                     'パスワードエラーです。入力し直してください。',
                                     style:
                                         TextStyle(fontStyle: FontStyle.italic),
@@ -169,7 +169,7 @@ class PassWordSettingPage extends StatelessWidget {
                         animType: AnimType.SCALE,
                         dialogType: DialogType.ERROR,
                         body: Center(
-                          child: Text(
+                          child: const Text(
                             '入力した2つのパスワードが一致しません。',
                             style: TextStyle(fontStyle: FontStyle.italic),
                           ),
@@ -182,8 +182,8 @@ class PassWordSettingPage extends StatelessWidget {
                   } else {}
                 },
               ),
-              Text(""),
-              Text(""),
+              const Text(""),
+              const Text(""),
 
 //               ToggleSwitch(
 //                   minWidth: 90.0,

@@ -35,7 +35,7 @@ class LaborPage extends StatelessWidget {
           ]),
           body: Column(
             children: <Widget>[
-              Text(""),
+              const Text(""),
               Row(
                 children: <Widget>[
                   SizedBox(
@@ -83,7 +83,7 @@ class LaborPage extends StatelessWidget {
                                     animType: AnimType.SCALE,
                                     dialogType: DialogType.WARNING,
                                     body: Center(
-                                      child: Text(
+                                      child: const Text(
                                         '本当に削除してよろしいでしょうか？',
                                         style: TextStyle(
                                             fontStyle: FontStyle.italic),
@@ -100,7 +100,7 @@ class LaborPage extends StatelessWidget {
                                         animType: AnimType.SCALE,
                                         dialogType: DialogType.SUCCES,
                                         body: Center(
-                                          child: Text(
+                                          child: const Text(
                                             '削除が完了しました！',
                                             style: TextStyle(
                                                 fontStyle: FontStyle.italic),
@@ -126,7 +126,7 @@ class LaborPage extends StatelessWidget {
                                     body: Center(
                                         child: Column(
                                       children: <Widget>[
-                                        Text(
+                                        const Text(
                                           '編集する場合は入力してください。',
                                           style: TextStyle(
                                               fontStyle: FontStyle.italic),
@@ -266,7 +266,7 @@ class LaborPage extends StatelessWidget {
                             ],
                             child: Row(
                               children: <Widget>[
-                                Text("　"),
+                                const Text("　"),
                                 Icon(
                                   MaterialCommunityIcons.run,
                                   color: Colors.indigo,
@@ -283,7 +283,7 @@ class LaborPage extends StatelessWidget {
                                   ),
                                 ),
                                 RaisedButton(
-                                  child: Text("+P"),
+                                  child: const Text("+P"),
                                   color: Colors.white,
                                   shape: CircleBorder(
                                     side: BorderSide(
@@ -345,7 +345,7 @@ class LaborPage extends StatelessWidget {
                   body: Center(
                       child: Column(
                     children: <Widget>[
-                      Text(
+                      const Text(
                         '追加する場合は入力してください。',
                         style: TextStyle(fontStyle: FontStyle.italic),
                       ),
@@ -580,7 +580,7 @@ class LaborPage extends StatelessWidget {
                             ),
                           ),
                           RaisedButton(
-                              child: Text("+P"),
+                              child: const Text("+P"),
                               color: Colors.white,
                               shape: CircleBorder(
                                 side: BorderSide(
@@ -591,7 +591,7 @@ class LaborPage extends StatelessWidget {
                               ),
                               onPressed: () {})
                         ])),
-                        Text(
+                        const Text(
                           "お手伝いをしたら、(+P)ボタンを押して、ポイントをもらおう！お手伝いを修正・削除したい場合は、右から左にスワイプしよう！",
                           style: TextStyle(color: Colors.white),
                         )
@@ -615,7 +615,7 @@ class LaborPage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     "お手伝い追加ボタン",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -624,7 +624,7 @@ class LaborPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0),
-                    child: Text(
+                    child: const Text(
                       "ここをクリックして、お手伝いを追加しよう！",
                       style: TextStyle(color: Colors.white),
                     ),

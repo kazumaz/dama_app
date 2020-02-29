@@ -35,24 +35,24 @@ class HistoryPage extends StatelessWidget {
           ]),
           body: Column(
             children: <Widget>[
-              Text(""),
+              const Text(""),
               Text("間違えて登録したものはここから削除！\nスワイプして削除実施！", key: keyButton1),
-              Text(""),
+              const Text(""),
               // 履歴が0件の場合は、「履歴がありません」の表示をできるようにする。
               historyModel.historyList.length == 0
                   ? Center(
                       child: Column(
                       children: <Widget>[
-                        Text(""),
-                        Text(""),
+                        const Text(""),
+                        const Text(""),
                         SizedBox(
                           width: 150.0,
                           height: 150.0,
                           child: Image.asset('images/step.png'),
                         ),
-                        Text(""),
-                        Text("履歴がまだ登録されていません！"),
-                        Text("どんどんお手伝いしよう！"),
+                        const Text(""),
+                        const Text("履歴がまだ登録されていません！"),
+                        const Text("どんどんお手伝いしよう！"),
                       ],
                     ))
                   // ここまで履歴0件の表示
@@ -119,7 +119,7 @@ class HistoryPage extends StatelessWidget {
                                               animType: AnimType.SCALE,
                                               dialogType: DialogType.SUCCES,
                                               body: Center(
-                                                child: Text(
+                                                child: const Text(
                                                   '削除が成功しました！',
                                                   style: TextStyle(
                                                       fontStyle:
@@ -154,7 +154,7 @@ class HistoryPage extends StatelessWidget {
                                       ),
                                       Row(
                                         children: <Widget>[
-                                          Text("　"),
+                                          const Text("　"),
                                           reversedHistoryList[index].sign
                                               ? Icon(
                                                   MaterialCommunityIcons.run,
@@ -164,7 +164,7 @@ class HistoryPage extends StatelessWidget {
                                                   MaterialCommunityIcons.gift,
                                                   color: Colors.pink,
                                                 ),
-                                          Text("  "),
+                                          const Text("  "),
                                           Expanded(
                                             // child: Padding(
                                             child: Text(
@@ -205,7 +205,7 @@ class HistoryPage extends StatelessWidget {
                   animType: AnimType.SCALE,
                   dialogType: DialogType.ERROR,
                   body: Center(
-                    child: Text(
+                    child: const Text(
                       '全ての履歴を非表示にしますか？履歴を復活させることはできなくなります。ポイントの変更はありません。',
                       style: TextStyle(fontStyle: FontStyle.italic),
                     ),
@@ -265,23 +265,23 @@ class HistoryPage extends StatelessWidget {
                             child: Column(children: <Widget>[
                           Row(
                             children: <Widget>[
-                              Text(
+                              const Text(
                                 '2019-04-07',
                                 style: TextStyle(
                                   fontSize: 10.0,
                                 ),
                               ),
-                              Text(""),
+                              const Text(""),
                             ],
                           ),
                           Row(
                             children: <Widget>[
-                              Text("　"),
+                              const Text("　"),
                               Icon(
                                 MaterialCommunityIcons.run,
                                 color: Colors.indigo,
                               ),
-                              Text("  "),
+                              const Text("  "),
                               Expanded(
                                 // child: Padding(
                                 child: Text(3.toString() +
@@ -304,7 +304,7 @@ class HistoryPage extends StatelessWidget {
                                   fontSize: 10.0,
                                 ),
                               ),
-                              Text(""),
+                              const Text(""),
                             ],
                           ),
                           Row(
@@ -314,7 +314,7 @@ class HistoryPage extends StatelessWidget {
                                 MaterialCommunityIcons.gift,
                                 color: Colors.pink,
                               ),
-                              Text("  "),
+                              const Text("  "),
                               Expanded(
                                 // child: Padding(
                                 child: Text(3.toString() +
@@ -327,7 +327,7 @@ class HistoryPage extends StatelessWidget {
                             ],
                           ),
                         ])),
-                        Text(
+                        const Text(
                           "お手伝いをしたり、ご褒美をもらったら、ここに履歴として表示されるよ！誤って登録してしまったものは、右から左にスワイプして削除しよう！削除したら、ポイントにも反映されるよ！",
                           style: TextStyle(color: Colors.white),
                         )
@@ -351,7 +351,7 @@ class HistoryPage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     "履歴非表示ボタン",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -360,7 +360,7 @@ class HistoryPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0),
-                    child: Text(
+                    child: const Text(
                       "履歴が増えすぎた場合は、ここをクリックして非表示にしよう！ただし、一度非表示にすると、再度表示することはできないので注意！履歴を非表示にしてもポイントの変動はありません。",
                       style: TextStyle(color: Colors.white),
                     ),

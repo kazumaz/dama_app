@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
     return Consumer3<PointModel, RewordModel, HistoryModel>(
         builder: (context, pointModel, rewordModel, historyModel, child) {
       return Scaffold(
-          appBar: AppBar(title: Text("HOME"), actions: <Widget>[
+          appBar: AppBar(title: const Text("HOME"), actions: <Widget>[
             IconButton(
                 icon: Icon(Icons.help_outline),
                 onPressed: () {
@@ -41,8 +41,8 @@ class HomePage extends StatelessWidget {
                       color: Theme.of(context).primaryColor.withAlpha(50),
                       child: Column(
                         children: <Widget>[
-                          Text(""),
-                          Text("交換可能ポイント"),
+                          const Text(""),
+                          const Text("交換可能ポイント"),
                           Center(
                             child: Text(
                               pointModel.totalPoint.toString(),
@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Text(""),
+                          const Text(""),
                         ],
                       ))
                 ]),
@@ -61,8 +61,8 @@ class HomePage extends StatelessWidget {
                 height: 190.0,
                 child: rewardAchievedList(rewordModel.rewardList, historyModel,
                     pointModel.totalPoint)),
-            Text("これまでの歩み"),
-            Text(""),
+            const Text("これまでの歩み"),
+            const Text(""),
             Container(
               key: keyButton3,
               child: ayumi(pointModel),
@@ -100,7 +100,7 @@ class HomePage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     "交換可能ポイント",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -140,7 +140,7 @@ class HomePage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0),
-                    child: Text(
+                    child: const Text(
                       "ご褒美の一覧を示しています！ポイントがたまったら、ハートをクリックしてご褒美と交換しよう！画面に映っていないご褒美は、横にスワイプしたら現れます！",
                       style: TextStyle(color: Colors.white),
                     ),
@@ -162,7 +162,7 @@ class HomePage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     "これまでの歩み",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -171,7 +171,7 @@ class HomePage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0),
-                    child: Text(
+                    child: const Text(
                       "今までの合計ポイント、お手伝いの回数、ご褒美の回数を示しています！たくさんお手伝いして、たくさんご褒美をもらおう！！",
                       style: TextStyle(color: Colors.white),
                     ),
@@ -197,7 +197,7 @@ Widget ayumi(PointModel pointModel) {
                       MaterialIcons.directions_run,
                       size: 50.0,
                     ),
-                    Text("総ポイント"),
+                    const Text("総ポイント"),
                     Text(pointmodel.totalPointEver.toString() + "ポイント")
                   ],
                 ),
@@ -230,7 +230,7 @@ Widget ayumi(PointModel pointModel) {
                 Ionicons.md_bicycle,
                 size: 50.0,
               ),
-              Text("お手伝い回数"),
+              const Text("お手伝い回数"),
               Text(pointmodel.totalLaborEver.toString() + "回")
             ],
           ),
@@ -264,7 +264,7 @@ Widget ayumi(PointModel pointModel) {
                 MaterialCommunityIcons.human_handsup,
                 size: 50.0,
               ),
-              Text("ご褒美回数"),
+              const Text("ご褒美回数"),
               Text(pointmodel.totalRewardEver.toString() + "回")
             ],
           ),

@@ -15,7 +15,7 @@ class ColorSettingPage extends StatelessWidget {
           ),
           backgroundColor: Theme.of(context).primaryColor,
           elevation: 0.0,
-          title: Text("テーマカラーを選択"), //TODO タイトルを正しくする
+          title: const Text("テーマカラーを選択"), //TODO タイトルを正しくする
         ),
         body: SelectionScreen(),
       );

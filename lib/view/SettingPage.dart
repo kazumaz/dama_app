@@ -79,7 +79,7 @@ class SettingsPage extends StatelessWidget {
             body: Center(
               child: Column(children: <Widget>[
                 Container(
-                    child: Text(
+                    child: const Text(
                   'パスワードを入力してください。',
                   style: TextStyle(fontStyle: FontStyle.italic),
                 )),
@@ -106,7 +106,7 @@ class SettingsPage extends StatelessWidget {
                   animType: AnimType.SCALE,
                   dialogType: DialogType.ERROR,
                   body: Center(
-                    child: Text(
+                    child: const Text(
                       'パスワードエラーです。入力し直してください。',
                       style: TextStyle(fontStyle: FontStyle.italic),
                     ),
@@ -125,7 +125,7 @@ class SettingsPage extends StatelessWidget {
             animType: AnimType.SCALE,
             dialogType: DialogType.ERROR,
             body: Center(
-              child: Text(
+              child: const Text(
                 'ロック機能を使う際は、先に「パスワード設定画面」にて、パスワードの設定を行ってください。',
                 style: TextStyle(fontStyle: FontStyle.italic),
               ),
@@ -235,7 +235,7 @@ class SettingsPage extends StatelessWidget {
             body: Center(
               child: Column(children: <Widget>[
                 Container(
-                    child: Text(
+                    child: const Text(
                   'パスワードを入力してください。',
                   style: TextStyle(fontStyle: FontStyle.italic),
                 )),
@@ -261,7 +261,7 @@ class SettingsPage extends StatelessWidget {
                   animType: AnimType.SCALE,
                   dialogType: DialogType.ERROR,
                   body: Center(
-                    child: Text(
+                    child: const Text(
                       'パスワードエラーです。入力し直してください。',
                       style: TextStyle(fontStyle: FontStyle.italic),
                     ),
@@ -309,7 +309,7 @@ class SettingsPage extends StatelessWidget {
           animType: AnimType.SCALE,
           dialogType: DialogType.INFO,
           body: Center(
-            child: Text(
+            child: const Text(
               '平和なツイートをしています。\nよろしければ、フォローしてください。',
               style: TextStyle(fontStyle: FontStyle.italic),
             ),
@@ -355,7 +355,7 @@ class SettingsPage extends StatelessWidget {
           animType: AnimType.SCALE,
           dialogType: DialogType.INFO,
           body: Center(
-            child: Text(
+            child: const Text(
               'いただいたご意見・ご要望を参考にアプリを改良していきます。',
               style: TextStyle(fontStyle: FontStyle.italic),
             ),
@@ -414,7 +414,7 @@ class SettingsPage extends StatelessWidget {
           animType: AnimType.SCALE,
           dialogType: DialogType.INFO,
           body: Center(
-            child: Text(
+            child: const Text(
               'このアプリが役立ちそうな人を知っていましたら、ご紹介いただけると嬉しいです。',
               style: TextStyle(fontStyle: FontStyle.italic),
             ),
@@ -461,7 +461,7 @@ class SettingsPage extends StatelessWidget {
           animType: AnimType.SCALE,
           dialogType: DialogType.INFO,
           body: Center(
-            child: Text(
+            child: const Text(
               'レビューをいただけますと、\nとても嬉しいです。',
               style: TextStyle(fontStyle: FontStyle.italic),
             ),
