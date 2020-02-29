@@ -28,49 +28,50 @@ class RockSettingPage extends StatelessWidget {
           body: Column(
             children: <Widget>[
               Text(""),
-              
-              Padding( padding: EdgeInsets.all(20.0),child:
-              const Text("機能を使う時にパスワードを必要にする場合は、\n対象の機能をロック! \n子供が自由にポイントを増やせないようにする場合は、ここでロックをかけます！")),
+              Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: const Text(
+                      "機能を使う時にパスワードを必要にする場合は、\n対象の機能をロック! \n子供が自由にポイントを増やせないようにする場合は、ここでロックをかけます！")),
               const Text(""),
               const Text(""),
               const Text(""),
               const Text("ポイント強制変更"),
               Center(
-                child:
-
-//           LiteRollingSwitch(
-//     //initial value
-//     value: true,
-//     textOn: '解除',
-//     textOff: 'ロック',
-//     colorOn: Colors.greenAccent[700],
-//     colorOff: Colors.redAccent[700],
-//     iconOn: Icons.lock_open,
-//     iconOff: Icons.lock,
-//     textSize: 16.0,
-//     onChanged: (bool state) {
-//       //Use it to manage the different states
-//       print('Current State of SWITCH IS: $state');
-//     },
-// )
-// ,
-
-                    ToggleSwitch(
-                        minWidth: 90.0,
-                        cornerRadius: 20,
-                        activeBgColor: Colors.green,
-                        activeTextColor: Colors.white,
-                        inactiveBgColor: Colors.grey,
-                        inactiveTextColor: Colors.white,
-                        labels: ['ロック', '解除'],
-                        icons: [FontAwesome.lock, FontAwesome.unlock],
-                        activeColors: [Colors.blue, Colors.pink],
-                        initialLabelIndex:
-                            lockModel.pointChangePageState ? 0 : 1,
-                        onToggle: (index) {
-                          print('switched to: $index');
-                          lockModel.changeLockStateOfPointChangePageState();
-                        }),
+                child: ToggleSwitch(
+                    minWidth: 90.0,
+                    cornerRadius: 20,
+                    activeBgColor: Colors.green,
+                    activeTextColor: Colors.white,
+                    inactiveBgColor: Colors.grey,
+                    inactiveTextColor: Colors.white,
+                    labels: ['ロック', '解除'],
+                    icons: [FontAwesome.lock, FontAwesome.unlock],
+                    activeColors: [Colors.blue, Colors.pink],
+                    initialLabelIndex: lockModel.pointChangePageState ? 0 : 1,
+                    onToggle: (index) {
+                      print('switched to: $index');
+                      lockModel.changeLockStateOfPointChangePageState();
+                    }),
+              ),
+              const Text(""),
+              const Text(""),
+              const Text("お手伝いポイントの取得"),
+              Center(
+                child: ToggleSwitch(
+                    minWidth: 90.0,
+                    cornerRadius: 20,
+                    activeBgColor: Colors.green,
+                    activeTextColor: Colors.white,
+                    inactiveBgColor: Colors.grey,
+                    inactiveTextColor: Colors.white,
+                    labels: ['ロック', '解除'],
+                    icons: [FontAwesome.lock, FontAwesome.unlock],
+                    activeColors: [Colors.blue, Colors.pink],
+                    initialLabelIndex: lockModel.laborGetState ? 0 : 1,
+                    onToggle: (index) {
+                      print('switched to: $index');
+                      lockModel.changeLockStateOfLaborGetState();
+                    }),
               )
             ],
           ));

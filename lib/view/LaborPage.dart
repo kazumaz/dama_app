@@ -1,6 +1,8 @@
 import 'package:dama_app/model/LaborModel.dart';
 import 'package:dama_app/model/PointModel.dart';
 import 'package:dama_app/model/HistoryModel.dart';
+import 'package:dama_app/model/LockModel.dart';
+import 'package:dama_app/model/PasswordModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -17,13 +19,16 @@ class LaborPage extends StatelessWidget {
 
   final myLaborNameController = TextEditingController();
   final myLaborPointController = TextEditingController();
+  final passwordInputController = TextEditingController();
   bool datePicked = false;
   DateTime selectedDate;
 
   @override
   Widget build(BuildContext context) {
-    return Consumer3<LaborModel, PointModel, HistoryModel>(
-        builder: (context, laborModel, pointModel, historyModel, child) {
+    return Consumer5<LaborModel, PointModel, HistoryModel, LockModel,
+            PasswordModel>(
+        builder: (context, laborModel, pointModel, historyModel, lockModel,
+            passwordModel, child) {
       return Scaffold(
           appBar: AppBar(title: Text("お手伝い"), actions: <Widget>[
             IconButton(
@@ -120,9 +125,16 @@ class LaborPage extends StatelessWidget {
                                 icon: Icons.edit,
                                 onTap: () {
                                   //元々設定されていた値を初期値として設定する。
-                                  final myLaborNameControllerWithInitialText =  TextEditingController(text: laborModel.laborList[index].name);
-                                  final myLaborPointControllerWithInitialText =  TextEditingController(text: laborModel.laborList[index].point.toString());
-                                  
+                                  final myLaborNameControllerWithInitialText =
+                                      TextEditingController(
+                                          text:
+                                              laborModel.laborList[index].name);
+                                  final myLaborPointControllerWithInitialText =
+                                      TextEditingController(
+                                          text: laborModel
+                                              .laborList[index].point
+                                              .toString());
+
                                   AwesomeDialog(
                                     context: context,
                                     animType: AnimType.SCALE,
@@ -139,7 +151,8 @@ class LaborPage extends StatelessWidget {
                                         Container(
                                             width: 200.0,
                                             child: TextField(
-                                              controller: myLaborNameControllerWithInitialText,
+                                              controller:
+                                                  myLaborNameControllerWithInitialText,
                                               autofocus: true,
                                               decoration: InputDecoration(
                                                 // labelText: "編集する場合は入力してください",
@@ -164,10 +177,8 @@ class LaborPage extends StatelessWidget {
                                                       .toString(),
                                                 ),
                                                 maxLength: 5,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                inputFormatters: <
-                                                    TextInputFormatter>[
+                                                keyboardType: TextInputType.number,
+                                                inputFormatters: <TextInputFormatter>[
                                                   WhitelistingTextInputFormatter
                                                       .digitsOnly
                                                 ])),
@@ -177,18 +188,25 @@ class LaborPage extends StatelessWidget {
                                     desc: 'This is also Ignored',
                                     aligment: Alignment.topCenter,
                                     btnCancelOnPress: () {
-                                      myLaborNameControllerWithInitialText.clear();
-                                      myLaborPointControllerWithInitialText.clear();                                      
+                                      myLaborNameControllerWithInitialText
+                                          .clear();
+                                      myLaborPointControllerWithInitialText
+                                          .clear();
                                     },
                                     btnOkOnPress: () {
-                                      Labor tmpReward = Labor(                                          
-                                          name: myLaborNameControllerWithInitialText.text
-                                              .toString(),
+                                      Labor tmpReward = Labor(
+                                          name:
+                                              myLaborNameControllerWithInitialText
+                                                  .text
+                                                  .toString(),
                                           point: int.parse(
-                                              myLaborPointControllerWithInitialText.text));
+                                              myLaborPointControllerWithInitialText
+                                                  .text));
                                       laborModel.replaceLabor(index, tmpReward);
-                                      myLaborNameControllerWithInitialText.clear();
-                                      myLaborPointControllerWithInitialText.clear();
+                                      myLaborNameControllerWithInitialText
+                                          .clear();
+                                      myLaborPointControllerWithInitialText
+                                          .clear();
                                     },
                                   ).show();
 
@@ -297,37 +315,138 @@ class LaborPage extends StatelessWidget {
                                     ),
                                   ),
                                   onPressed: () {
-                                    AwesomeDialog(
+                                    if (lockModel.laborGetState) {
+                                      AwesomeDialog(
                                         context: context,
                                         animType: AnimType.SCALE,
                                         dialogType: DialogType.INFO,
+                                        aligment: Alignment.topCenter,
                                         body: Center(
-                                          child: Text(
-                                            "日付けを選んでポイントゲット!\n" +
-                                                pointModel.totalPoint
-                                                    .toString() +
-                                                "+" +
-                                                laborModel
-                                                    .laborList[index].point
-                                                    .toString() +
-                                                "=" +
-                                                (pointModel.totalPoint +
-                                                        laborModel
-                                                            .laborList[index]
-                                                            .point)
-                                                    .toString() +
-                                                "point になります!",
-                                            style: TextStyle(
-                                                fontStyle: FontStyle.italic),
-                                          ),
+                                          child: Column(children: <Widget>[
+                                            Container(
+                                                child: const Text(
+                                              'パスワードを入力してください。',
+                                              style: TextStyle(
+                                                  fontStyle: FontStyle.italic),
+                                            )),
+                                            Container(
+                                                width: 200.0,
+                                                child: TextField(
+                                                    controller:
+                                                        passwordInputController,
+                                                    autofocus: true
+                                                    // decoration: InputDecoration(
+                                                    //   // labelText: "編集する場合は入力してください",
+
+                                                    ))
+                                          ]),
                                         ),
                                         tittle: 'This is Ignored',
                                         desc: 'This is also Ignored',
-                                        btnCancelOnPress: () {},
                                         btnOkOnPress: () {
-                                          _selectDate(context, laborModel,
-                                              pointModel, historyModel, index);
-                                        }).show();
+                                          if (passwordModel.isValidPassword(
+                                              checkPassword:
+                                                  passwordInputController.text
+                                                      .toString())) {
+                                            AwesomeDialog(
+                                                context: context,
+                                                animType: AnimType.SCALE,
+                                                dialogType: DialogType.INFO,
+                                                body: Center(
+                                                  child: Text(
+                                                    "日付けを選んでポイントゲット!\n" +
+                                                        pointModel.totalPoint
+                                                            .toString() +
+                                                        "+" +
+                                                        laborModel
+                                                            .laborList[index]
+                                                            .point
+                                                            .toString() +
+                                                        "=" +
+                                                        (pointModel.totalPoint +
+                                                                laborModel
+                                                                    .laborList[
+                                                                        index]
+                                                                    .point)
+                                                            .toString() +
+                                                        "point になります!",
+                                                    style: TextStyle(
+                                                        fontStyle:
+                                                            FontStyle.italic),
+                                                  ),
+                                                ),
+                                                tittle: 'This is Ignored',
+                                                desc: 'This is also Ignored',
+                                                btnCancelOnPress: () {},
+                                                btnOkOnPress: () {
+                                                  _selectDate(
+                                                      context,
+                                                      laborModel,
+                                                      pointModel,
+                                                      historyModel,
+                                                      index);
+                                                }).show();
+
+                                            passwordInputController.clear();
+                                          } else {
+                                            AwesomeDialog(
+                                              context: context,
+                                              animType: AnimType.SCALE,
+                                              dialogType: DialogType.ERROR,
+                                              body: Center(
+                                                child: const Text(
+                                                  'パスワードエラーです。入力し直してください。',
+                                                  style: TextStyle(
+                                                      fontStyle:
+                                                          FontStyle.italic),
+                                                ),
+                                              ),
+                                              tittle: 'This is Ignored',
+                                              desc: 'This is also Ignored',
+                                              btnOkOnPress: () {},
+                                            ).show();
+                                          }
+                                        },
+                                      ).show();
+                                    } else {
+                                      AwesomeDialog(
+                                          context: context,
+                                          animType: AnimType.SCALE,
+                                          dialogType: DialogType.INFO,
+                                          body: Center(
+                                            child: Text(
+                                              "日付けを選んでポイントゲット!\n" +
+                                                  pointModel.totalPoint
+                                                      .toString() +
+                                                  "+" +
+                                                  laborModel
+                                                      .laborList[index].point
+                                                      .toString() +
+                                                  "=" +
+                                                  (pointModel.totalPoint +
+                                                          laborModel
+                                                              .laborList[index]
+                                                              .point)
+                                                      .toString() +
+                                                  "point になります!",
+                                              style: TextStyle(
+                                                  fontStyle: FontStyle.italic),
+                                            ),
+                                          ),
+                                          tittle: 'This is Ignored',
+                                          desc: 'This is also Ignored',
+                                          btnCancelOnPress: () {},
+                                          btnOkOnPress: () {
+                                            _selectDate(
+                                                context,
+                                                laborModel,
+                                                pointModel,
+                                                historyModel,
+                                                index);
+                                          }).show();
+
+                                      passwordInputController.clear();
+                                    }
                                   },
                                 ),
                               ],
