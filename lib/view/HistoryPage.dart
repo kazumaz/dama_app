@@ -52,7 +52,7 @@ class HistoryPage extends StatelessWidget {
                         ),
                         const Text(""),
                         const Text("履歴がまだ登録されていません！"),
-                        const Text("どんどんお手伝いしよう！"),
+                        const Text("どんどんお手伝いして「ありがとう」をためよう！"),
                       ],
                     ))
                   // ここまで履歴0件の表示

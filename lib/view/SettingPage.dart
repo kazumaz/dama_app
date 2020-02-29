@@ -31,7 +31,7 @@ class SettingsPage extends StatelessWidget {
                 _colorSetting("　テーマカラーの変更", Icon(Ionicons.ios_color_palette), context),
                 _pointChange("　ポイントの追加・削除", Icon(MaterialCommunityIcons.coins), context,
                     passwordModel, lockModel),
-                _rockSetting("　ロック対象機能設定", Icon(Ionicons.ios_contact), context,
+                _rockSetting("　ポイント追加にパスワードを必要にする", Icon(Ionicons.ios_contact), context,
                     passwordModel),
                 Text(""),
                 Text("　アプリについて"),

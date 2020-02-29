@@ -101,7 +101,7 @@ class PointChangePage extends StatelessWidget {
                         autocorrect: false,
                         decoration: new InputDecoration(
                           border: const UnderlineInputBorder(),
-                          labelText: '削減ポイント',
+                          labelText: '削除',
                         ),
                         obscureText: true,
                         maxLength: 5,
@@ -110,7 +110,7 @@ class PointChangePage extends StatelessWidget {
                           WhitelistingTextInputFormatter.digitsOnly
                         ]))),
             RaisedButton(
-              child: const Text("削減"),
+              child: const Text("削除"),
               shape: UnderlineInputBorder(),
               onPressed: () {
                 if ((pointModel.totalPoint -

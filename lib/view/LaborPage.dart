@@ -30,7 +30,7 @@ class LaborPage extends StatelessWidget {
         builder: (context, laborModel, pointModel, historyModel, lockModel,
             passwordModel, child) {
       return Scaffold(
-          appBar: AppBar(title: Text("お手伝い"), actions: <Widget>[
+          appBar: AppBar(title: Text("ありがとうを集める"), actions: <Widget>[
             IconButton(
                 icon: Icon(Icons.help_outline),
                 onPressed: () {

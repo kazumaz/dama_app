@@ -42,7 +42,7 @@ dependencies:
   flutter_launcher_icons: "^0.7.3"
 
 flutter_native_splash:
-  image: images/present.png
+  image: images/splash.png
   color: "FFFFFF"
 
 flutter_icons:
