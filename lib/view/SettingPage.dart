@@ -366,7 +366,7 @@ class SettingsPage extends StatelessWidget {
           btnOkText: "する",
           btnCancelOnPress: () {},
           btnOkOnPress: () {
-            var email = 'kkzm2235@yahoo.co.jp';
+            var email = 'kzm2235@yahoo.co.jp';
             var subject = Uri.encodeComponent('【Dama】アプリに関するご意見・ご要望');
             var body = Uri.encodeComponent('ご意見・ご要望をこちらにご記入ください。');
             var url = 'mailto:$email?subject=$subject&body=$body';
