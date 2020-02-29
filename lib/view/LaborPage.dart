@@ -119,6 +119,10 @@ class LaborPage extends StatelessWidget {
                                 color: Colors.indigo,
                                 icon: Icons.edit,
                                 onTap: () {
+                                  //元々設定されていた値を初期値として設定する。
+                                  final myLaborNameControllerWithInitialText =  TextEditingController(text: laborModel.laborList[index].name);
+                                  final myLaborPointControllerWithInitialText =  TextEditingController(text: laborModel.laborList[index].point.toString());
+                                  
                                   AwesomeDialog(
                                     context: context,
                                     animType: AnimType.SCALE,
@@ -135,7 +139,7 @@ class LaborPage extends StatelessWidget {
                                         Container(
                                             width: 200.0,
                                             child: TextField(
-                                              controller: myLaborNameController,
+                                              controller: myLaborNameControllerWithInitialText,
                                               autofocus: true,
                                               decoration: InputDecoration(
                                                 // labelText: "編集する場合は入力してください",
@@ -151,7 +155,7 @@ class LaborPage extends StatelessWidget {
                                             width: 200.0,
                                             child: TextField(
                                                 controller:
-                                                    myLaborPointController,
+                                                    myLaborPointControllerWithInitialText,
                                                 autofocus: true,
                                                 decoration: InputDecoration(
                                                   // labelText: "編集する場合は入力してください",
@@ -173,18 +177,18 @@ class LaborPage extends StatelessWidget {
                                     desc: 'This is also Ignored',
                                     aligment: Alignment.topCenter,
                                     btnCancelOnPress: () {
-                                      myLaborNameController.clear();
-                                      myLaborPointController.clear();
+                                      myLaborNameControllerWithInitialText.clear();
+                                      myLaborPointControllerWithInitialText.clear();                                      
                                     },
                                     btnOkOnPress: () {
-                                      Labor tmpReward = Labor(
-                                          name: myLaborNameController.text
+                                      Labor tmpReward = Labor(                                          
+                                          name: myLaborNameControllerWithInitialText.text
                                               .toString(),
                                           point: int.parse(
-                                              myLaborPointController.text));
+                                              myLaborPointControllerWithInitialText.text));
                                       laborModel.replaceLabor(index, tmpReward);
-                                      myLaborNameController.clear();
-                                      myLaborPointController.clear();
+                                      myLaborNameControllerWithInitialText.clear();
+                                      myLaborPointControllerWithInitialText.clear();
                                     },
                                   ).show();
 

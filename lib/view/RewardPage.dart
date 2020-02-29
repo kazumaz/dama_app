@@ -87,6 +87,8 @@ class RewardPage extends StatelessWidget {
                           color: Colors.indigo,
                           icon: Icons.edit,
                           onTap: () {
+                            final myRewardNameControllerWithInitialText =  TextEditingController(text: rewardModel.rewardList[index].name);
+                            final myRewardPointControllerWithInitialText =  TextEditingController(text: rewardModel.rewardList[index].point.toString());
                             AwesomeDialog(
                               context: context,
                               animType: AnimType.SCALE,
@@ -105,7 +107,7 @@ class RewardPage extends StatelessWidget {
                                   Container(
                                       width: 200.0,
                                       child: TextField(
-                                        controller: myRewardNameController,
+                                        controller: myRewardNameControllerWithInitialText,
                                         autofocus: true,
                                         decoration: InputDecoration(
                                           hintText: rewardModel
@@ -120,7 +122,7 @@ class RewardPage extends StatelessWidget {
                                   Container(
                                       width: 200.0,
                                       child: TextField(
-                                          controller: myRewardPointController,
+                                          controller: myRewardPointControllerWithInitialText,
                                           autofocus: true,
                                           decoration: InputDecoration(
                                             hintText: rewardModel
@@ -142,18 +144,18 @@ class RewardPage extends StatelessWidget {
                               desc: 'This is also Ignored',
                               aligment: Alignment.topCenter,
                               btnCancelOnPress: () {
-                                myRewardNameController.clear();
-                                myRewardPointController.clear();
+                                myRewardNameControllerWithInitialText.clear();
+                                myRewardPointControllerWithInitialText.clear();
                               },
                               btnOkOnPress: () {
                                 Reward tmpReward = Reward(
                                     name:
-                                        myRewardNameController.text.toString(),
+                                        myRewardNameControllerWithInitialText.text.toString(),
                                     point: int.parse(
-                                        myRewardPointController.text));
+                                        myRewardPointControllerWithInitialText.text));
                                 rewardModel.replaceReward(index, tmpReward);
-                                myRewardNameController.clear();
-                                myRewardPointController.clear();
+                                myRewardNameControllerWithInitialText.clear();
+                                myRewardPointControllerWithInitialText.clear();
                               },
                             ).show();
 
